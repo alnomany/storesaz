@@ -1,0 +1,6 @@
+[2023-07-04 05:52:23] local.INFO: {"code":206,"message":"Currency not available","trace":"PMNT0705.64A3B397.0003481C","success":false,"payment_url":null}  
+[2023-07-05 04:02:36] local.INFO: {"code":206,"message":"Currency not available","trace":"PMNT0706.64A4EB5C.000004AD","success":false,"payment_url":null}  
+[2023-07-05 04:07:39] local.INFO: {"code":206,"message":"Currency not available","trace":"PMNT0706.64A4EC8B.00000556","success":false,"payment_url":null}  
+[2023-10-18 06:39:13] local.INFO: {"code":206,"message":"Currency not available","trace":"PMNT0705.652F7D91.000000E8","success":false,"payment_url":null}  
+[2023-10-18 06:40:44] local.INFO: {"code":206,"message":"Currency not available","trace":"PMNT0705.652F7DEC.000000EA","success":false,"payment_url":null}  
+[2023-12-12 11:04:52] local.INFO: {"code":206,"message":"Currency not available","trace":"PMNT0705.65783E54.00002654","success":false,"payment_url":null}  

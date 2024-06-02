@@ -1,0 +1,366 @@
+/*================================================================================================*/
+/*=================[                                                            ]=================*/
+/*=================[    !!!!!!!!   CSS CREATED BY RAJODIYA INFOTECH  !!!!!!!!   ]=================*/
+/*=================[                                                            ]=================*/
+/*================================================================================================*/
+
+@media (min-width:992px) {
+
+    .desk-only {
+      display: block !important;
+    }
+  
+    .mobile-only {
+      display: none !important;
+    }
+  
+  }
+  
+  @media screen and (max-width:1440px) {
+  
+    .offset-left {
+      margin-right: 0;
+      padding: 0 15px;
+    }
+  
+    .offset-right {
+      margin-left: 0;
+      padding: 0 15px;
+    }
+  
+  }
+  
+  @media screen and (max-width:1260px) {
+   
+  }
+  
+  @media screen and (max-width:1199px) {
+    :root .theme8-v1{
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme8-v2{
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme8-v3{
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme8-v4{
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme8-v5{
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    .main-menu-col{
+      display: none;
+    }
+    .logo-col{
+     margin: 0;
+    }
+    .menu-right{
+      flex: 1;
+      align-items: center;
+    }
+    .mobile-menu {
+      margin: 0 15px 0 0;
+      display: inline-block !important;
+    }
+    .footer-subscribe-col {
+      max-width: 360px;
+      flex: 0 0 360px;
+  }
+  .footer-col:not(:first-of-type) {
+    padding-right: 30px;
+  }
+  .lt-product-img{
+    margin-left: 0;
+  }
+  .footer-logo {
+    max-width: 180px;
+    width: 180px;
+  }
+  }
+  
+  @media screen and (max-width:991px) {
+    :root .theme8-v1{
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme8-v2{
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme8-v3{
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme8-v4{
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme8-v5{
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    .menu-right .header-search{
+      display: none;
+    }
+    .menu-col-right>ul>li.search-header {
+      display: block;
+    }
+  
+    .footer-subscribe-col {
+      margin-top: 30px;
+      padding-right: 0 !important;
+      max-width: 480px;
+      flex: 0 0 480px;
+  }
+  .padding-top {
+    padding-top: 40px;
+  }
+  .padding-bottom {
+    padding-bottom: 40px;
+  }
+  .main-home-first-section{
+    padding-bottom: 140px;
+  }
+  .cart-header-btn {
+    justify-content: center;
+    margin-top: 26px;
+  }
+  .cart-section .right-side {
+    margin-top: 40px;
+  }
+  
+  .checkout-section .right-side {
+    margin-top: 40px;
+  }
+  
+  .menu-col-right>ul{
+    min-width: unset;
+  }
+  }
+  
+  @media screen and (max-width:767px) {
+    .footer-subscribe-col{
+      max-width: 100%;
+      flex: 100%;
+    }
+    .footer-row{
+      flex-direction: column;
+    }
+    .footer-col:not(:first-of-type) {
+      padding-right: 0;
+      margin-top: 20px;
+    }
+    .footer-logo{
+      max-width: 200px;
+    }
+    .menu-col-right>ul>li.profile-header,
+    .menu-col-right>ul>li.language-header{
+      display: none;
+    }
+    .logo-col{
+      max-width: 150px;
+    }
+    .notification-bar p {
+      letter-spacing: normal;
+      font-size: 12px;
+  }
+  .mobile-menu{
+    margin: 0;
+  }
+  .banner-logo{
+    max-width: 140px;
+  }
+  .tab-nav{
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .tab-nav h2{
+    margin-bottom: 15px;
+  }
+  .porduct-listing-page .tabs li{
+    margin-bottom: 0;
+  }
+  .tabs li{
+    margin-bottom: 10px;
+  }
+  .tabs li:not(:last-of-type) {
+    margin-left: 10px;
+  }
+  .tab-nav .btn{
+    margin-top: 10px;
+  }
+  .section-desk .store-logo{
+    max-width: 190px; 
+  }
+  .site-footer{
+    padding: 40px 0 20px;
+  }
+  .footer-social {
+    justify-content: center;
+  }
+  .footer-bottom p {
+    text-align: center;
+  }
+  .section-title.d-flex h2{
+  flex: 100%;
+  } 
+  .section-title.d-flex .btn,
+  .section-title.d-flex .btn-secondary{
+    margin-top: 15px;
+  }
+  .mobile-menu-bottom {
+    display: block;
+    position: relative;
+    padding: 0 15px;
+    border-top: 1px solid var(--border-color);
+  }
+  .mobile-menu-bottom>ul {
+    display: flex;
+    justify-content: space-between;
+    color: var(--black);
+    position: relative;
+  }
+  .mobile-menu-bottom .set {
+    margin-bottom: 0;
+    border: 0;
+  }
+  .mobile-menu-bottom .set .acnav-label {
+    padding: 10px 0 10px 25px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .mobile-menu-bottom .set .acnav-list {
+    position: absolute;
+    z-index: 1;
+    background: var(--white);
+  }
+  .mobile-menu-bottom .set .acnav-list li:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
+  .slick-slider .slick-arrow{
+    width: 35px;
+    height: 35px;
+  }
+  .testimonial-slider{
+    padding: 0 35px;
+  }
+  .product-descriptions-wrap .row [class*="col-"]:first-child {
+    border-left: 0;
+  }
+  .profile-header a{
+    padding: 10px;
+    color: var(--white);
+  }
+  .modal-popup.fade .modal-dialog-inner{
+    transform: translateY(0);
+  }
+  }
+  
+  @media screen and (max-width:575px) {
+    :root .theme8-v1{
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme8-v2{
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme8-v3{
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme8-v4{
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme8-v5{
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    .lt-product-content {
+      flex: 100%;
+      padding-left: 0;
+   }
+   .lt-product-img{
+    max-width: 100%;
+    margin-top: 25px;
+   }
+   .row-gap {
+    margin-top: -20px;
+  }
+  .row-gap [class*="col-"] {
+    margin-top: 20px;
+  }
+  .article-title h5 {
+    padding-left: 0;
+  }
+  .article-title {
+    flex-direction: column;
+  }
+  .cart-header-btn a:not(:last-child) {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+  .cart-header-btn {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .modal-body .btn-group {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  }
+  
+  @media screen and (max-width:420px) {
+  
+  }
+  
+  @media screen and (max-width:320px) {
+    .payment-image {
+      flex: 100%;
+      width: 100%;
+      justify-content: flex-start;
+      margin-top: 15px;
+  }
+  .payment-method .payment-image.extra-size img {
+    max-width: 60px;
+  }
+  }

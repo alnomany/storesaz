@@ -1,0 +1,425 @@
+/*================================================================================================*/
+/*=================[                                                            ]=================*/
+/*=================[    !!!!!!!!   CSS CREATED BY RAJODIYA INFOTECH  !!!!!!!!   ]=================*/
+/*=================[                                                            ]=================*/
+/*================================================================================================*/
+
+@media (min-width:992px) {
+
+  .desk-only {
+    display: block !important;
+  }
+  .mobile-only {
+    display: none !important;
+  }  
+ 
+}   
+
+@media screen and (max-width:1440px){
+.testimonial-slider::before{
+  content: unset;
+}
+.offset-left {
+  margin-right: 0;
+  padding: 0 15px;
+}
+.offset-right {
+  margin-left: 0;  
+  padding: 0 15px;
+}  
+}
+@media screen and (max-width:1260px){   
+
+
+
+.testimonial-slider::before{
+  content: unset;
+}
+
+.main-navigationbar .main-nav{
+  display: none;
+}
+.mobile-menu{
+  display: block !important;
+}
+
+.right-menu{
+  flex: 1;
+  display: flex;
+  justify-content: end;
+}
+
+
+}
+@media screen and (max-width:1199px){
+:root .theme3-v1{ 
+  --h1: normal 500 40px/1 var(--second-font);
+  --h2: normal 500 32px/1 var(--second-font);
+  --h3: normal 500 26px/1 var(--second-font); 
+  --h4: normal 700 20px/1 var(--second-font);
+  --h5: normal 700 18px/1 var(--second-font);
+  --h6: normal 700 16px/1 var(--second-font);
+} 
+:root .theme3-v2{ 
+  --h1: normal 500 40px/1 var(--second-font);
+  --h2: normal 500 32px/1 var(--second-font);
+  --h3: normal 500 26px/1 var(--second-font); 
+  --h4: normal 700 20px/1 var(--second-font);
+  --h5: normal 700 18px/1 var(--second-font);
+  --h6: normal 700 16px/1 var(--second-font);
+} 
+:root .theme3-v3{ 
+  --h1: normal 500 40px/1 var(--second-font);
+  --h2: normal 500 32px/1 var(--second-font);
+  --h3: normal 500 26px/1 var(--second-font); 
+  --h4: normal 700 20px/1 var(--second-font);
+  --h5: normal 700 18px/1 var(--second-font);
+  --h6: normal 700 16px/1 var(--second-font);
+} 
+:root .theme3-v4{ 
+  --h1: normal 500 40px/1 var(--second-font);
+  --h2: normal 500 32px/1 var(--second-font);
+  --h3: normal 500 26px/1 var(--second-font); 
+  --h4: normal 700 20px/1 var(--second-font);
+  --h5: normal 700 18px/1 var(--second-font);
+  --h6: normal 700 16px/1 var(--second-font);
+} 
+:root .theme3-v5{ 
+  --h1: normal 500 40px/1 var(--second-font);
+  --h2: normal 500 32px/1 var(--second-font);
+  --h3: normal 500 26px/1 var(--second-font); 
+  --h4: normal 700 20px/1 var(--second-font);
+  --h5: normal 700 18px/1 var(--second-font);
+  --h6: normal 700 16px/1 var(--second-font);
+} 
+
+}
+@media screen and (max-width:991px){
+:root .theme3-v1{ 
+  --h1: normal 500 36px/1 var(--second-font); 
+  --common-text: normal 400 14px/1.4 var(--third-font);
+} 
+:root .theme3-v2{ 
+  --h1: normal 500 36px/1 var(--second-font); 
+  --common-text: normal 400 14px/1.4 var(--third-font);
+} 
+:root .theme3-v3{ 
+  --h1: normal 500 36px/1 var(--second-font); 
+  --common-text: normal 400 14px/1.4 var(--third-font);
+} 
+:root .theme3-v4{ 
+  --h1: normal 500 36px/1 var(--second-font); 
+  --common-text: normal 400 14px/1.4 var(--third-font);
+} 
+:root .theme3-v5{ 
+  --h1: normal 500 36px/1 var(--second-font); 
+  --common-text: normal 400 14px/1.4 var(--third-font);
+} 
+
+.main-home-first-section .row.justify-content-end{
+  flex-direction: column-reverse;
+}
+.home-banner-product{
+  padding-bottom: 40px;
+}
+.padding-top {
+  padding-top: 40px;
+}
+.padding-bottom {
+padding-bottom:40px;
+}
+
+.store-promotions-section{
+margin-top: 0;
+padding-top: 40px;
+}
+.testimonial-img{
+max-width: 420px;
+}
+.bg-image{
+display: none;
+}
+.login-form{
+max-width: 600px;
+margin: auto;
+}
+.cart-header-btn{
+justify-content: flex-start;
+}
+.cart-title{
+margin-bottom: 26px;
+}
+.cart-section .right-side{
+margin-top: 40px;
+}
+
+}
+@media screen and (max-width:767px){
+.site-header .right-menu ul li.profile-header{
+  display: none;
+}
+.right-menu>ul>li:not(.profile-header)>a{
+  width: 30px;
+  height: 30px;
+}
+.right-menu ul li:not(:last-of-type) {
+  margin-left: 10px;
+}
+.mobile-menu-bottom {
+  display: block;
+  position: relative;
+  padding: 0 15px;
+}
+.mobile-menu-bottom>ul{
+  display: flex;
+  justify-content: space-between;
+  color: var(--black);
+  position: relative;
+  border-top: 1px solid var(--border-color);
+}
+
+.mobile-menu-bottom ul li.has-item>a:after {
+  border-bottom: 2px solid var(--black);
+  border-left: 2px solid var(--black);
+  content: '';
+  display: block;
+  height: 8px;
+  width: 8px;
+  margin-top: -6px;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform-origin: 34% 66%;
+  -ms-transform-origin: 34% 66%;
+  transform-origin: 34% 66%;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transition: all ease-in-out 0.3s;
+  -moz-transition: all ease-in-out 0.3s;
+  -ms-transition: all ease-in-out 0.3s;
+  -o-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+}
+.mobile-menu-bottom ul li.has-item:hover .menu-dropdown {
+opacity: 1;
+visibility: visible;
+-webkit-transform: scaleY(1);
+-moz-transform: scaleY(1);
+-ms-transform: scaleY(1);
+-o-transform: scaleY(1);
+transform: scaleY(1);
+}
+.language-header{
+display: none;
+}
+.mobile-menu-bottom ul li.has-item .menu-dropdown{
+right: auto;
+left: auto;
+min-width: unset;
+}
+.mobile-menu-bottom .profile-header a{
+background: transparent;
+color: var(--black);
+padding: 0 0 0 29px;
+}
+
+.right-menu {
+padding-right: 30px;
+}
+.site-header .container{
+padding: 0;
+}
+.main-navigationbar{
+padding: 0 15px;
+}
+.mobile-menu-bottom ul li:last-child .menu-dropdown{
+right: unset;
+left: 0;
+}
+.site-footer .social-links{
+justify-content: center;
+}
+.footer-bottom p{
+text-align: center;
+}
+.footer-menu{
+justify-content: center;
+}
+.site-footer .footer-logo{
+margin: 0 auto 26px;
+}
+.testimonial-img{
+max-width: 100%;
+margin-bottom: 15px;
+}
+.testimonial-content{
+flex: 100%;
+width: 100%;
+padding-left: 0;
+padding-bottom: 40px;
+}
+.cart-tble {
+border: 1px solid var(--border-color);
+}
+.checkout-box .row .col-12{
+text-align: center;
+}
+
+.price-bar{
+justify-content: center;
+margin-top: 10px;
+}
+.checkout-btn{
+margin-bottom: 10px;
+}
+.checkout-box span:last-child{
+font-size: 20px;
+}
+.inner-page-banner .banner-content{
+margin-bottom: 40px;
+}
+.payment-method-form .upload-btn-wrapper {
+display: block;
+}
+.modal-popup.fade .modal-dialog-inner{
+  transform: translateY(0);
+}
+}
+
+@media screen and (max-width:575px){  
+:root .theme3-v1{  
+  --h2: normal 500 28px/1 var(--second-font);
+  --h3: normal 500 24px/1 var(--second-font); 
+  --h4: normal 700 22px/1 var(--second-font);
+  --h5: normal 700 20px/1 var(--second-font);
+} 
+:root .theme3-v2{  
+  --h2: normal 500 28px/1 var(--second-font);
+  --h3: normal 500 24px/1 var(--second-font); 
+  --h4: normal 700 22px/1 var(--second-font);
+  --h5: normal 700 20px/1 var(--second-font);
+} 
+:root .theme3-v3{  
+  --h2: normal 500 28px/1 var(--second-font);
+  --h3: normal 500 24px/1 var(--second-font); 
+  --h4: normal 700 22px/1 var(--second-font);
+  --h5: normal 700 20px/1 var(--second-font);
+} 
+:root .theme3-v4{  
+  --h2: normal 500 28px/1 var(--second-font);
+  --h3: normal 500 24px/1 var(--second-font); 
+  --h4: normal 700 22px/1 var(--second-font);
+  --h5: normal 700 20px/1 var(--second-font);
+} 
+:root .theme3-v5{  
+  --h2: normal 500 28px/1 var(--second-font);
+  --h3: normal 500 24px/1 var(--second-font); 
+  --h4: normal 700 22px/1 var(--second-font);
+  --h5: normal 700 20px/1 var(--second-font);
+} 
+.logo-col{
+  max-width: 120px;
+}
+.footer-menu{
+  display: block;
+  margin-bottom: 15px;
+}
+.last-btns{
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0 30px 0;
+}
+.last-btns p{
+  max-width: 100%;
+  text-align: center;
+  margin-top: 15px;
+}
+.login-btn {
+  margin-left: 0;
+}
+.article-title {
+  flex-direction: column;
+}
+.article-title h5{
+  padding-left: 0;
+}
+.cart-header-btn{
+  flex-direction: column;
+}
+.cart-header-btn a:not(:last-child) {
+  margin-left: 0;
+  margin-bottom: 15px;
+}
+.cart-tble {
+  margin: 40px 0 30px;
+}
+.back-shop {
+  margin-right: 0;
+}
+.addres-btn.d-flex{
+  justify-content: flex-start !important;
+  margin-bottom: 15px;
+}
+
+.modal-body .btn-group{
+  flex-direction: column;
+}
+.modal-body .btn-group a:not(:last-of-type){
+  margin-left: 0;
+  margin-bottom: 10px;
+}
+.popup-content .popup-header h4{
+  font-size: 16px;
+}
+.tabs-wrapper .section-title .tabs{
+  margin-top: 15px;
+}
+
+} 
+
+@media screen and (max-width:420px){  
+.logo-col {
+  max-width: 100px;
+}
+.right-menu {
+padding-right: 20px;
+}
+.mobile-menu-bottom .language-header-2 .acnav-list{
+height: 320px;
+overflow: auto;
+}
+
+}
+@media screen and (max-width:320px){  
+.social-links .lbl{
+  display: none;
+}
+.pagination-btn .btn:not(:last-of-type) {
+  margin-left: 10px;
+}
+.pagination-btn .btn{
+  font-size: 13px;
+}
+.customer-product-review{
+  flex-direction: column;
+}
+.review-btn-star{
+  margin-top: 15px;
+}
+.payment-image {
+  flex: 100%;
+  width: 100%;
+  justify-content: flex-start;
+  margin-top: 15px;
+}
+.file-upload.btn{
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+.payment-method p{
+  font-size: 13px;
+}
+}

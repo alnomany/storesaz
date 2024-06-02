@@ -1,0 +1,394 @@
+/*================================================================================================*/
+/*=================[                                                            ]=================*/
+/*=================[    !!!!!!!!   CSS CREATED BY RAJODIYA INFOTECH  !!!!!!!!   ]=================*/
+/*=================[                                                            ]=================*/
+/*================================================================================================*/
+
+@media (min-width:992px) {
+
+    .desk-only {
+      display: block !important;
+    }
+  
+    .mobile-only {
+      display: none !important;
+    }
+  
+  }
+  
+  @media screen and (max-width:1440px) {
+    .testimonial-slider::before {
+      content: unset;
+    }
+  
+    .offset-left {
+      margin-right: 0;
+      padding: 0 15px;
+    }
+  
+    .offset-right {
+      margin-left: 0;
+      padding: 0 15px;
+    }
+    .banner-slider .slick-dots {
+      right: 20px;
+      bottom: 40px;
+    }
+  }
+  
+  @media screen and (max-width:1260px) {
+    .mainnavigation-bar .header-search {
+      display: none;
+    }
+  
+    .right-menu>ul>li.search-header {
+      display: block;
+    }
+  
+    .main-home-first-section .decorative-img {
+      max-width: 150px;
+      left: 50px;
+    }
+    .main-menu-col{
+      flex: 1;
+    }
+  
+   
+  }
+  
+  @media screen and (max-width:1199px) {
+    :root .theme6-v1{
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme6-v2{
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme6-v3{
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme6-v4{
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme6-v5{
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+  }
+  
+  @media screen and (max-width:991px) {
+    :root .theme6-v1{
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme6-v2{
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme6-v3{
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme6-v4{
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme6-v5{
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+  
+    .main-menu-col {
+      display: none;
+    }
+  
+    .mainnavigation-bar .header-search {
+      display: block;
+    }
+  
+    .right-menu>ul>li.search-header {
+      display: none;
+    }
+  
+    .main-menu {
+      padding-right: 0;
+    }
+  
+    .banner-content-main {
+      padding: 22% 0 10%;
+    }
+  
+    .padding-bottom {
+      padding-bottom: 40px;
+    }
+  
+    .padding-top {
+      padding-top: 40px;
+    }
+    .product-section .tabs-wrapper {
+      margin-bottom: -120px;
+  }
+  .mobile-menu{
+    margin: 0 15px 0 0;
+  }
+  .cart-header-btn {
+    justify-content: center;
+    margin-top: 26px;
+  }
+  .cart-section .right-side {
+    margin-top: 40px;
+  }
+  .checkout-section .right-side {
+    margin-top: 40px;
+  }
+  
+  }
+  
+  @media screen and (max-width:767px) {
+    .mainnavigation-bar .header-search {
+      display: none;
+    }
+  
+    .right-menu>ul>li.search-header {
+      display: block;
+    }
+  
+    .right-menu>ul>li.profile-header,
+    .right-menu>ul>li.language-header {
+      display: none;
+    }
+  
+    .right-menu {
+      flex: 1;
+    }
+  
+    .right-menu>ul>li:not(:last-of-type) {
+      margin-left: 25px;
+    }
+  
+    .logo-col {
+      max-width: 90px;
+    }
+  
+    .mobile-menu-bottom {
+      display: block;
+      position: relative;
+      padding: 0 15px;
+      border-top: 1px solid var(--border-color);
+    }
+  
+    .mobile-menu-bottom>ul {
+      display: flex;
+      justify-content: space-between;
+      color: var(--black);
+      position: relative;
+    }
+  
+    .mobile-menu-bottom .set {
+      margin-bottom: 0;
+      border: 0;
+    }
+  
+    .mobile-menu-bottom .set .acnav-label {
+      padding: 10px 0 10px 25px;
+      color: var(--white);
+      font-weight: 500;
+    }
+  
+    .mobile-menu-bottom .set .acnav-list {
+      position: absolute;
+      z-index: 1;
+      background: var(--white);
+    }
+  
+    .mobile-menu-bottom .set .acnav-list li:not(:last-of-type) {
+      margin-bottom: 10px;
+    }
+    .notification-bar p {
+      letter-spacing: normal;
+      font-size: 12px;
+    }
+    .banner-content-main {
+      padding: 30% 0 10%;
+    }
+    .footer-col:not(:first-of-type) {
+      padding-right: 0;
+      margin-top: 30px;
+    }
+    .footer-col {
+      flex: 100%;
+    }
+    .footer-social li a{
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+    }
+    .footer-social{
+      justify-content: center;
+    }
+    .footer-bottom p{
+      text-align: center;
+    }
+    .promotions-icon{
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+    .store-promotions-section{
+      padding-bottom: 40px;
+    }
+    .mobile-menu {
+      margin: 0;
+    }
+    .main-menu{
+      border: 0;
+      padding-left: 0;
+    }
+    .product-descriptions-wrap .row [class*="col-"]:first-child {
+      border-left: 0;
+    }
+
+    .checkout-btn {
+      margin-bottom: 10px;
+    }
+    .checkout-box .row .col-12 {
+      text-align: center;
+    }
+    .price-bar {
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .modal-popup.fade .modal-dialog-inner{
+      transform: translateY(0);
+    }
+  }
+  
+  @media screen and (max-width:575px) {
+    :root .theme6-v1{
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme6-v2{
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme6-v3{
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme6-v4{
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme6-v5{
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+  
+    .right-menu>ul>li:not(:last-of-type) {
+      margin-left: 20px;
+  }
+  .banner-content-main {
+    padding: 45% 0 20%;
+  }
+  .main-home-first-section .decorative-img {
+    max-width: 110px;
+    left: 15px;
+    bottom: 30px;
+  }
+  .decorative-left{
+    display: none;
+  }
+  .article-title h5 {
+    padding-left: 0;
+  }
+  .article-title {
+    flex-direction: column;
+  }
+  .cart-header-btn {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .cart-header-btn a:not(:last-child) {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+  .last-btns p {
+    flex: 100%;
+    max-width: 100%;
+    margin-top: 15px;
+  }
+  .last-btns {
+    flex-wrap: wrap;
+    margin: 15px 0 15px 0;
+  }
+  .section-title.d-flex h2 {
+    width: 100%;
+    flex: 100%;
+  }
+  .section-title .btn {
+    margin-top: 15px;
+  }
+  #Checkout .btn-group a:not(:last-of-type){
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+  }
+  
+  @media screen and (max-width:420px) {
+    .mobile-menu-bottom .language-header-2 .acnav-list {
+      height: 320px;
+      overflow: auto;
+    }
+  }
+  
+  @media screen and (max-width:320px) {
+    .banner-content-main {
+      padding: 55% 0 20%;
+  }
+  .payment-image {
+    flex: 100%;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 15px;
+}
+.payment-method .payment-image.extra-size img {
+  max-width: 60px;
+}
+.form-group #bank_transfer{
+  margin-top: 10px;
+}
+  }

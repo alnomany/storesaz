@@ -1,0 +1,524 @@
+/*================================================================================================*/
+/*=================[                                                            ]=================*/
+/*=================[    !!!!!!!!   CSS CREATED BY RAJODIYA INFOTECH  !!!!!!!!   ]=================*/
+/*=================[                                                            ]=================*/
+/*================================================================================================*/
+
+@media (min-width:992px) {
+
+    .desk-only {
+      display: block !important;
+    }
+  
+    .mobile-only {
+      display: none !important;
+    }
+  
+  }
+  
+  @media screen and (max-width:1440px) {
+  
+    .offset-left {
+      margin-right: 0;
+      padding: 0 15px;
+    }
+  
+    .offset-right {
+      margin-left: 0;
+      padding: 0 15px;
+    }
+  
+    .notification-bar .offset-left {
+      padding-left: 0;
+    }
+  
+    .main-home-first-section .offset-left {
+      padding-left: 0;
+    }
+  
+  }
+  
+  @media screen and (max-width:1260px) {}
+  
+  @media screen and (max-width:1199px) {
+    :root .theme10-v1 {
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+  
+    :root .theme10-v2 {
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+  
+    :root .theme10-v3 {
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+  
+    :root .theme10-v4 {
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+  
+    :root .theme10-v5 {
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme10-v6 {
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme10-v7 {
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme10-v8 {
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme10-v9 {
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+    :root .theme10-v10 {
+      --h1: normal 500 40px/1 var(--second-font);
+      --h2: normal 500 32px/1 var(--second-font);
+      --h3: normal 500 26px/1 var(--second-font);
+      --h4: normal 700 20px/1 var(--second-font);
+      --h5: normal 700 18px/1 var(--second-font);
+      --h6: normal 700 16px/1 var(--second-font);
+    }
+  
+    .main-menu-col {
+      display: none;
+    }
+  
+    .mobile-menu {
+      display: inline-block !important;
+      margin-right: 15px;
+    }
+  
+    .mainnavigation-bar .right-menu {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .footer-info-col {
+      max-width: 400px;
+      flex: 0 0 400px;
+  }
+  }
+  
+  @media screen and (max-width:991px) {
+    :root .theme10-v1 {
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+  
+    :root .theme10-v2 {
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+  
+    :root .theme10-v3 {
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+  
+    :root .theme10-v4 {
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+  
+    :root .theme10-v5 {
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme10-v6 {
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme10-v7 {
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme10-v8 {
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme10-v9 {
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    :root .theme10-v10 {
+      --h1: normal 500 36px/1 var(--second-font);
+      --common-text: normal 400 14px/1.4 var(--first-font);
+    }
+    .padding-top {
+      padding-top: 40px;
+    }
+  
+    .padding-bottom {
+      padding-bottom: 40px;
+    }
+  
+    .popular-itm-section.padding-top {
+      padding-top: 80px;
+      margin-bottom: 120px;
+    }
+  
+    .footer-col:not(:first-of-type) {
+      padding-right: 25px;
+    }
+  
+    .footer-info-col {
+      max-width: 270px;
+      flex: 0 0 270px;
+    }
+    .cart-header-btn {
+      justify-content: center;
+      margin-top: 26px;
+  }
+  .cart-section .right-side,
+  .checkout-section .right-side{
+    margin-top: 40px;
+  }
+  }
+  
+  @media screen and (max-width:767px) {
+    .notification-bar .language-menu {
+      display: none;
+    }
+  
+    .notification-bar {
+      padding: 10px;
+    }
+  
+    .footer-row {
+      flex-direction: column;
+    }
+  
+    .footer-info-col {
+      max-width: 100%;
+      flex: 100%;
+    }
+  
+    .footer-col:not(:first-of-type) {
+      padding-right: 0;
+      margin-top: 20px
+    }
+  
+    .main-menu .right-menu>ul>li.profile-header {
+      display: none;
+    }
+  
+    .logo-col {
+      max-width: 150px;
+    }
+  
+    .mobile-menu {
+      margin-right: 0;
+    }
+  
+    .notification-bar p {
+      letter-spacing: normal;
+      font-size: 12px;
+      text-align: center;
+    }
+  
+    .footer-social {
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .footer-bottom p {
+      text-align: center;
+    }
+  
+    .site-footer {
+      padding: 20px 0;
+    }
+  
+    .testimonial-slider {
+      padding: 0 30px;
+    }
+  
+    .slick-slider .slick-arrow {
+      width: 35px;
+      height: 35px;
+    }
+  
+    .mobile-menu-bottom {
+      display: block;
+      position: relative;
+      padding: 0 15px;
+      border-top: 1px solid var(--border-color);
+    }
+  
+    .mobile-menu-bottom>ul {
+      display: flex;
+      justify-content: space-between;
+      color: var(--black);
+      position: relative;
+    }
+  
+    .mobile-menu-bottom .set {
+      margin-bottom: 0;
+      border: 0;
+    }
+  
+    .mobile-menu-bottom .set .acnav-label {
+      padding: 10px 0 10px 25px;
+      color: var(--black);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+    }
+  
+    .mobile-menu-bottom .set .acnav-label svg {
+      margin-left: 10px;
+      width: 18px;
+      height: 18px;
+    }
+  
+    .mobile-menu-bottom .set .acnav-label svg path {
+      fill: var(--black);
+    }
+  
+    .mobile-menu-bottom .set .acnav-label:after {
+      left: 0;
+      border-color: var(--black);
+    }
+  
+    .mobile-menu-bottom .set .acnav-list {
+      position: absolute;
+      z-index: 1;
+      background: var(--white);
+    }
+  
+    .mobile-menu-bottom .set .acnav-list li:not(:last-of-type) {
+      margin-bottom: 10px;
+    }
+  
+    .main-menu .right-menu>ul>li>a {
+      padding: 7px;
+    }
+  
+    .main-menu .right-menu ul li a svg {
+      width: 15px;
+      height: 15px;
+    }
+  
+    .mainnavigation-bar .count {
+      top: 0;
+      left: -5px;
+    }
+  
+    .main-menu .right-menu>ul>li:not(:last-of-type) {
+      margin-left: 10px;
+    }
+    .product-descriptions-wrap .row [class*="col-"]:first-child {
+      border-left: 0;
+  }
+  .tab-nav h2 {
+    margin-bottom: 15px;
+  }
+  .tab-nav {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .tabs li:not(:last-of-type) {
+    margin-left: 10px;
+  }
+  .footer-social li a{
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+  .checkout-btn {
+    margin-bottom: 10px;
+  }
+  .checkout-box .row .col-12 {
+    text-align: center;
+  }
+  .price-bar {
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .modal-popup.fade .modal-dialog-inner{
+    transform: translateY(0);
+  }
+  }
+  
+  @media screen and (max-width:575px) {
+    :root .theme10-v1 {
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+  
+    :root .theme10-v2 {
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+  
+    :root .theme10-v3 {
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+  
+    :root .theme10-v4 {
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+  
+    :root .theme10-v5 {
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme10-v6 {
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme10-v7 {
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme10-v8 {
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme10-v9 {
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+    :root .theme10-v10 {
+      --h2: normal 500 28px/1 var(--second-font);
+      --h3: normal 500 24px/1 var(--second-font);
+      --h4: normal 700 22px/1 var(--second-font);
+      --h5: normal 700 20px/1 var(--second-font);
+    }
+  
+    .category-search form {
+      flex-wrap: wrap;
+    }
+  
+    .category-search form .input-wrapper {
+      margin-left: 0;
+      margin-bottom: 15px;
+      flex: 100%;
+    }
+  
+    .category-search form .select-wrapper {
+      flex: 1;
+    }
+  
+    .category-search form .btn-secondary {
+      margin-right: 0;
+      padding: 14px 13px;
+    }
+  
+    .category-search form .nice-select {
+      width: auto;
+    }
+  
+    .section-title.d-flex h2 {
+      flex: 100%;
+    }
+  
+    .section-title.d-flex .btn {
+      margin-top: 15px;
+    }
+  
+    .category-search {
+      padding: 20px;
+    }
+    .article-title {
+      flex-direction: column;
+  }
+  .article-title h5 {
+    padding-left: 0;
+  }
+  .cart-header-btn {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .cart-header-btn a:not(:last-child) {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+  }
+  
+  @media screen and (max-width:420px) {}
+  
+  @media screen and (max-width:320px) {
+    .logo-col {
+      max-width: 120px;
+    }
+  
+    .payment-image {
+      flex: 100%;
+      width: 100%;
+      justify-content: flex-start;
+      margin-top: 15px;
+    }
+  
+    .payment-method .payment-image.extra-size img {
+      max-width: 60px;
+    }
+  }
