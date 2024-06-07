@@ -2,6 +2,7 @@
     $logo=\App\Models\Utility::get_file('uploads/logo');
     $product_item=\App\Models\Utility::get_file('uploads/is_cover_image/');
     $company_favicon=Utility::getValByName('company_favicon');
+
     $SITE_RTL = Utility::getValByName('SITE_RTL');
     $setting = \App\Models\Utility::colorset();
     // $color = 'theme-3';
@@ -273,7 +274,7 @@
                                         <button type="button" class="btn btn-primary rounded"  data-ajax-popup="true" data-size="xl"
                                                 data-align="centered" data-url="{{route('pos.create')}}" data-title="{{__('POS Invoice')}}"
                                                 @if(session($lastsegment) && !empty(session($lastsegment)) && count(session($lastsegment)) > 0) @else disabled="disabled" @endif>
-                                            {{ __('PAY') }}
+                                            {{ __('PAY Now') }}
                                         </button>
                                     @endcan
                                     <div class="tab-content btn-empty text-end">
