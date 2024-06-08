@@ -975,11 +975,11 @@ class StoreController extends Controller
 
         if (!empty($store)) {
             if (!Auth::check()) {
-                visitor()->visit($slug);
+              //  visitor()->visit($slug);
             }
             if (Utility::CustomerAuthCheck($slug) == false) {
               
-                visitor()->visit($slug);
+            //    visitor()->visit($slug);
             }
             $userstore = UserStore::where('store_id', $store->id)->first();
             $settings = \DB::table('settings')->where('name', 'company_favicon')->where('created_by', $userstore->user_id)->first();
@@ -1451,7 +1451,7 @@ class StoreController extends Controller
     {
        
         if(isset($product_id) && isset($quantity)){
-            $store = Store::where('slug', $slug)->where('is_store_enabled', '1')->get();
+          return  $store = Store::where('slug', $slug)->where('is_store_enabled', '1')->get();
             if (empty($store)) {
                 return abort('404', 'Page not found');
             }
