@@ -13,15 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if(\Request::route()->getName()!='LaravelUpdater::database')
-        {
+   
             $this->call(UsersTableSeeder::class);
             $this->call(PlansTableSeeder::class);
             $this->call(AiTemplateSeeder::class);
-        }else{
+    
             Utility::languagecreate();
             // Utility::defaultEmail();
-        }
+    
         Artisan::call('module:migrate LandingPage');
         Artisan::call('module:seed LandingPage');
         
