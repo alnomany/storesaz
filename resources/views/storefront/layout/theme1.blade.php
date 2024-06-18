@@ -1,14 +1,15 @@
 @php
     $data = DB::table('settings');
-    $data = $data
-        ->where('created_by', '>', 1)
+    $data = $data->where('created_by', '>', 1)
         ->where('store_id', $store->id)
         ->where('name', 'SITE_RTL')
         ->first();
     $clang = session()->get('lang');
-    if($clang == 'ar' || $clang == 'he'){
+    if($data && ($clang == 'ar' || $clang == 'he')){
+     
         $data->value = 'on';
     }
+
 @endphp
 <!DOCTYPE html>
 <html lang="en" dir="{{ empty($data) ? '' : ($data->value == 'on' ? 'rtl' : '') }}">
@@ -131,6 +132,7 @@
             $currantLang = $store->lang;
         }
         $languages = \App\Models\Utility::languages();
+     
         $langName = \App\Models\Languages::where('code',$currantLang)->first();
         $storethemesetting = \App\Models\Utility::demoStoreThemeSetting($store->id, $store->theme_dir);
         
@@ -226,7 +228,7 @@
                         <form action="{{ route('store.categorie.product', [$store->slug, 'Start shopping']) }}"
                             method="get">
                             @csrf
-                            <input type="text" name="search_data" placeholder="Type your product...">
+                            <input type="text" name="search_data" placeholder="">
                             <button type="submit" class="search-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
                                     viewBox="0 0 13 13" fill="none">
@@ -271,8 +273,7 @@
                             @if (Utility::CustomerAuthCheck($store->slug) == true)
                                 <li class="login-btn-header set has-children">
                                     <a class="acnav-label">
-                                        <span class="login-text"
-                                            style="display: block;">{{ ucFirst(Auth::guard('customers')->user()->name) }}</span>
+                                        <i class="fa-regular fa-user">{{ ucFirst(Auth::guard('customers')->user()->name) }}</i>
                                     </a>
                                     <div class="menu-dropdown acnav-list">
                                         <ul>
@@ -316,15 +317,16 @@
                                 </li>
                             @else
                                 <li class="login-btn-header set has-children">
-                                    <a href="{{ route('customer.login', $store->slug) }}" class="acnav-label">
-                                        <span class="login-text" style="display: block;">{{ __('Log in') }}</span>
+                                    <a href="{{ route('customer.login', $store->slug) }}" class="">
+                                        <img class="" src="{{ asset('storage/uploads/theme1/avatar/icon33.svg') }}" alt="{{ __('Log in') }}">
+                                       
                                     </a>
                                 </li>
                             @endif
                             <li class="language-header set has-children has-item">
                                 <a href="#" class="acnav-label" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
-                                    <i class="fas fa-language"></i>
+                                    <img  src="{{ asset('storage/uploads/theme1/avatar/sa.svg') }}" width="25" height="18">
                                     <span class="select">{{ ucFirst($langName->fullName) }}</span>
                                 </a>
                                 <div class="menu-dropdown acnav-list">
@@ -766,7 +768,7 @@
                             <span class="input-group-text"><i class="fas fa-search"></i></span>
                         </div>
                         <input type="text" name="search_data" class="form-control form-control-flush"
-                            placeholder="Type your product...">
+                            placeholder="">
 
                     </div>
                 </div>
