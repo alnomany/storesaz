@@ -979,7 +979,7 @@ class StoreController extends Controller
             }
             if (Utility::CustomerAuthCheck($slug) == false) {
               
-                visitor()->visit($slug);
+               // visitor()->visit($slug);
             }
             $userstore = UserStore::where('store_id', $store->id)->first();
             $settings = \DB::table('settings')->where('name', 'company_favicon')->where('created_by', $userstore->user_id)->first();
