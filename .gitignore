@@ -1,4 +1,5 @@
 /.idea
+.env
 /.vscode
 /vendor/srmklive
 blackbox.config.json
