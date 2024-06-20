@@ -1621,12 +1621,15 @@ class StoreController extends Controller
 
     public function userAddress(Request $request,$slug)
     {
+        //return Auth::guard('customers')->user(); //phone_number // name
+    //  return  $auth_customer = Auth::guard('customers')->user()->phone_number;
+       // (Utility::CustomerAuthCheck($store->slug) ? Auth::guard('customers')->user()->phone_number : '');
         $data = [];
         if(empty($data)){
-            $path = storage_path()."/uploads/world/". "world.json" ;
+            $path = storage_path()."/uploads/world/". "world-ar.json" ;
             $countries = json_decode(file_get_contents($path), true);
         }
-        $store = Store::where('slug', $slug)->where('is_store_enabled', '1')->first();
+         $store = Store::where('slug', $slug)->where('is_store_enabled', '1')->first();
         if (empty($store)) {
             return redirect()->route('store.slug', $slug);
         }
@@ -1724,7 +1727,7 @@ class StoreController extends Controller
         }
         $data = [];
         if(empty($data)){
-            $path = storage_path()."/uploads/world/". "world.json" ;
+            $path = storage_path()."/uploads/world/". "world-ar.json" ;
             $countries = json_decode(file_get_contents($path), true);
         }
         $cities = $countries[$country];

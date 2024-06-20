@@ -17,22 +17,23 @@
                         <p>{{__('Fill the form below so we can send you the orders invoice.')}}</p>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-12">
+                        <span style="visibility: hidden;position: absolute;top: 0px;">
+                        <div class="col-md-6 col-12"> 
                             <div class="form-group">
                                 {{Form::label('name',__('First Name'),array("class"=>"form-control-label")) }} <span style="color:red">*</span>
-                                {{Form::text('name',old('name'),array('class'=>'form-control','placeholder'=>__('Enter Your First Name'),'required'=>'required'))}}
+                                {{Form::text('name',(Utility::CustomerAuthCheck($store->slug) ? Auth::guard('customers')->user()->name : ''),array('class'=>'form-control','placeholder'=>__('Enter Your First Name'),'required'=>'required'))}}
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 {{Form::label('last_name',__('Last Name'),array("class"=>"form-control-label")) }} <span style="color:red">*</span>
-                                {{Form::text('last_name',old('last_name'),array('class'=>'form-control','placeholder'=>__('Enter Your Last Name'),'required'=>'required'))}}
+                                {{Form::text('last_name',(Utility::CustomerAuthCheck($store->slug) ? Auth::guard('customers')->user()->name : ''),array('class'=>'form-control','placeholder'=>__('Enter Your Last Name'),'required'=>'required'))}}
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 {{Form::label('phone',__('Phone'),array("class"=>"form-control-label")) }} <span style="color:red">*</span>
-                                {{Form::text('phone',old('phone'),array('class'=>'form-control','placeholder'=>'(99) 12345 67890','required'=>'required'))}}
+                                {{Form::text('phone',(Utility::CustomerAuthCheck($store->slug) ? Auth::guard('customers')->user()->phone_number : ''),array('class'=>'form-control','placeholder'=>'(+966) 500090918','required'=>'required'))}}
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -73,12 +74,8 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="col-md-6 col-12">
-                            <div class="form-group">
-                                {{Form::label('billingaddress',__('Address'),array("class"=>"form-control-label")) }} <span style="color:red">*</span>
-                                {{Form::text('billing_address',old('billing_address'),array('class'=>'form-control','placeholder'=>__('Billing Address'),'required'=>'required'))}}
-                            </div>
-                        </div>
+                        </span>
+                    
                         {{--  @php
                             $ip = $_SERVER['REMOTE_ADDR'];
                             $freegeoipjson = file_get_contents("http://freegeoip.net/json/". $ip ."");
@@ -87,6 +84,13 @@
                                 $countryfromip = $jsondata->country_name;
                             }
                         @endphp       --}}
+                        <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                {{Form::label('billingaddress',__('Address'),array("class"=>"form-control-label")) }} <span style="color:red">*</span>
+                                {{Form::text('billing_address',old('billing_address'),array('class'=>'form-control','placeholder'=>__('Billing Address'),'required'=>'required'))}}
+                            </div>
+                        </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 {{Form::label('billing_country',__('Country'),array("class"=>"form-control-label")) }} <span style="color:red">*</span>
@@ -163,6 +167,7 @@
                                 {{Form::text('shipping_postalcode',old('shipping_postalcode'),array('class'=>'form-control','placeholder'=>__('Shipping Postal Code')))}}
                             </div>
                         </div>
+                    </div> 
                         <div class="col-md-12 col-12">
                             <div class="addres-btn">
                                 <a href="{{route('store.slug',$store->slug)}}" class="cart-btn">{{__('Return to shop')}}</a>
