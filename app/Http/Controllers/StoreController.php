@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Mail\ProdcutMail;
@@ -65,7 +66,7 @@ class StoreController extends Controller
 
     public function index()
     {
-        if(\Auth::user()->can('Manage Store')){
+        if (\Auth::user()->can('Manage Store')) {
             if (\Auth::user()->type == 'super admin') {
                 $users = User::select(
                     [
@@ -75,10 +76,9 @@ class StoreController extends Controller
                 )->join('stores', 'stores.id', '=', 'users.current_store')->where('users.created_by', \Auth::user()->creatorId())->where('users.type', '=', 'Owner')->with('currentPlan')->groupBy('users.id')->get();
                 $stores = Store::get();
                 return view('admin_store.index', compact('stores', 'users'));
-                
+
             }
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'Permission denied.');
         }
     }
@@ -90,12 +90,11 @@ class StoreController extends Controller
      */
     public function create()
     {
-        if(\Auth::user()->can('Create Store')){
+        if (\Auth::user()->can('Create Store')) {
             $user = \Auth::user();
             $store_settings = Store::where('id', $user->current_store)->first();
-            return view('admin_store.create',compact('store_settings'));
-        }
-        else{
+            return view('admin_store.create', compact('store_settings'));
+        } else {
             return redirect()->back()->with('error', 'Permission denied.');
         }
     }
@@ -110,28 +109,26 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         if (\Auth::user()->type == 'super admin') {
-            if(\Auth::user()->can('Create Store')){
+            if (\Auth::user()->can('Create Store')) {
                 $validator = \Validator::make(
                     $request->all(), [
-                                    'store_name' => 'required|max:120',
-                                    'email' => 'required|email|unique:stores|unique:users,email',
-                                    // 'password' => 'required|max:120',
-                                    'name' => 'required|max:120',
-                                ]
+                        'store_name' => 'required|max:120',
+                        'email' => 'required|email|unique:stores|unique:users,email',
+                        // 'password' => 'required|max:120',
+                        'name' => 'required|max:120',
+                    ]
                 );
-                if($validator->fails())
-                {
+                if ($validator->fails()) {
                     $messages = $validator->getMessageBag();
 
                     return redirect()->back()->with('error', $messages->first());
                 }
 
                 do {
-                    $refferal_code = rand(100000 , 999999);
-                    $checkCode = User::where('type','Owner')->where('referral_code', $refferal_code)->get();
-                }
-                while ($checkCode->count());
-                
+                    $refferal_code = rand(100000, 999999);
+                    $checkCode = User::where('type', 'Owner')->where('referral_code', $refferal_code)->get();
+                } while ($checkCode->count());
+
                 $settings = Utility::settings();
                 $objUser = User::create(
                     [
@@ -143,9 +140,9 @@ class StoreController extends Controller
                         'plan' => Plan::first()->id,
                         'lang' => !empty($settings['default_language']) ? $settings['default_language'] : 'en',
                         'created_by' => \Auth::user()->id,
-                        'is_active'         => !empty($request['password_switch']) && $request['password_switch'] == 'on' ? 1 : 0,
-                        'is_enable_login'   => !empty($request['password_switch']) && $request['password_switch'] == 'on' ? 1 : 0,
-                        'referral_code'     => $refferal_code,
+                        'is_active' => !empty($request['password_switch']) && $request['password_switch'] == 'on' ? 1 : 0,
+                        'is_enable_login' => !empty($request['password_switch']) && $request['password_switch'] == 'on' ? 1 : 0,
+                        'referral_code' => $refferal_code,
                     ]
                 );
                 $objStore = Store::create(
@@ -187,8 +184,8 @@ class StoreController extends Controller
                 $objStore->store_theme = 'theme1-v1';
                 $objStore->save();
                 $objUser->current_store = $objStore->id;
-                $objUser->lang  = !empty($settings['default_language']) ? $settings['default_language'] : 'en';
-                $objUser->plan         = Plan::first()->id;
+                $objUser->lang = !empty($settings['default_language']) ? $settings['default_language'] : 'en';
+                $objUser->plan = Plan::first()->id;
                 $objUser->save();
                 $objUser->assignRole('Owner');
                 UserStore::create(
@@ -207,17 +204,16 @@ class StoreController extends Controller
                     ];
                     $resp = Utility::sendEmailTemplate('Owner And Store Created', $objUser->email, $dArr, $objStore);
                 } catch (\Exception $e) {
-    
+
                     // $smtp_error = "<br><span class='text-danger'>" . __('E-Mail has been not sent due to SMTP configuration') . '</span>';
                 }
 
                 // return redirect()->back()->with('success', __('Successfully Created!')) . ((isset($smtp_error)) ? $smtp_error : '');
                 return redirect()->back()->with('success', __('Successfully Created!' . ((isset($resp['error'])) ? '<br><span class="text-danger">' . $resp['error'] . '</span>' : '')));
-            }
-            else{
+            } else {
                 return redirect()->back()->with('error', 'Permission denied.');
             }
-    
+
         } else {
             $user = \Auth::user();
             $total_store = $user->countStore();
@@ -231,7 +227,7 @@ class StoreController extends Controller
                         'name' => $request['store_name'],
                         'logo' => !empty($settings['logo']) ? $settings['logo'] : 'logo-dark.png',
                         'invoice_logo' => !empty($settings['logo']) ? $settings['logo'] : 'invoice_logo.png',
-                        'lang' => !empty( $user->lang) ? $user->lang : 'en',
+                        'lang' => !empty($user->lang) ? $user->lang : 'en',
                         'currency' => !empty($settings['currency_symbol']) ? $settings['currency_symbol'] : '$',
                         'currency_code' => !empty($settings['currency']) ? $settings['currency'] : 'USD',
                         'paypal_mode' => 'sandbox',
@@ -260,8 +256,8 @@ class StoreController extends Controller
                                     Thanks {store_name}
                                     ';
                 $objStore->item_variable = '{sku} : {quantity} x {product_name} - {variant_name} + {item_tax} = {item_total}';
-                $objStore->theme_dir = isset($request['themefile'])?$request['themefile']:'theme1';
-                $objStore->store_theme = isset($request['theme_color'])?$request['theme_color']:'theme1-v1';
+                $objStore->theme_dir = isset($request['themefile']) ? $request['themefile'] : 'theme1';
+                $objStore->store_theme = isset($request['theme_color']) ? $request['theme_color'] : 'theme1-v1';
                 $objStore->save();
                 \Auth::user()->current_store = $objStore->id;
                 \Auth::user()->save();
@@ -278,7 +274,7 @@ class StoreController extends Controller
                 return redirect()->back()->with('error', __('Your Store limit is over, Please upgrade plan'));
             }
         }
-      
+
     }
 
     /**
@@ -302,7 +298,7 @@ class StoreController extends Controller
      */
     public function edit($id)
     {
-        if(\Auth::user()->can('Edit Store')){
+        if (\Auth::user()->can('Edit Store')) {
             if (\Auth::user()->type == 'super admin') {
                 $user = User::find($id);
                 $user_store = UserStore::where('user_id', $id)->first();
@@ -310,8 +306,7 @@ class StoreController extends Controller
 
                 return view('admin_store.edit', compact('store', 'user'));
             }
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'Permission denied.');
         }
     }
@@ -326,7 +321,7 @@ class StoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(\Auth::user()->can('Edit Store')){
+        if (\Auth::user()->can('Edit Store')) {
             if (\Auth::user()->type == 'super admin') {
                 $store = Store::find($id);
                 $user_store = UserStore::where('store_id', $id)->first();
@@ -352,9 +347,8 @@ class StoreController extends Controller
                 $user->update();
                 return redirect()->back()->with('success', __('Successfully Updated!'));
             }
-        }
-        else{
-            return redirect()->back()->with('error', 'Permission denied.');  
+        } else {
+            return redirect()->back()->with('error', 'Permission denied.');
         }
     }
 
@@ -367,7 +361,7 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
-        if(\Auth::user()->can('Delete Store')){
+        if (\Auth::user()->can('Delete Store')) {
             if (\Auth::user()->type == 'super admin') {
                 if (isset($id) && $id != 2) {
                     $user = User::find($id);
@@ -402,12 +396,12 @@ class StoreController extends Controller
                         Customer::where('store_id', $store->id)->delete();
                         DB::table('settings')->where('store_id', $store->id)->delete();
                         Role::where('store_id', $store->id)->delete();
-                        ReferralTransaction::where('company_id' , $id)->delete();
+                        ReferralTransaction::where('company_id', $id)->delete();
 
                         $store->delete();
                     }
                     User::where('created_by', $user->id)->delete();
-                    
+
                     $user->delete();
                     // $user_store->delete();
 
@@ -418,8 +412,7 @@ class StoreController extends Controller
             } else {
                 return redirect()->back()->with('error', __('Permission denied.'));
             }
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
     }
@@ -508,7 +501,7 @@ class StoreController extends Controller
             Customer::where('store_id', $store->id)->delete();
             DB::table('settings')->where('store_id', $store->id)->delete();
             Role::where('store_id', $store->id)->delete();
-            
+
             User::where('current_store', $store->id)->where('created_by', $user->id)->delete();
 
             $store->delete();
@@ -531,7 +524,7 @@ class StoreController extends Controller
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'logo' => 'mimes:jpeg,png,jpg,gif,svg,pdf,doc|max:20480',
                 'invoice_logo' => 'mimes:jpeg,png,jpg,gif,svg,pdf,doc|max:20480',
-                'metaimage'=>'mimes:jpeg,png,jpg,gif,svg|max:20480'
+                'metaimage' => 'mimes:jpeg,png,jpg,gif,svg|max:20480'
             ]
         );
         if ($request->enable_domain == 'enable_domain' || $request->domain_switch == 'on') {
@@ -560,17 +553,16 @@ class StoreController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('logo')->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            $dir        = 'uploads/store_logo/';
-            $validation =[
-                'mimes:'.'png',
-                'max:'.'20480',
+            $dir = 'uploads/store_logo/';
+            $validation = [
+                'mimes:' . 'png',
+                'max:' . '20480',
             ];
-            $path = Utility::upload_file($request,'logo',$fileNameToStore,$dir, $validation);
+            $path = Utility::upload_file($request, 'logo', $fileNameToStore, $dir, $validation);
 
-            if($path['flag'] == 1)
-            {
+            if ($path['flag'] == 1) {
                 $url = $path['url'];
-            }else{
+            } else {
                 return redirect()->back()->with('error', __($path['msg']));
             }
             // $dir = storage_path('uploads/store_logo/');
@@ -585,17 +577,17 @@ class StoreController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('invoice_logo')->getClientOriginalExtension();
             $fileNameToStoreInvoice = 'invoice_logo' . '_' . $id . '.' . $extension;
-            $dir        = 'uploads/store_logo/';
-            $validation =[
-                'mimes:'.'png',
-                'max:'.'20480',
+            $dir = 'uploads/store_logo/';
+            $validation = [
+                'mimes:' . 'png',
+                'max:' . '20480',
             ];
 
-            $path = Utility::upload_file($request,'invoice_logo',$fileNameToStoreInvoice,$dir,$validation);
+            $path = Utility::upload_file($request, 'invoice_logo', $fileNameToStoreInvoice, $dir, $validation);
 
-            if($path['flag'] == 1){
+            if ($path['flag'] == 1) {
                 $url = $path['url'];
-            }else{
+            } else {
                 return redirect()->back()->with('error', __($path['msg']));
             }
             // $dir = storage_path('uploads/store_logo/');
@@ -604,31 +596,31 @@ class StoreController extends Controller
             // }
             // $path = $request->file('invoice_logo')->storeAs('uploads/store_logo/', $fileNameToStoreInvoice);
         }
-        if(!empty($request->metaimage)){
+        if (!empty($request->metaimage)) {
             $store = Store::find($id);
             $filenameWithExt = $request->file('metaimage')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('metaimage')->getClientOriginalExtension();
-            $filenameToStoreMetaimage = 'metaimage'.'_'.time().'.'.$extension ;
+            $filenameToStoreMetaimage = 'metaimage' . '_' . time() . '.' . $extension;
 
-            $fileName = $store->metaimage !== 'default.jpg' ? $store->metaimage : '' ;
-            $filePath ='uploads/metaImage/'. $fileName;
-            
+            $fileName = $store->metaimage !== 'default.jpg' ? $store->metaimage : '';
+            $filePath = 'uploads/metaImage/' . $fileName;
+
             $image_size = $request->file('metaimage')->getSize();
             $result = Utility::updateStorageLimit(\Auth::user()->creatorId(), $image_size);
 
             $dir = 'uploads/metaImage';
             $validation = [
-                'mimes:'.'png',
-                'max:'.'20480',
+                'mimes:' . 'png',
+                'max:' . '20480',
             ];
-            if($result == 1){
-                Utility::changeStorageLimit(\Auth::user()->creatorId(),$filePath);
-                $path = Utility::upload_file($request,'metaimage',$filenameToStoreMetaimage,$dir,$validation);
-                if($path['flag'] == 1){
+            if ($result == 1) {
+                Utility::changeStorageLimit(\Auth::user()->creatorId(), $filePath);
+                $path = Utility::upload_file($request, 'metaimage', $filenameToStoreMetaimage, $dir, $validation);
+                if ($path['flag'] == 1) {
                     $url = $path['url'];
-                }else{
-                    return redirect()->back()->with('error',__($path['msg']));
+                } else {
+                    return redirect()->back()->with('error', __($path['msg']));
                 }
             }
         }
@@ -792,24 +784,23 @@ class StoreController extends Controller
             $store['domain_switch'] = $request->domain_switch;
             $custom_domain_request = CustomDomainRequest::where('user_id', \Auth::user()->creatorId())->where('store_id', $id)->first();
             if ($custom_domain_request) {
-                if($custom_domain_request->custom_domain != $domain_name){
-                    $custom_domain_request->status        = 0;
+                if ($custom_domain_request->custom_domain != $domain_name) {
+                    $custom_domain_request->status = 0;
                 }
                 $custom_domain_request->custom_domain = $domain_name;
                 $custom_domain_request->save();
             } else {
-                $custom_domain_requests                 = new CustomDomainRequest();
-                $custom_domain_requests->user_id        = \Auth::user()->creatorId();
-                $custom_domain_requests->store_id       = $id;
-                $custom_domain_requests->custom_domain  = $domain_name;
-                $custom_domain_requests->status         = 0;
+                $custom_domain_requests = new CustomDomainRequest();
+                $custom_domain_requests->user_id = \Auth::user()->creatorId();
+                $custom_domain_requests->store_id = $id;
+                $custom_domain_requests->custom_domain = $domain_name;
+                $custom_domain_requests->status = 0;
                 $custom_domain_requests->save();
             }
         } else {
             $store['domain_switch'] = 'off';
             $custom_domain_request = CustomDomainRequest::where('user_id', \Auth::user()->creatorId())->where('store_id', $id)->first();
-            if($custom_domain_request)
-            {
+            if ($custom_domain_request) {
                 $custom_domain_request->delete();
             }
         }
@@ -837,7 +828,7 @@ class StoreController extends Controller
         if (!empty($fileNameToStoreInvoice)) {
             $store['invoice_logo'] = $fileNameToStoreInvoice;
         }
-        if(!empty($filenameToStoreMetaimage)){
+        if (!empty($filenameToStoreMetaimage)) {
             $store['metaimage'] = $filenameToStoreMetaimage;
         }
 
@@ -846,7 +837,9 @@ class StoreController extends Controller
 
         return redirect()->back()->with('success', __('Store successfully Update.'));
     }
-    public function pwasetting(Request $request, $id){
+
+    public function pwasetting(Request $request, $id)
+    {
         $company_favicon = Utility::getValByName('company_favicon');
         $store = Store::find($id);
         $store['enable_pwa_store'] = $request->pwa_store ?? 'off';
@@ -871,12 +864,12 @@ class StoreController extends Controller
             $logo1 = Utility::get_file('uploads/logo/');
             $company_favicon = Utility::getValByName('company_favicon');
 
-            if($store->enable_storelink == 'on'){
+            if ($store->enable_storelink == 'on') {
                 $start_url = env('APP_URL') . '/store/' . $store['slug'];
-            }else if($store->enable_domain == 'on'){
-                $start_url = 'https://'.$store->domains;
-            }else{
-                $start_url = 'https://'. $store->subdomain;
+            } else if ($store->enable_domain == 'on') {
+                $start_url = 'https://' . $store->domains;
+            } else {
+                $start_url = 'https://' . $store->subdomain;
             }
 
             // if any error change $store_url  To  $store_url . '/store/' . $store['slug']
@@ -975,10 +968,12 @@ class StoreController extends Controller
 
         if (!empty($store)) {
             if (!Auth::check()) {
-              //  visitor()->visit($slug);
+                //  visitor()->visit($slug);
             }
             if (Utility::CustomerAuthCheck($slug) == false) {
-              
+
+
+               // visitor()->visit($slug);
             //    visitor()->visit($slug);
             }
             $userstore = UserStore::where('store_id', $store->id)->first();
@@ -1058,7 +1053,7 @@ class StoreController extends Controller
 
             // json data
             $getStoreThemeSetting = Utility::getStoreThemeSetting($store->id, $store->theme_dir);
-            
+
             $getStoreThemeSetting1 = [];
 
             if (!empty($getStoreThemeSetting['dashboard'])) {
@@ -1084,7 +1079,7 @@ class StoreController extends Controller
                 $mostPurchasedDetail='';
 
             }
-            
+
             $latest2category = DB::table('product_categories')->where('store_id', $userstore->store_id)->orderBy('id', 'desc')->limit(2)->get();
 
             // theme8 latest
@@ -1098,7 +1093,7 @@ class StoreController extends Controller
                     $pixelScript[] = pixelSourceCode( $pixel['platform'], $pixel['pixel_id'] );
                 }
             }
-            
+
             return view('storefront.' . $store->theme_dir . '.index', compact('pixelScript','mostPurchasedDetail','theme3_product_random', 'blogs', 'theme3_product_image', 'theme3_product', 'theme6_product_random', 'wishlist', 'products', 'settings', 'store', 'categories', 'total_item', 'page_slug_urls', 'blog', 'pro_categories', 'topRatedProducts', 'product_count', 'getStoreThemeSetting', 'getStoreThemeSetting1', 'theme7_product', 'theme7_product_image','theme7_product_byId','mostPurchased','latestProduct','theme9_product_random','latest2category','latestProduct10'));
 
         } else {
@@ -1196,9 +1191,9 @@ class StoreController extends Controller
             session(['slug' => $store->slug]);
             $cart = session()->get($store->slug);
             if (isset($store->lang)) {
-    
+
                 $lang = session()->get('lang');
-    
+
                 if (!isset($lang)) {
                     session(['lang' => $store->lang]);
                     $storelang = session()->get('lang');
@@ -1208,7 +1203,7 @@ class StoreController extends Controller
                     $storelang = session()->get('lang');
                     \App::setLocale(isset($storelang) ? $storelang : 'en');
                 }
-    
+
             }
             $total_item = 0;
             if (isset($cart['products'])) {
@@ -1228,7 +1223,7 @@ class StoreController extends Controller
             }
             $page_slug_urls = PageOption::where('store_id', $store->id)->get();
             $blog = Blog::where('store_id', $store->id)->first();
-    
+
             $getStoreThemeSetting = Utility::getStoreThemeSetting($store->id, $store->theme_dir);
             $getStoreThemeSetting1 = [];
             if (!empty($getStoreThemeSetting['dashboard'])) {
@@ -1237,7 +1232,7 @@ class StoreController extends Controller
             }
             if (empty($getStoreThemeSetting)) {
                 $path = storage_path() . "/uploads/" . $store->theme_dir . "/" . $store->theme_dir . ".json";
-    
+
                 $getStoreThemeSetting = json_decode(file_get_contents($path), true);
             }
             return view('storefront.' . $store->theme_dir . '.pageslug', compact('pageoption', 'store', 'page_slug_urls', 'blog', 'total_item','wishlist'));
@@ -1245,7 +1240,7 @@ class StoreController extends Controller
         else{
             return redirect()->back()->with('error','page not found');
         }
-       
+
     }
 
     public function StoreBlog($slug)
@@ -1449,9 +1444,9 @@ class StoreController extends Controller
 
     public function StoreCart($slug ,$product_id = null, $quantity = null,$variant_name = null)
     {
-       
+
         if(isset($product_id) && isset($quantity)){
-          return  $store = Store::where('slug', $slug)->where('is_store_enabled', '1')->get();
+            $store = Store::where('slug', $slug)->where('is_store_enabled', '1')->get();
             if (empty($store)) {
                 return abort('404', 'Page not found');
             }
@@ -1550,7 +1545,7 @@ class StoreController extends Controller
                     'variant_id' => 0,
                 ];
             }
-          
+
             session()->put($slug, $cart);
             return redirect()->route('store.cart',$slug);
 
@@ -2242,7 +2237,7 @@ class StoreController extends Controller
                     ]
                 );
             }
-            
+
             // if cart not empty then check if this product exist then increment quantity
             if ($variant_id > 0) {
                 $key = false;
@@ -2388,7 +2383,7 @@ class StoreController extends Controller
             );
         }
         if (isset($cart['products'][$key])) {
-          
+
             $cart['products'][$key]['quantity'] = $request->product_qty;
             $cart['products'][$key]['id'] = $product_id;
 
@@ -2514,9 +2509,9 @@ class StoreController extends Controller
                 'shipping_id' => $request->shipping_id,
             ];
         }
-        
+
         $customer = \Auth::guard('customers')->user();
-       
+
         if (!empty($cart['customer']['id'])) {
             $userdetail = UserDetail::where('id', $cart['customer']['id'])->where('store_id', $store->id)->first();
         } else {
@@ -2723,7 +2718,7 @@ class StoreController extends Controller
         } else {
             $wishlist = [];
         }
-        
+
         // custuserorder.blade.php
         return view('storefront.' . $store->theme_dir . '.customer.custuserorder', compact('slug', 'storethemesetting', 'store_payment_setting', 'store', 'order', 'grand_total', 'order_products', 'sub_total', 'total_taxs', 'user_details', 'shipping_data', 'location_data', 'discount_price', 'discount_value', 'final_taxs','total_item','wishlist','blog','page_slug_urls'));
     }
@@ -2848,7 +2843,7 @@ class StoreController extends Controller
                 );
             }
         }
-       
+
         if (empty($store)) {
             return response()->json(
                 [
@@ -2857,7 +2852,7 @@ class StoreController extends Controller
                 ]
             );
         }
-        
+
         $validator = \Validator::make(
             $request->all(), [
                 'wts_number' => 'required',
@@ -2871,7 +2866,7 @@ class StoreController extends Controller
                 ]
             );
         }
-       
+
         $order_id = $request['order_id'];
         $cart = session()->get($slug);
         $cust_details = $cart['customer'];
@@ -2958,7 +2953,7 @@ class StoreController extends Controller
         } else {
             $shipping_data = '';
         }
-       
+
         if ($product) {
             if (Utility::CustomerAuthCheck($store->slug)) {
                 $customer = Auth::guard('customers')->user()->id;
@@ -3226,8 +3221,8 @@ class StoreController extends Controller
             $wishlist = isset(session()->get($slug)['wishlist']) ? session()->get($slug)['wishlist'] : '';
             $session_wishlist['wishlist'] = $wishlist;
             session()->put($slug, $session_wishlist);
-           
-            
+
+
             $order_email = $order->email;
             $order_id = Crypt::encrypt($order->id);
 
@@ -3249,7 +3244,7 @@ class StoreController extends Controller
                 Utility::order_create_owner($order, $owner, $store);
                 Utility::order_create_customer($order, $customer, $store);
             }
-         
+
             return $msg;
         } else {
             return response()->json(
@@ -3470,7 +3465,7 @@ class StoreController extends Controller
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
         $extension = $request->file('bank_transfer_invoice')->getClientOriginalExtension();
         $fileNameToStores = $filename . '_' . time() . '.' . $extension;
-       
+
         // $image_size = $request->file('bank_transfer_invoice')->getSize();
         // $result = Utility::updateStorageLimit(\Auth::user()->creatorId(), $image_size);
 
@@ -3493,7 +3488,7 @@ class StoreController extends Controller
                 ]
             );
         }
-        
+
         // $dir = storage_path('uploads/bank_invoice/');
         // if (!file_exists($dir)) {
         //     mkdir($dir, 0777, true);
@@ -3619,7 +3614,7 @@ class StoreController extends Controller
             $webhook =  Utility::webhook($module, $store->id);
             if ($webhook) {
                 $parameter = json_encode($order);
-                
+
                 // 1 parameter is  URL , 2 parameter is data , 3 parameter is method
                 $status = Utility::WebhookCall($webhook['url'], $parameter, $webhook['method']);
                 if ($status != true) {
@@ -3872,7 +3867,7 @@ class StoreController extends Controller
                 $objUser = Auth::user();
                 $objUser->current_store = $storeID;
                 $objUser->update();
-    
+
                 return redirect()->route('dashboard')->with('success', __('Store Change Successfully!'));
             } else {
                 return redirect()->back()->with('error', __('Store is locked'));
@@ -3881,7 +3876,7 @@ class StoreController extends Controller
         else{
             return redirect()->back()->with('error', __('permission Denied'));
         }
-       
+
     }
 
     public function customMassage(Request $request, $slug)
@@ -3937,7 +3932,7 @@ class StoreController extends Controller
 
     public function StoreEditProduct(Request $request, $slug, $theme)
     {
-        
+
         $store = Store::where('slug', $slug)->first();
         $getStoreThemeSetting = Utility::getStoreThemeSetting($store->id, $theme);
         if(!empty($getStoreThemeSetting['dashboard'])) {
@@ -3946,11 +3941,11 @@ class StoreController extends Controller
 
         $json = $request->array;
         foreach ($json as $key => $jsn) {
-            foreach ($jsn['inner-list'] as $IN_key => $js) {
+            foreach ($jsn['inner - list'] as $IN_key => $js) {
                 if ($js['field_type'] == 'multi file upload') {
-                    
+
                     if (!empty($js['multi_image'])) {
-                        
+
                         foreach ($js['multi_image'] as $file) {
                             $filenameWithExt = $file->getClientOriginalName();
                             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME) . '_brand';
@@ -3970,9 +3965,9 @@ class StoreController extends Controller
                                 else{
                                     $dir = 'uploads/'. $store->theme_dir . '/header';
                                 }
-    
+
                                 $path = Utility::multi_json_upload_file($file,'field_default_text',$fileNameToStore,$dir,[]);
-    
+
                                 if($path['flag'] == 1){
                                     $url = $path['url'];
                                 }else{
@@ -3981,14 +3976,14 @@ class StoreController extends Controller
                             }
                             $new_path = $store->theme_dir . '/header/' . $fileNameToStore;
                             $json[$key]['inner-list'][$IN_key]['image_path'][] = $new_path;
-                        } 
+                        }
                         if (!empty($jsn['prev_image'])) {
                             foreach ($jsn['prev_image'] as $p_key => $p_value) {
                                 $json[$key]['inner-list'][$IN_key]['image_path'][] = $p_value;
-                            }          
-                          
+                            }
+
                         }
-                                                
+
                     }else {
 
                         if(!empty($jsn['prev_image'])) {
@@ -4020,11 +4015,11 @@ class StoreController extends Controller
                                 $filePath = 'uploads/'. $store->theme_dir . '/header';
                                 if(!empty($getStoreThemeSetting)){
                                     $oldFile = $getStoreThemeSetting[$key][$js['field_slug']][$i];
-                                  
+
                                     if(array_key_exists("image",$oldFile)){
                                         $filename = $getStoreThemeSetting[$key][$js['field_slug']][$i]['image'];
                                         $filePath = 'uploads/'.$filename;
-                                    
+
                                     }
                                     else{
                                         $filePath = 'uploads/'. $store->theme_dir . '/header';
@@ -4043,7 +4038,7 @@ class StoreController extends Controller
                                     else{
                                         $dir = 'uploads/'. $store->theme_dir . '/header';
                                     }
-                              
+
                                     // $path = $file->storeAs('uploads/' . $store->theme_dir . '/header', $fileNameToStore);
                                     $path = Utility::multi_json_upload_file($file,'field_default_text',$fileNameToStore,$dir,[]);
 
@@ -4057,8 +4052,8 @@ class StoreController extends Controller
                                         $json[$key][$js['field_slug']][$i]['field_prev_text'] = $store->theme_dir . '/header/' . $fileNameToStore;
                                     }
                                 }
-                                   
-                               
+
+
                             }
                         }
 
@@ -4080,9 +4075,9 @@ class StoreController extends Controller
                                     $oldFile = $getStoreThemeSetting[$key]['inner-list'][$IN_key]['field_default_text'];
                                     $filePath = 'uploads/'. $oldFile ;
                                 }
-                               
+
                             }
-                           
+
                             $image_size = $file->getSize();
                             $result = Utility::updateStorageLimit(\Auth::user()->creatorId(), $image_size);
 
@@ -4096,7 +4091,7 @@ class StoreController extends Controller
                                 else{
                                     $dir = 'uploads/'. $store->theme_dir . '/header';
                                 }
-    
+
                                 $path = Utility::json_upload_file($js,'field_default_text',$fileNameToStore,$dir,[]);
                                 if($path['flag'] == 1){
                                     $url = $path['url'];
@@ -4104,7 +4099,7 @@ class StoreController extends Controller
                                     return redirect()->back()->with('error', __($path['msg']));
                                 }
                             }
-                            
+
 
                             if (!empty($file_name) && count($file_name) > 0) {
                                 $post['Bckground Image'] = implode(',', $file_name);
@@ -4117,7 +4112,7 @@ class StoreController extends Controller
                 }
             }
         }
-       
+
         $json = json_encode($json);
         $store = Store::where('slug', $slug)->where('created_by', Auth::user()->creatorId())->first();
         $arr = [
@@ -4156,7 +4151,7 @@ class StoreController extends Controller
                     ]
                 );
             }
-           
+
             if ($validator->fails()) {
                 $messages = $validator->getMessageBag();
 
@@ -4690,7 +4685,7 @@ class StoreController extends Controller
         $orders = Order::where('customer_id', Auth::guard('customers')->user()->id)->orderBy('id', 'DESC')->get();
         // $blog                  = Blog::where('store_id', $store->id)->get();
         $blog                  = Blog::where('store_id', $store->id)->count();
-        
+
         $page_slug_urls        = PageOption::where('store_id', $store->id)->get();
         $storethemesetting = \App\Models\Utility::demoStoreThemeSetting($store->id, $store->theme_dir);
         if (isset($store->lang)) {
@@ -4773,7 +4768,7 @@ class StoreController extends Controller
         else{
             return redirect()->back()->with('error', __('Permission Denied'));
         }
-       
+
     }
 
     public function employeePasswordReset(Request $request, $id)
@@ -4885,7 +4880,7 @@ class StoreController extends Controller
                 $price          = $price - $discount_value;
             }
         }
-        
+
         if(isset($cart['shipping']) && isset($cart['shipping']['shipping_id']) && !empty($cart['shipping']))
         {
             $shipping = Shipping::find($cart['shipping']['shipping_id']);
@@ -4968,17 +4963,17 @@ class StoreController extends Controller
         else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
-       
+
     }
     public function customershow($id)
-    { 
+    {
         if(\Auth::user()->can('Show Customers')){
             if (\Auth::user()->type !== 'super admin') {
                 $customer = Customer::where('id',$id)->first();
                 $user = \Auth::user();
                 if (isset($customer) && isset($user) && $customer->store_id == $user->current_store) {
                     $orders = Order::where('customer_id', $id)->get();
-                
+
                     return view('orders.index', compact('orders'));
                 } else {
                     return redirect()->back()->with('error', __('Permission denied.'));
