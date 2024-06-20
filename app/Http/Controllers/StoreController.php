@@ -957,7 +957,7 @@ class StoreController extends Controller
 
     public function storeSlug($slug)
     {
-        $store = Store::where('slug', $slug)->where('is_store_enabled', '1')->first();
+         $store = Store::where('slug', $slug)->where('is_store_enabled', '1')->first();
         if (isset($store->lang)) {
 
             $lang = session()->get('lang');
