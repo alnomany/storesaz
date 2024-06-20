@@ -48,7 +48,7 @@
                                                 <td data-label="Name">
                                                     <a href="{{route('store.product.product_view',[$store->slug,$product['id']])}}" class="text-dark c-list-title mb-0 cart_word_break">{{$product['product_name'] .' - '. $product['variant_name']}}</a>
                                                 </td>
-                                                <td data-label="price">{{\App\Models\Utility::priceFormat($product['variant_price'])}}</td>
+                                                <td data-label="{{ __('Price') }}">{{\App\Models\Utility::priceFormat($product['variant_price'])}}</td>
                                                 <td data-label="quantity">
                                                     <div class="qty-spinner" data-id="{{$key}}">
                                                         <button type="button" class="quantity-decrement qty-minus product_qty">
@@ -104,11 +104,11 @@
                                                         <img alt="" src="{{asset(Storage::url('uploads/is_cover_image/default.jpg'))}}" class="" style="width:66px;">
                                                     @endif
                                                 </td> 
-                                                <td data-label="Name">
+                                                <td data-label="{{ __('Name') }}">
                                                     <a href="{{route('store.product.product_view',[$store->slug,$product['id']])}}" class="text-dark c-list-title mb-0 cart_word_break">{{$product['product_name']}}</a>
                                                 </td>
-                                                <td data-label="price">{{\App\Models\Utility::priceFormat($product['price'])}}</td>
-                                                <td data-label="quantity">
+                                                <td data-label="{{ __('Price') }}">{{\App\Models\Utility::priceFormat($product['price'])}}</td>
+                                                <td data-label="{{ __('quantity') }}">
                                                     <div class="qty-spinner" data-id="{{$key}}">
                                                         <button type="button" class="quantity-decrement qty-minus product_qty">
                                                             <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -123,7 +123,8 @@
                                                         </button>
                                                     </div>
                                                 </td>
-                                                <td data-label="Tax"> 
+                                             
+                                                <td data-label="{{ __('Tax') }}"> 
                                                     @php
                                                         $total_tax=0;
                                                     @endphp
@@ -141,7 +142,7 @@
                                                         -
                                                     @endif
                                                 </td> 
-                                                <td data-label="Total">
+                                                <td data-label="{{ __('Total') }}">
                                                     @php
                                                         $totalprice = $product['price'] * $product['quantity'] + $total_tax;
                                                         $total += $totalprice;
