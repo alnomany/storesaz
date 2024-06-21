@@ -24,11 +24,14 @@ class ShippingController extends Controller
         $plan = Plan::find(\Auth::user()->plan);
         if(\Auth::user()->can('Manage Shipping') && $plan->shipping_method == 'on'){
             $user = \Auth::user()->current_store;
+            $store = Store::where('id',$user)->where('is_store_enabled', '1')->first();
+
 
             $shippings = Shipping::where('store_id', $user)->where('created_by', \Auth::user()->creatorId())->get();
             $locations = Location::where('store_id', $user)->where('created_by', \Auth::user()->creatorId())->get();
+
     
-            return view('shipping.index', compact('shippings', 'locations'));
+            return view('shipping.index', compact('shippings', 'locations','store'));
         }
         else{
             return redirect()->back()->with('error', 'Permission denied.');

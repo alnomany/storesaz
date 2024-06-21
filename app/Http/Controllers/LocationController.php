@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Store;
 use App\Models\Location;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,12 @@ class LocationController extends Controller
      */
     public function index()
     {
+
+
+    
         if(\Auth::user()->can('Manage Location')){
             $locations = Location::where('created_by', \Auth::user()->creatorId())->get();
+         
 
             return view('location.index', compact('locations'));
         }
@@ -33,7 +38,18 @@ class LocationController extends Controller
     public function create()
     {
         if(\Auth::user()->can('Create Location')){
-            return view('location.create');
+            $data = [];
+            if(empty($data)){
+                $path = storage_path()."/uploads/world/". "world-ar.json" ;
+                $countries = json_decode(file_get_contents($path), true);
+           //     $store = Store::where('slug','zzz')->where('is_store_enabled', '1')->first();
+                $user = \Auth::user()->current_store;
+                $store = Store::where('id',$user)->where('is_store_enabled', '1')->first();
+
+
+            }
+
+            return view('location.create',compact('countries','store'));
         }
         else{
             return redirect()->back()->with('error', 'Permission denied.');
@@ -58,6 +74,8 @@ class LocationController extends Controller
 
             $location             = new Location();
             $location->name       = $request->name;
+            $location->country       = $request->billing_country;
+            $location->city       = $request->billing_city;
             $location->store_id   = \Auth::user()->current_store;
             $location->created_by = \Auth::user()->creatorId();
             $location->save();
@@ -91,7 +109,13 @@ class LocationController extends Controller
     public function edit(Location $location)
     {
         if(\Auth::user()->can('Edit Location')){
-            return view('location.edit', compact('location'));
+            
+            $user = \Auth::user()->current_store;
+            $store = Store::where('id',$user)->where('is_store_enabled', '1')->first();
+            $path = storage_path()."/uploads/world/". "world-ar.json" ;
+            $countries = json_decode(file_get_contents($path), true);
+
+            return view('location.edit', compact('location','store','countries'));
         }
         else{
             return redirect()->back()->with('error', 'Permission denied.'); 
@@ -117,6 +141,8 @@ class LocationController extends Controller
             );
 
             $location->name       = $request->name;
+            $location->country       = $request->billing_country;
+            $location->city       = $request->billing_city;
             $location->created_by = \Auth::user()->creatorId();
             $location->save();
 

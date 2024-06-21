@@ -9,6 +9,8 @@ class Location extends Model
     protected $fillable = [
         'name',
         'store_id',
+        'country',
+        'city',
         'created_by',
     ];
 }

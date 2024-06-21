@@ -68,6 +68,9 @@
                                         <thead>
                                             <tr>
                                                 <th>{{ __('Name') }}</th>
+                                                <th>{{ __('Country') }}</th>
+                                                <th>{{ __('City') }}</th>
+                                  
                                                 <th>{{ __('Created At') }}</th>
                                                 <th class="text-right">{{ __('Action') }}</th>
                                             </tr>
@@ -76,6 +79,8 @@
                                             @foreach ($locations as $location)
                                                 <tr data-name="{{ $location->name }}">
                                                     <td>{{ $location->name }}</td>
+                                                    <td>{{ $location->country }}</td>
+                                                    <td>{{ $location->city }}</td>
                                                     <td>{{ \App\Models\Utility::dateFormat($location->created_at) }}</td>
                                                     <td>
                                                         <div class="d-flex">
@@ -125,6 +130,8 @@
                                             <tr>
                                                 <th>{{ __('Name') }}</th>
                                                 <th>{{ __('Price') }}</th>
+                                
+
                                                 <th>{{ __('Location') }}</th>
                                                 <th>{{ __('Created At') }}</th>
                                                 <th class="text-right">{{ __('Action') }}</th>
@@ -135,6 +142,8 @@
                                                 <tr data-name="{{ $shipping->name }}">
                                                     <td>{{ $shipping->name }}</td>
                                                     <td>{{ \App\Models\Utility::priceFormat($shipping->price) }}</td>
+                                                  
+
                                                     <td>{{ !empty($shipping->locationName()) ? $shipping->locationName() : '-' }}
                                                     </td>
                                                     <td>{{ \App\Models\Utility::dateFormat($shipping->created_at) }}</td>
@@ -174,6 +183,3 @@
     </div>
     <!-- [ Main Content ] end -->
 @endsection
-<script>
-
-</script>
