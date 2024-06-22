@@ -126,6 +126,7 @@
                                 </div>
                             </div>
                         @endif
+<!--
                         <div class="col-md-12 col-12">
                             <div class="row align-items-center">
                                 <div class="col-md-6 col-12">
@@ -167,6 +168,7 @@
                                 {{Form::text('shipping_postalcode',old('shipping_postalcode'),array('class'=>'form-control','placeholder'=>__('Shipping Postal Code')))}}
                             </div>
                         </div>
+                    -->
                     </div> 
                         <div class="col-md-12 col-12">
                             <div class="addres-btn">

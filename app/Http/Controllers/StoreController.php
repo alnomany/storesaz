@@ -2537,10 +2537,17 @@ class StoreController extends Controller
         $userdetail['billing_country'] = $request->billing_country;
         $userdetail['billing_city'] = $request->billing_city;
         $userdetail['billing_postalcode'] = $request->billing_postalcode;
+
+        $userdetail['shipping_address'] = $request->billing_address;
+        $userdetail['shipping_country'] = $request->billing_country;
+        $userdetail['shipping_city'] = $request->billing_city;
+        $userdetail['shipping_postalcode'] = $request->billing_postalcode;
+        /*
         $userdetail['shipping_address'] = $request->shipping_address;
         $userdetail['shipping_country'] = $request->shipping_country;
         $userdetail['shipping_city'] = $request->shipping_city;
         $userdetail['shipping_postalcode'] = $request->shipping_postalcode;
+        */
         $userdetail['location_id'] = $request->location_id;
         $userdetail['shipping_id'] = $request->shipping_id;
         $userdetail->save();
