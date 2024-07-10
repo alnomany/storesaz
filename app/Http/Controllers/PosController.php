@@ -403,6 +403,7 @@ class PosController extends Controller
     {
         $sess = session()->get('pos');
 
+
         if (isset($sess) && !empty($sess) && count($sess) > 0) {
             $user = \Auth::user();
             $settings = Utility::settings();
@@ -425,6 +426,7 @@ class PosController extends Controller
                 'date' => date('Y-m-d'),
                 'pay' => 'show',
             ];
+
             if (!empty($details['customer']) || !empty($customer_detail))
             {
                 $storedetails = '<h7 class="text-dark">' . ucfirst($details['store']['name'])  . '</p></h7>';
@@ -526,7 +528,7 @@ class PosController extends Controller
             $total= $mainsubtotal-$discount;
             $sales['sub_total'] = Utility::priceFormat($mainsubtotal);
             $sales['total'] = Utility::priceFormat($total);
-            return view('pos.printview', compact('details', 'sales', 'customer','customer_detail'));
+            return view('pos.printview', compact('details', 'sales', 'customer','customer_detail','store'));
         }else{
             return redirect()->back()->with('error', 'Permission denied.');
         }

@@ -5,7 +5,19 @@
     <table class="table pos-module-tbl">
         <tbody>
             <div class="text-center ">
-                <h3>{{ $details['user']['name'] }}</h3>
+
+<?php            
+$xx=\App\Models\Order::count();
+
+$x=Crypt::encrypt($xx);
+
+$orderdetails=env('APP_URL') .'/' . $store->slug . '/order/' . $x;
+?>
+
+
+                {!! QrCode::generate($orderdetails) !!}
+          
+
             </div>
             <div class="text-left">
                 {!! $details['user']['details'] !!}
@@ -13,7 +25,8 @@
             <br>
 
             <div class="text-left">
-                <b>#{{ $details['pos_id'] }}</b>
+                <b>#{{ $details['pos_id']}}</b>
+
             </div>
           
             <div class="invoice-to mt-2 product-border" >
