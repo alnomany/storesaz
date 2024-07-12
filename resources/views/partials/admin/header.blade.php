@@ -65,14 +65,14 @@
             @auth('web')
                 @if (Auth::user()->type !== 'super admin')
                     @can('Create Store')
-                        <li class="dropdown dash-h-item drp-language">
+                      <!--  <li class="dropdown dash-h-item drp-language">
                             <a href="#!" class="dash-head-link dropdown-toggle arrow-none me-0 cust-btn" data-size="lg" data-url="{{ route('store-resource.create') }}"
                                 data-ajax-popup="true" data-title="{{ __('Create New Store') }}">
                                 <i class="ti ti-circle-plus"></i>
                                 <span class="hide-mob">{{ __('Create New Store') }}</span>
                             </a>
                         </a>
-                        </li>
+                        </li>-->
                     @endcan
                 @endif
             @endauth
