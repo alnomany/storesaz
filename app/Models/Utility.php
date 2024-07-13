@@ -662,7 +662,7 @@ class Utility extends Model
                     'color' => '5ea5ab',
                 ],
             ],
-
+/*
             'theme3' => [
                 'theme3-v1' => [
                     'img_path' => asset(Storage::url('uploads/store_theme/theme3/Home.png')),
@@ -876,6 +876,7 @@ class Utility extends Model
 
                 ],
             ],
+            */
         ];
 
         return $arr;
