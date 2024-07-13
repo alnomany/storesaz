@@ -619,7 +619,7 @@ class Utility extends Model
         $arr = [
             'theme1' => [
                 'theme1-v1' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home1.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home0.png')),
                     'color' => '92bd88',
                 ],
                 'theme1-v2' => [
@@ -642,7 +642,7 @@ class Utility extends Model
 
             'theme2' => [
                 'theme2-v1' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home22.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home0.png')),
                     'color' => 'f5ba20',
                 ],
                 'theme2-v2' => [

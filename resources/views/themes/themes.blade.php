@@ -40,7 +40,7 @@
                         <div class="theme-card border-primary {{ $key }} {{ $store_settings['theme_dir'] == $key ? 'selected' : ''  }}">
                             <div class="theme-card-inner">
                                 <div class="theme-image border  rounded">
-                                    <img src="{{ asset(Storage::url('uploads/store_theme/' . $key . '/Home.png')) }}"
+                                    <img src="{{ asset(Storage::url('uploads/store_theme/' . $key . '/Home0.png')) }}"
                                         class="color1 img-center pro_max_width pro_max_height {{ $key }}_img"
                                         data-id="{{ $key }}">
                                 </div>
