@@ -642,23 +642,23 @@ class Utility extends Model
 
             'theme2' => [
                 'theme2-v1' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home2.png')),
                     'color' => 'f5ba20',
                 ],
                 'theme2-v2' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home-1.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home-12.png')),
                     'color' => 'fa747d',
                 ],
                 'theme2-v3' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home-2.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home-22.png')),
                     'color' => 'c8ae9d',
                 ],
                 'theme2-v4' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home-3.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home-32.png')),
                     'color' => 'd7e2dc',
                 ],
                 'theme2-v5' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home-4.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home-42.png')),
                     'color' => '5ea5ab',
                 ],
             ],
