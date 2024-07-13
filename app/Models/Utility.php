@@ -642,7 +642,7 @@ class Utility extends Model
 
             'theme2' => [
                 'theme2-v1' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home2.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme2/Home22.png')),
                     'color' => 'f5ba20',
                 ],
                 'theme2-v2' => [
