@@ -20,7 +20,7 @@ if (!empty(session()->get('lang'))) {
     <meta name="description" content="StoreGo - Business Ecommerce">
 
 
-    <title>{{__('Completed')}} - {{($store->tagline) ?  $store->tagline : config('APP_NAME', 'StoreGo')}}</title>
+    <title>{{__('Completed')}} - {{($store->tagline) ?  $store->tagline : config('APP_NAME', 'emlhor')}}</title>
 
     <link rel="icon" href="{{asset(Storage::url('uploads/logo/').(!empty($settings->value)?$settings->value:'favicon.png')) . '?timestamp='. time()}}" type="image/png">
     <meta name="csrf-token" content="{{ csrf_token() }}">

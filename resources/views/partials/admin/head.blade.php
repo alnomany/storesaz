@@ -6,9 +6,10 @@
 @endphp
 <head>
     <title> 
-        {{ $title_text ? $title_text : env('APP_NAME', 'StoreGo SaaS') }} - @yield('page-title')
+        {{ $title_text ? $title_text : env('APP_NAME', 'emlhor') }} - @yield('page-title')
     </title>
-    
+    <meta charset="UTF-8">
+
     <meta charset="utf-8" dir="{{ $settings['SITE_RTL'] == 'on' ? 'rtl' : '' }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,7 +17,7 @@
     <meta name="keywords" content="{{ env('APP_NAME') }}" />
     <meta name="author" content="Rajodiya Infotech" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta charset="UTF-8">
     <!-- Favicon icon -->
     @if (\Auth::user()->type == 'super admin')
         <link rel="icon" href="{{ $logo . '/favicon.png' . '?timestamp='. time() }}" type="image/x-icon" />
@@ -58,6 +59,15 @@
             --color-customColor: <?= $color ?>;    
         }
     </style>
+       <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+       <style>
+           body {
+               font-family: 'Amiri', serif !important; /* Use your chosen Arabic font here */
+
+           }
+    
+
+       </style>
 
     <link rel="stylesheet" href="{{ asset('css/custom-color.css') }}">
     
