@@ -619,23 +619,23 @@ class Utility extends Model
         $arr = [
             'theme1' => [
                 'theme1-v1' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home1.png')),
                     'color' => '92bd88',
                 ],
                 'theme1-v2' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home-1.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home-11.png')),
                     'color' => '276968',
                 ],
                 'theme1-v3' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home-2.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home-21.png')),
                     'color' => 'af8637',
                 ],
                 'theme1-v4' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home-3.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home-31.png')),
                     'color' => 'e7d7bd',
                 ],
                 'theme1-v5' => [
-                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home-4.png')),
+                    'img_path' => asset(Storage::url('uploads/store_theme/theme1/Home-41.png')),
                     'color' => 'b7786f',
                 ],
             ],
