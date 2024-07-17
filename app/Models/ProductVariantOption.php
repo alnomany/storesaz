@@ -16,6 +16,7 @@ class ProductVariantOption extends Model
         'name',
         'cost',
         'price',
+        'purchase_price',
         'quantity',
         'created_by',
     ];
@@ -33,6 +34,8 @@ class ProductVariantOption extends Model
         $retuen_name['price'] = 'verians['.$counter.'][price]';
         $retuen_name['qty'] = 'verians['.$counter.'][qty]';
         $retuen_name['price_val'] = 0;
+        $retuen_name['purchase_price_val'] = 0;
+
         $retuen_name['qty_val'] = 0;
         $creatorId = Auth::user()->creatorId();
 
@@ -43,8 +46,12 @@ class ProductVariantOption extends Model
                     $retuen_name['has_name'][$key] = 'verians['.$ProductVariantOption->id.'][variants]['.$key.'][]';
                 }
                 $retuen_name['price_val'] = $ProductVariantOption->price;
+                $retuen_name['purchase_price_val'] = $ProductVariantOption->purchase_price;
+
                 $retuen_name['qty_val'] = $ProductVariantOption->quantity;
                 $retuen_name['price'] = 'verians['.$ProductVariantOption->id.'][price]';
+                $retuen_name['purchase_price'] = 'verians['.$ProductVariantOption->id.'][purchase_price]';
+
                 $retuen_name['qty'] = 'verians['.$ProductVariantOption->id.'][quantity]';
                 $retuen_name['has_variant'] = 1;
             }
@@ -62,8 +69,12 @@ class ProductVariantOption extends Model
                     $retuen_name['has_name'][$key] = 'verians['.$ProductVariantOption->id.'][variants]['.$key.'][]';
                 }
                 $retuen_name['price_val'] = $ProductVariantOption->price;
+                $retuen_name['purchase_price_val'] = $ProductVariantOption->purchase_price;
+
                 $retuen_name['qty_val'] = $ProductVariantOption->quantity;
                 $retuen_name['price'] = 'verians['.$ProductVariantOption->id.'][price]';
+                $retuen_name['purchase_price'] = 'verians['.$ProductVariantOption->id.'][purchase_price]';
+
                 $retuen_name['qty'] = 'verians['.$ProductVariantOption->id.'][quantity]';
                 $retuen_name['has_variant'] = 1;
             }

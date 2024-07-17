@@ -12,6 +12,7 @@ class Product extends Model
         'name',
         'product_categorie',
         'price',
+        'purchase_price',
         'quantity',
         'SKU',
         'product_tax',
