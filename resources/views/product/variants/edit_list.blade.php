@@ -8,6 +8,8 @@
                 <th><span>{{ ucwords($variant) }}</span></th>
             @endforeach
             <th><span>{{ __('Price') }}</span></th>
+            <th><span>{{ __('Purchase Price') }}</span></th>
+
             <th><span>{{ __('Quantity') }}</span></th>
 
         </tr>
@@ -37,6 +39,10 @@
                 <td>
                     <input type="number" id="vprice_{{ $counter }}" autocomplete="off" spellcheck="false" placeholder="{{ __('Enter Price') }}" class="form-control wid-100"
                     name="{{ $name['price'] }}" value="{{ $name['price_val'] }}">
+                </td>
+                <td>
+                    <input type="number" id="vpurchase_price_{{ $counter }}" autocomplete="off" spellcheck="false" placeholder="{{ __('Enter Price') }}" class="form-control wid-100"
+                    name="{{ $name['purchase_price'] }}" value="{{ $name['purchase_price_val'] }}">
                 </td>
                 <td>
                     <input type="number" id="vquantity_{{ $counter }}" autocomplete="off" spellcheck="false" placeholder="{{ __('Enter Quantity') }}" class="form-control wid-100"

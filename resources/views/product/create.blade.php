@@ -255,6 +255,10 @@
                                                 {{ Form::label('last_price', __('Last Price'), ['class' => 'form-label']) }}
                                                 {{ Form::number('last_price', null, ['step' => 'any', 'class' => 'form-control']) }}
                                             </div>
+                                            <div class="col-md-12">
+                                                {{ Form::label('purchase_price', __('Purchase Price'), ['class' => 'form-label']) }}
+                                                {{ Form::number('purchase_price', null, ['step' => 'any', 'class' => 'form-control']) }}
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group proprice">

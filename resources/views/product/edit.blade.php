@@ -279,6 +279,10 @@
                                                 {{ Form::label('last_price', __('Last Price'), ['class' => 'form-label']) }}
                                                 {{ Form::number('last_price', null, ['step' => 'any', 'class' => 'form-control']) }}
                                             </div>
+                                            <div class="col-md-6">
+                                                {{ Form::label('purchase_price', __('Purchace Price'), ['class' => 'form-label']) }}
+                                                {{ Form::number('purchase_price', null, ['step' => 'any', 'class' => 'form-control']) }}
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group proprice">
@@ -424,6 +428,7 @@
                                                                                 @endforeach
                                                                             @endif
                                                                             <th><span>{{ __('Price') }}</span></th>
+                                                                            <th><span>{{ __('Purchase Price') }}</span></th>
                                                                             <th><span>{{ __('Quantity') }}</span></th>
                                                                             <th></th>
                                                                         </tr>
@@ -452,6 +457,15 @@
                                                                                             placeholder="{{ __('Enter Price') }}"
                                                                                             class="form-control wid-100 vprice_{{ $counter }}"
                                                                                             value="{{ $productVariant['product_variants']['price'] }}">
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <input type="number"
+                                                                                            name="variants[{{ $productVariant['product_variants']['id'] }}][purchase_price]"
+                                                                                            autocomplete="off"
+                                                                                            spellcheck="false"
+                                                                                            placeholder="{{ __('Enter Price') }}"
+                                                                                            class="form-control wid-100 vprice_{{ $counter }}"
+                                                                                            value="{{ $productVariant['product_variants']['purchase_price'] }}">
                                                                                     </td>
                                                                                     <td>
                                                                                         <input type="number"

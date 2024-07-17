@@ -265,6 +265,9 @@ class ProductController extends Controller
                 if (!empty($request->price)) {
                     $product['price'] = !empty($request->price) ? $request->price : '0';
                     $product['last_price'] = !empty($request->last_price) ? $request->last_price : '0';
+                    $product['purchase_price'] = !empty($request->purchase_price) ? $request->purchase_price : '0';
+
+                    
                 }
                 if (!empty($request->quantity)) {
                     $product['quantity'] = !empty($request->quantity) ? $request->quantity : '0';
@@ -314,12 +317,14 @@ class ProductController extends Controller
 
                     $possibilities = Product::possibleVariants($variant_options);
 
-
+//added
                     foreach ($possibilities as $key => $possibility) {
                         $VariantOption = new ProductVariantOption();
                         $VariantOption->name = $possibility;
                         $VariantOption->product_id = $product->id;
                         $VariantOption->price = $request->verians[$key]['price'];
+                        $VariantOption->purchase_price = $request->verians[$key]['purchase_price'];
+
                         $VariantOption->quantity = !empty($request->verians[$key]['qty']) ? $request->verians[$key]['qty'] : 0;
                         $VariantOption->created_by = \Auth::user()->creatorId();
                         $VariantOption->save();
@@ -704,6 +709,8 @@ class ProductController extends Controller
             if (!empty($request->price)) {
                 $product['price'] = !empty($request->price) ? $request->price : '0';
                 $product['last_price'] = !empty($request->last_price) ? $request->last_price : '0';
+                $product['purchase_price'] = !empty($request->purchase_price) ? $request->purchase_price : '0';
+                
             }
             if (!empty($request->quantity)) {
                 $product['quantity'] = !empty($request->quantity) ? $request->quantity : '0';
@@ -752,6 +759,8 @@ class ProductController extends Controller
                     $VariantOption->name = $possibility;
                     $VariantOption->product_id = $product->id;
                     $VariantOption->price = $request->verians[$key]['price'];
+                    $VariantOption->purchase_price = $request->verians[$key]['purchase_price'];
+
                     $VariantOption->quantity = !empty($request->verians[$key]['qty']) ? $request->verians[$key]['qty'] : 0;
                     $VariantOption->created_by = Auth::user()->creatorId();
                     $VariantOption->save();
@@ -769,6 +778,9 @@ class ProductController extends Controller
 
                             if (!empty($possibilities) && isset($possibility['variants'])) {
                                 $possibilities->price = $possibility['price'];
+                                //added
+                                $possibilities->purchase_price = $possibility['purchase_price'];
+
                                 $possibilities->quantity = $possibility['quantity'] ?? $possibility['qty'];
 
                                 $possibilities->save();
@@ -778,6 +790,8 @@ class ProductController extends Controller
                                 $VariantOptionNew->name = $possibility['name'];
                                 $VariantOptionNew->product_id = $product->id;
                                 $VariantOptionNew->price = $possibility['price'];
+                                $VariantOptionNew->purchase_price = $possibility['purchase_price'];
+
                                 $VariantOptionNew->quantity = $possibility['quantity'] ?? $possibility['qty'];
                                 $VariantOptionNew->created_by = Auth::user()->creatorId();
                                 $VariantOptionNew->save();
@@ -791,6 +805,8 @@ class ProductController extends Controller
                             $possibilities = Product::possibleVariants($possibility['variants']);
                             $possibilities = ProductVariantOption::find($key);
                             $possibilities->price = $possibility['price'];
+                            $possibilities->purchase_price = $possibility['purchase_price'];
+
                             $possibilities->quantity = $possibility['quantity'] ?? $possibility['qty'];
 
                             $possibilities->save();
@@ -836,6 +852,8 @@ class ProductController extends Controller
                         $VariantOption = ProductVariantOption::find($key);
                         $VariantOption->name = $newVal;
                         $VariantOption->price = $variant['price'];
+                        $VariantOption->purchase_price = $variant['purchase_price'];
+
                         $VariantOption->quantity = $variant['quantity'] ?? $variant['qty'];
                         $VariantOption->save();
                     }
