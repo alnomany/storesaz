@@ -211,7 +211,7 @@
                             <span class="dash-micon">
                                 <i class="ti ti-license"></i>
                             </span>
-                            <span class="dash-mtext">{{ __('Shop') }}</span>
+                            <span class="dash-mtext">{{ __('Products') }}</span>
                             <span class="dash-arrow">
                                 <i data-feather="chevron-right"></i>
                             </span>

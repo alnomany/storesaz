@@ -953,7 +953,7 @@
   "Pre" : "مسبق ",
   "Price" : "السعر ",
   "Price:" : "السعر : ",
-  "Purchase Price:" : "سعر الشراء : ",
+  "Purchase Price" : "سعر الشراء  ",
 
   "Pricing" : "التسعير ",
   "Pricing Plan" : "خطة التسعير ",
@@ -1262,6 +1262,8 @@
   "Theme Pages" : "صفحات تصميم المتجر ",
   "Theme Successfully Updated." : "تم تعديل تصميم المتجر  بنجاح. ",
   "Themes" : "تصميم المتجر ",
+  "Products" : " المنتجات ",
+
   "These credentials do not match our records." : "بيانات الاعتماد هذه لا تطابق سجلاتنا. ",
   "These details will be used to collect invoice payments. Each invoice will have a payment button based on the below configuration." : "سيتم استخدام هذه التفاصيل لتجميع دفعات الفاتورة.  كل فاتورة سيكون لها مفتاح سداد بناء على التوصيف التالي. ",
   "These details will be used to collect subscription plan payments. Each subscription plan will have a payment button based on the below configuration." : "سيتم استخدام هذه التفاصيل لتجميع مدفوعات خطة الاشتراك.  كل خطة اشتراك سيكون لها مفتاح سداد بناء على التوصيف التالي. ",
