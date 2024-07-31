@@ -1,7 +1,7 @@
 @if(!empty($vender))
     <div class="row">
         <div class="col-md-5">
-            <div class="bill-to">
+            <div class="bill-to"> 
                 @if(!empty($vender['name']))
                 <small>
                     <span>{{$vender['name']}}</span><br>
