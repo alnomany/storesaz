@@ -136,7 +136,7 @@ class Utility extends Model
             "email_verification" => "on",
             "cust_theme_bg" => "on",
             "cust_darklayout" => "off",
-            "color" => "theme-3",
+            "color" => "theme-3", 
             "SITE_RTL" => "off",
             "is_checkout_login_required" => "on",
             "storage_setting" => "local",
