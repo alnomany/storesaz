@@ -15,7 +15,7 @@
 @section('action-btn')
 <div class="pr-2">
     @can('Create Product category')
-        <a href="#" class="btn btn-sm btn-icon  btn-primary me-2" data-ajax-popup="true" data-url="{{ route('suppliercreate') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Create') }}" data-title="{{ __('Suppliers') }}">
+        <a href="#" class="btn btn-sm btn-icon  btn-primary me-2" data-ajax-popup="true" data-url="{{ route('vender.create') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Create') }}" data-title="{{ __('Suppliers') }}">
             <i  data-feather="plus"></i>
         </a>
     @endcan

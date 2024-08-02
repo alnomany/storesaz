@@ -1,61 +1,65 @@
 <?php
 
-use App\Http\Controllers\AamarpayController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CouponController;
-use App\Http\Controllers\Customer\Auth\CustomerLoginController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmailTemplateController;
-use App\Http\Controllers\ExpresscheckoutController;
-use App\Http\Controllers\IyziPayController;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PageOptionController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\PaymentWallController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\PaypalController;
-use App\Http\Controllers\PaytabController;
-use App\Http\Controllers\ToyyibpayController;
-use App\Http\Controllers\PlanController;
-Use App\Http\Controllers\UserController;
-use App\Http\Controllers\PlanRequestController;
-use App\Http\Controllers\ProductCategorieController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\MidtransController;
-use App\Http\Controllers\ProductCouponController;
-use App\Http\Controllers\ProductTaxController;
-use App\Http\Controllers\RattingController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\ShippingController;
+use App\Models\Supplier;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PosController;
 use App\Http\Controllers\StoreAnalytic;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\BillController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\RoleController;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaytrController;
+use App\Http\Controllers\SspayController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\themeController;
-use App\Http\Controllers\StripePaymentController;
-use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\RoleController;
+use App\Http\Controllers\CouponController;
+use App\Http\Controllers\PaypalController;
+use App\Http\Controllers\PaytabController;
+Use App\Http\Controllers\UserController;
+use App\Http\Controllers\VenderController;
+use App\Http\Controllers\XenditController;
+use App\Http\Controllers\FedapayController;
+use App\Http\Controllers\IyziPayController;
 use App\Http\Controllers\PayfastController;
-use App\Http\Controllers\PosController;
-use App\Http\Controllers\SspayController;
-use App\Http\Controllers\WebhookController;  
-use App\Http\Controllers\AiTemplateController;
-use App\Http\Controllers\BenefitPaymentController;
+use App\Http\Controllers\PayHereController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RattingController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\AamarpayController;
 use App\Http\Controllers\CashfreeController;
 use App\Http\Controllers\CinetPayController;
-use App\Http\Controllers\CustomDomainRequestController;
-use App\Http\Controllers\FedapayController;
-use App\Http\Controllers\NepalstePaymnetController;
-use App\Http\Controllers\PaiementProController;
-use App\Http\Controllers\PayHereController;
-use App\Http\Controllers\PaytrController;
-use App\Http\Controllers\ReferralProgramController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MidtransController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\YooKassaController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\XenditController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ToyyibpayController;
+use App\Http\Controllers\WebhookController;  
+use App\Http\Controllers\AiTemplateController;
+use App\Http\Controllers\PageOptionController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProductTaxController;
+use App\Http\Controllers\PaiementProController;
+use App\Http\Controllers\PaymentWallController;
+use App\Http\Controllers\PlanRequestController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\EmailTemplateController;
+use App\Http\Controllers\ProductCouponController;
+use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\BenefitPaymentController;
+use App\Http\Controllers\ExpresscheckoutController;
+use App\Http\Controllers\NepalstePaymnetController;
+use App\Http\Controllers\ReferralProgramController;
+use App\Http\Controllers\ProductCategorieController;
+use App\Http\Controllers\CustomDomainRequestController;
+use App\Http\Controllers\Customer\Auth\CustomerLoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -138,6 +142,26 @@ Route::any('/store/call_back', [BenefitPaymentController::class, 'storeCall_back
 Route::group(['middleware' => ['verified']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['XSS']);
+
+    //Vender or supplier 
+    Route::get('purchase/items', [PurchaseController::class, 'items'])->name('purchase.items');
+    Route::resource('purchase', PurchaseController::class);
+    Route::get('purchase/pdf/{id}', [PurchaseController::class, 'purchase'])->name('purchase.pdf')->middleware(['auth', 'XSS']);
+
+    Route::get('/vendor/purchase/{id}/', [PurchaseController::class, 'purchaseLink'])->name('purchase.link.copy');
+    //    Route::get('/bill/{id}/', 'PurchaseController@purchaseLink')->name('purchase.link.copy');
+    Route::get('purchase/{id}/payment', [PurchaseController::class, 'payment'])->name('purchase.payment');
+    Route::post('purchase/{id}/payment', [PurchaseController::class, 'createPayment'])->name('purchase.payment');
+    Route::post('purchase/{id}/payment/{pid}/destroy', [PurchaseController::class, 'paymentDestroy'])->name('purchase.payment.destroy');
+    Route::post('purchase/product/destroy', [PurchaseController::class, 'productDestroy'])->name('purchase.product.destroy');
+    Route::post('purchase/vender', [PurchaseController::class, 'vender'])->name('purchase.vender');
+    Route::post('purchase/product', [PurchaseController::class, 'product'])->name('purchase.product');
+    Route::get('purchase/create/{cid}', [PurchaseController::class, 'create'])->name('purchase.create');
+    Route::get('purchase/{id}/sent', [PurchaseController::class, 'sent'])->name('purchase.sent');
+    Route::get('purchase/{id}/resent', [PurchaseController::class, 'resent'])->name('purchase.resent');
+   //
+   Route::post('bill/vender', [BillController::class, 'vender'])->name('bill.vender');
+   Route::resource('vender', VenderController::class);
 
 
     // product category

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Tax;
 
 class Product extends Model
 {
@@ -129,7 +130,47 @@ class Product extends Model
     {
         return Product::find($id);
     }
+    
+    public function taxRate($taxes)
+    {
+        $taxArr  = explode(',', $taxes);
+        $taxRate = 0;
+        foreach($taxArr as $tax)
+        {
+            $tax     = ProductTax::find($tax);
+            $taxRate += $tax->rate;
+        }
 
+        return $taxRate;
+    }
+
+    public static function taxData($taxes)
+    {
+        $taxArr = explode(',', $taxes);
+
+        $taxes = [];
+        foreach($taxArr as $tax)
+        {
+            $taxesData = ProductTax::find($tax);
+            $taxes[]   = !empty($taxesData) ? $taxesData->name : '';
+        }
+
+        return implode(',', $taxes);
+    }
+
+
+    public function tax($taxes)
+    {
+        $taxArr = explode(',', $taxes);
+
+        $taxes  = [];
+        foreach($taxArr as $tax)
+        {
+            $taxes[] = ProductTax::find($tax);
+        }
+
+        return $taxes;
+    }
     public function getVarByProductId($id){
         $dsji = ProductVariantOption::where('product_id',$id)->get();
             return $dsji;

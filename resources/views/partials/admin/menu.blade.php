@@ -206,6 +206,26 @@
                             </a>
                         </li>
                     @endcan
+                    <li class="dash-item {{ Request::segment(1) == 'pos' ? ' active' : 'collapsed' }}">
+                        <a href="{{ route('purchase.index') }}"
+                            class="dash-link {{ request()->is('themes') ? 'active' : '' }}">
+                            <span class="dash-micon">
+                                <i class="ti ti-layers-difference"></i>
+                            </span>
+                            <span class="dash-mtext">{{ __('purchases') }}</span>
+                        </a>
+                    </li>
+                    <li class="dash-item {{ Request::segment(1) == 'pos' ? ' active' : 'collapsed' }}">
+                        <a href="{{ route('vender.index') }}"
+                            class="dash-link {{ request()->is('themes') ? 'active' : '' }}">
+                            <span class="dash-micon">
+                                <i class="ti ti-layers-difference"></i>
+                            </span>
+                            <span class="dash-mtext">{{ __('suppliers') }}</span>
+                        </a>
+                    </li>
+                    
+                    
                     <li class="dash-item dash-hasmenu {{ Request::segment(1) == 'product' || Request::segment(1) == 'product_categorie' || Request::segment(1) == 'product_tax' || Request::segment(1) == 'product-coupon' || Request::segment(1) == 'shipping' || Request::segment(1) == 'subscriptions' || Request::segment(1) == 'custom-page' || Request::segment(1) == 'blog' || Request::segment(1) == 'products' ? ' active dash-trigger' : 'collapsed' }}">
                         <a href="#!" class="dash-link">
                             <span class="dash-micon">

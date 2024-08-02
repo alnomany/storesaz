@@ -217,7 +217,7 @@
                         </tr>
                         <tr>
                             <td>{{__('Purchase Date')}}:</td>
-                            <td class="text-right">{{Utility::dateFormat($settings,$purchase->purchase_date)}}</td>
+                            <td class="text-right">{{$purchase->date}}</td>
                         </tr>
 
                         @if(!empty($customFields) && count($purchase->customField)>0)
@@ -388,7 +388,7 @@
     </div>
 </div>
 @if(!isset($preview))
-    @include('purchase.script');
+    @include('purchases.script');
 @endif
 
 </body>

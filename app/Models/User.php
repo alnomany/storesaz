@@ -73,6 +73,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->lang;
     }
+    
+    public function purchaseNumberFormat($number)
+    {
+        $settings = Utility::settings();
+
+        return $settings["purchase_prefix"] . sprintf("%05d", $number);
+    }
 
     public function countCompany()
     {

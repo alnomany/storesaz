@@ -88,6 +88,16 @@ class Utility extends Model
             "site_date_format" => "M j, Y",
             "site_time_format" => "g:i A",
             "company_name" => "",
+            "purchase_prefix" => "#PUR",
+            "purchase_color" => "ffffff",
+            "purchase_template" => "template2",
+            'vat_gst_number_switch' => 'off',
+            "site_date_format" => "M j, Y",
+
+
+
+
+
             "company_address" => "",
             "company_city" => "",
             "company_state" => "",
@@ -105,6 +115,8 @@ class Utility extends Model
             "proposal_prefix" => "#PROP",
             "proposal_color" => "fffff",
             "bill_prefix" => "#BILL",
+            'new_bill_payment' => '1',
+
             "bill_color" => "fffff",
             "quote_prefix" => "#QUO",
             "salesorder_prefix" => "#SOP",
@@ -881,6 +893,25 @@ class Utility extends Model
 
         return $arr;
     }
+    
+    public static function bankAccountBalance($id, $amount, $type)
+    {
+        $bankAccount = BankAccount::find($id);
+        if ($bankAccount) {
+            if ($type == 'credit') {
+                $oldBalance = $bankAccount->opening_balance;
+                $bankAccount->opening_balance = $oldBalance + $amount;
+                $bankAccount->save();
+            } elseif ($type == 'debit') {
+                $oldBalance = $bankAccount->opening_balance;
+                $bankAccount->opening_balance = $oldBalance - $amount;
+                $bankAccount->save();
+            }
+        }
+
+    }
+
+
     public static function priceFormat($price, $slug = null)
     {
         $settings = Utility::settings();
@@ -891,9 +922,9 @@ class Utility extends Model
             }
             $settings = self::$store;
             if ($settings['currency_symbol_position'] == "pre" && $settings['currency_symbol_space'] == "with") {
-                return $settings['currency'] . ' ' . number_format($price, isset($settings->decimal_number) ? $settings->decimal_number : 2);
+                return $settings['currency'] . ' ' . isset($settings->decimal_number) ? $settings->decimal_number : 2;
             } elseif ($settings['currency_symbol_position'] == "pre" && $settings['currency_symbol_space'] == "without") {
-                return $settings['currency'] . number_format($price, isset($settings->decimal_number) ? $settings->decimal_number : 2);
+                return $settings['currency'] .  isset($settings->decimal_number) ? $settings->decimal_number : 2;
             } elseif ($settings['currency_symbol_position'] == "post" && $settings['currency_symbol_space'] == "with") {
                 return number_format($price, isset($settings->decimal_number) ? $settings->decimal_number : 2) . ' ' . $settings['currency'];
             } elseif ($settings['currency_symbol_position'] == "post" && $settings['currency_symbol_space'] == "without") {
@@ -964,6 +995,150 @@ class Utility extends Model
         }
 
         return $taxes;
+    }
+    
+    public static $rates;
+    public static $data;
+
+    public static function getTaxData()
+    {
+        $data = [];
+        if (self::$rates == null) {
+            $rates = ProductTax::get();
+            self::$rates = $rates;
+            foreach (self::$rates as $rate) {
+                $data[$rate->id]['id'] = $rate->id
+                ;
+                $data[$rate->id]['name'] = $rate->name;
+                $data[$rate->id]['rate'] = $rate->rate;
+                $data[$rate->id]['created_by'] = $rate->created_by;
+            }
+            self::$data = $data;
+        }
+        return self::$data;
+    }
+
+
+    public static function sendEmailTemplate1($emailTemplate, $mailTo, $obj)
+    {
+        $usr = Auth::user();
+        //Remove Current Login user Email don't send mail to them
+        // unset($mailTo[$usr->id]);
+        $mailTo = array_values($mailTo);
+        if ($usr->type != 'Super Admin') {
+            // find template is exist or not in our record
+            $template = EmailTemplate::where('name', 'LIKE', $emailTemplate)->first();
+            if (isset($template) && !empty($template)) {
+                // check template is active or not by company
+                if ($usr->type != 'super admin') {
+                    $is_active = UserEmailTemplate::where('template_id', '=', $template->id)->where('user_id', '=', $usr->creatorId())->first();
+                } else {
+                    $is_active = (object) array('is_active' => 1);
+                }
+                if ($is_active->is_active == 1) {
+
+                    $settings = self::settingsById($usr->id);
+
+                    $data = Utility::getSetting();
+
+                    $setting = [
+                        'mail_driver' => '',
+                        'mail_host' => '',
+                        'mail_port' => '',
+                        'mail_encryption' => '',
+                        'mail_username' => '',
+                        'mail_password' => '',
+                        'mail_from_address' => '',
+                        'mail_from_name' => '',
+
+                    ];
+                    foreach ($data as $row) {
+                        $setting[$row->name] = $row->value;
+                    }
+                    // get email content language base
+                    $content = EmailTemplateLang::where('parent_id', '=', $template->id)->where('lang', 'LIKE', $usr->lang)->first();
+                    $content->from = $template->from;
+                    if (!empty($content->content)) {
+                        $content->content = self::replaceVariable($content->content, $obj);
+                        // send email
+
+                        try
+                        {
+                            config(
+                                [
+                                    'mail.driver' => $settings['mail_driver'] ? $settings['mail_driver'] : $setting['mail_driver'],
+                                    'mail.host' => $settings['mail_host'] ? $settings['mail_host'] : $setting['mail_host'],
+                                    'mail.port' => $settings['mail_port'] ? $settings['mail_port'] :$setting['mail_port'],
+                                    'mail.encryption' => $settings['mail_encryption'] ? $settings['mail_encryption'] : $setting['mail_encryption'],
+                                    'mail.username' => $settings['mail_username'] ? $settings['mail_username'] : $setting['mail_username'],
+                                    'mail.password' => $settings['mail_password'] ? $settings['mail_password'] : $setting['mail_password'],
+                                    'mail.from.address' => $settings['mail_from_address'] ? $settings['mail_from_address'] : $setting['mail_from_address'],
+                                    'mail.from.name' => $settings['mail_from_name'] ? $settings['mail_from_name'] : $setting['mail_from_name'],
+                                ]
+                            );
+
+                            Mail::to($mailTo)->send(new CommonEmailTemplate($content, $settings));
+                        } catch (\Exception $e) {
+                            $error = $e->getMessage();
+                        }
+
+                        if (isset($error)) {
+                            $arReturn = [
+                                'is_success' => false,
+                                'error' => $error,
+                            ];
+                        } else {
+                            $arReturn = [
+                                'is_success' => true,
+                                'error' => false,
+                            ];
+                        }
+                    } else {
+                        $arReturn = [
+                            'is_success' => false,
+                            'error' => __('Mail not send, email is empty'),
+                        ];
+                    }
+
+                    return $arReturn;
+                } else {
+                    return [
+                        'is_success' => true,
+                        'error' => false,
+                    ];
+                }
+            } else {
+                return [
+                    'is_success' => false,
+                    'error' => __('Mail not send, email not found'),
+                ];
+            }
+        }
+    }
+
+
+    //start for customer & vendor balance
+    public static function userBalance($users, $id, $amount, $type)
+    {
+        if ($users == 'customer') {
+            $user = Customer::find($id);
+        } else {
+            $user = Supplier::find($id);
+        }
+
+        if (!empty($user)) {
+            if ($type == 'credit') {
+                $oldBalance = $user->balance;
+                $userBalance = $oldBalance + $amount;
+                $user->balance = $userBalance;
+                $user->save();
+            } elseif ($type == 'debit') {
+                $oldBalance = $user->balance;
+                $userBalance = $oldBalance - $amount;
+                $user->balance = $userBalance;
+                $user->save();
+            }
+        }
     }
 
     public static function taxRate($taxRate, $price, $quantity)
@@ -2550,6 +2725,15 @@ class Utility extends Model
             "company_name" => "",
             "company_address" => "",
             "company_city" => "",
+            "purchase_prefix" => "#PUR",
+            'vat_gst_number_switch' => 'off',
+
+
+            "purchase_color" => "ffffff",
+            "purchase_template" => "template2",
+
+
+
             "company_state" => "",
             "company_zipcode" => "",
             "company_country" => "",
@@ -2566,6 +2750,8 @@ class Utility extends Model
             "proposal_color" => "fffff",
             "bill_prefix" => "#BILL",
             "bill_color" => "fffff",
+            'new_bill_payment' => '1',
+
             "quote_prefix" => "#QUO",
             "salesorder_prefix" => "#SOP",
             "vender_prefix" => "#VEND",
@@ -2634,6 +2820,13 @@ class Utility extends Model
             $settings[$row->name] = $row->value;
         }
         return $settings;
+    }
+
+    public static function purchaseNumberFormat($number)
+    {
+        $settings = Utility::settings();
+
+        return $settings["purchase_prefix"] . sprintf("%05d", $number);
     }
 
     public static function getSMTPDetails($user_id)

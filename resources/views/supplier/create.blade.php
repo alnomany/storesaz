@@ -1,4 +1,4 @@
-{{Form::open(array('url'=>'supplierstore','method'=>'post','enctype'=>'multipart/form-data'))}}
+{{Form::open(array('url'=>'/vender','method'=>'post','enctype'=>'multipart/form-data'))}}
 <div class="d-flex justify-content-end">
     @php
         $plan = \App\Models\Plan::find(\Auth::user()->plan);
