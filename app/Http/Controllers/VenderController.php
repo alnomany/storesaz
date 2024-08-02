@@ -61,6 +61,7 @@ class VenderController extends Controller
     {
             // Retrieve all input data
     $data = $request->all();
+    $supplier = Supplier::create($data);
 
 // Create a new supplier and store it in the database
 return redirect()->back();
