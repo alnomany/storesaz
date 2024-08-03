@@ -311,7 +311,7 @@
 
                                 @foreach($item->itemTax as $taxes)
                                     @php
-                                        $itemtax += $taxes['tax_price'];
+                                        $itemtax += $taxes['price'];
                                     @endphp
                                     <p>{{$taxes['name']}} ({{$taxes['rate']}}) {{$taxes['price']}}</p>
                                 @endforeach
@@ -337,8 +337,8 @@
                 <td>{{$purchase->totalQuantity}}</td>
                 <td>{{$purchase->totalRate}}</td>
                 <td>{{$purchase->totalDiscount}}</td>
-                <td>{{$settings,$purchase->totalTaxPrice }}</td>
-                <td>{{$settings,$purchase->getSubTotal()}}</td>
+                <td>{{$purchase->totalTaxPrice }}</td>
+                <td>{{$purchase->getSubTotal()}}</td>
             </tr>
             <tr>
                 <td colspan="4"></td>
@@ -364,7 +364,7 @@
                         @endif
                         <tr>
                             <td>{{__('Total')}}:</td>
-                            <td>{{$purchase->getSubTotal()-$purchase->getTotalDiscount()+$purchase->getTotalTax())}}</td>
+                            <td>{{$purchase->getSubTotal()-$purchase->getTotalDiscount()+$purchase->getTotalTax()}}</td>
                         </tr>
                         <tr>
                             <td>{{__('Paid')}}:</td>
