@@ -301,8 +301,8 @@
                     <tr>
                         <td>{{$item->name}}</td>
                         <td>{{$item->quantity}}</td>
-                        <td>{{Utility::priceFormat($settings,$item->price)}}</td>
-                        <td>{{($item->discount!=0)?Utility::priceFormat($settings,$item->discount):'-'}}</td>
+                        <td>{{$item->price}}</td>
+                        <td>{{($item->discount!=0)?$item->discount:'-'}}</td>
                         @php
                             $itemtax = 0;
                         @endphp
@@ -319,7 +319,7 @@
                                 <span>-</span>
                             @endif
                         </td>
-                        <td>{{Utility::priceFormat($settings,$item->price * $item->quantity -  $item->discount + $itemtax)}}</td>
+                        <td>{{$item->price * $item->quantity -  $item->discount + $itemtax}}</td>
                     @if(!empty($item->description))
                         <tr class="border-0 itm-description ">
                             <td colspan="6">{{$item->description}}</td>
@@ -335,10 +335,10 @@
             <tr>
                 <td>{{__('Total')}}</td>
                 <td>{{$purchase->totalQuantity}}</td>
-                <td>{{Utility::priceFormat($settings,$purchase->totalRate)}}</td>
-                <td>{{Utility::priceFormat($settings,$purchase->totalDiscount)}}</td>
-                <td>{{Utility::priceFormat($settings,$purchase->totalTaxPrice) }}</td>
-                <td>{{Utility::priceFormat($settings,$purchase->getSubTotal())}}</td>
+                <td>{{$purchase->totalRate}}</td>
+                <td>{{$purchase->totalDiscount}}</td>
+                <td>{{$settings,$purchase->totalTaxPrice }}</td>
+                <td>{{$settings,$purchase->getSubTotal()}}</td>
             </tr>
             <tr>
                 <td colspan="4"></td>
@@ -346,34 +346,34 @@
                     <table class="total-table">
                         <tr>
                             <td>{{__('Subtotal')}}:</td>
-                            <td>{{Utility::priceFormat($settings,$purchase->getSubTotal())}}</td>
+                            <td>{{$purchase->getSubTotal()}}</td>
                         </tr>
                         @if($purchase->getTotalDiscount())
                             <tr>
                                 <td>{{__('Discount')}}:</td>
-                                <td>{{Utility::priceFormat($settings,$purchase->getTotalDiscount())}}</td>
+                                <td>{{$purchase->getTotalDiscount()}}</td>
                             </tr>
                         @endif
                         @if(!empty($purchase->taxesData))
                             @foreach($purchase->taxesData as $taxName => $taxPrice)
                                 <tr>
                                     <td>{{$taxName}} :</td>
-                                    <td>{{ Utility::priceFormat($settings,$taxPrice)  }}</td>
+                                    <td>{{ $taxPrice  }}</td>
                                 </tr>
                             @endforeach
                         @endif
                         <tr>
                             <td>{{__('Total')}}:</td>
-                            <td>{{Utility::priceFormat($settings,$purchase->getSubTotal()-$purchase->getTotalDiscount()+$purchase->getTotalTax())}}</td>
+                            <td>{{$purchase->getSubTotal()-$purchase->getTotalDiscount()+$purchase->getTotalTax())}}</td>
                         </tr>
                         <tr>
                             <td>{{__('Paid')}}:</td>
-                            <td>{{Utility::priceFormat($settings,($purchase->getTotal()-$purchase->getDue()))}}</td>
+                            <td>{{$purchase->getTotal()-$purchase->getDue()}}</td>
                         </tr>
 
                         <tr>
                             <td>{{__('Due Amount')}}:</td>
-                            <td>{{Utility::priceFormat($settings,$purchase->getDue())}}</td>
+                            <td>{{$purchase->getDue()}}</td>
                         </tr>
 
                     </table>
