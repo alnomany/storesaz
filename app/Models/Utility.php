@@ -922,13 +922,13 @@ class Utility extends Model
             }
             $settings = self::$store;
             if ($settings['currency_symbol_position'] == "pre" && $settings['currency_symbol_space'] == "with") {
-                return $settings['currency'] . ' ' . isset($settings->decimal_number) ? $settings->decimal_number : 2;
+                return $settings['currency'] . ' ' . $price;
             } elseif ($settings['currency_symbol_position'] == "pre" && $settings['currency_symbol_space'] == "without") {
-                return $settings['currency'] .  isset($settings->decimal_number) ? $settings->decimal_number : 2;
+                return $settings['currency'] .  $price;
             } elseif ($settings['currency_symbol_position'] == "post" && $settings['currency_symbol_space'] == "with") {
-                return number_format($price, isset($settings->decimal_number) ? $settings->decimal_number : 2) . ' ' . $settings['currency'];
+                return $price . ' ' . $settings['currency'];
             } elseif ($settings['currency_symbol_position'] == "post" && $settings['currency_symbol_space'] == "without") {
-                return number_format($price, isset($settings->decimal_number) ? $settings->decimal_number : 2) . $settings['currency'];
+                return $price. $settings['currency'];
             }
 
         } else {
