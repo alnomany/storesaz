@@ -144,7 +144,7 @@
                             @can('Manage Dashboard')
                             <li class="dash-item {{ Request::route()->getName() == 'dashboard' ? ' active' : '' }}">
                                 <a class="dash-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
-                            </li>
+                            </li> 
                             @endcan
                             @can('Manage Store Analytics')
                             <li class="dash-item {{ Request::route()->getName() == 'storeanalytic' ? ' active' : '' }}">

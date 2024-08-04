@@ -158,8 +158,8 @@ Route::group(['middleware' => ['verified']], function () {
     Route::post('purchase/product', [PurchaseController::class, 'product'])->name('purchase.product');
     Route::get('purchase/create/{cid}', [PurchaseController::class, 'create'])->name('purchase.create');
     Route::get('purchase/{id}/sent', [PurchaseController::class, 'sent'])->name('purchase.sent');
-    Route::get('purchase/{id}/resent', [PurchaseController::class, 'resent'])->name('purchase.resent');
-   //
+    Route::get('purchase/{id}/resent', [PurchaseController::class, 'resent'])->name('purchase.resent'); 
+   // 
    Route::post('bill/vender', [BillController::class, 'vender'])->name('bill.vender');
    Route::resource('vender', VenderController::class);
 
