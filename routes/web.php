@@ -145,7 +145,7 @@ Route::group(['middleware' => ['verified']], function () {
 
     //Vender or supplier 
     Route::get('purchase/items', [PurchaseController::class, 'items'])->name('purchase.items');
-    Route::resource('purchase', PurchaseController::class);
+    Route::resource('purchase', PurchaseController::class)->middleware(['auth', 'XSS']);
     Route::get('purchase/pdf/{id}', [PurchaseController::class, 'purchase'])->name('purchase.pdf')->middleware(['auth', 'XSS']);
 
     Route::get('/vendor/purchase/{id}/', [PurchaseController::class, 'purchaseLink'])->name('purchase.link.copy');
@@ -161,7 +161,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('purchase/{id}/resent', [PurchaseController::class, 'resent'])->name('purchase.resent'); 
    // 
    Route::post('bill/vender', [BillController::class, 'vender'])->name('bill.vender');
-   Route::resource('vender', VenderController::class);
+   Route::resource('vender', VenderController::class)->middleware(['auth', 'XSS']);
 
 
     // product category
