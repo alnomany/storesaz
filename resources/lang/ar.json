@@ -1504,6 +1504,16 @@
   "Your Wishlist" : "tsil WhishW ",
   "Zero Price" : "صفر السعر ",
   "Zip Code" : "الرمز البريدي ",
+  "Add item" : "  أضافة منتج",
+  "Total Amount" : "  المجموع الكلي",
+  "Purchase Create" : " أضافة فاتورة المشتريات ",
+  "Purchase Number" : "  رقم فاتورة المشتريات",
+  "Remove" : "  حذف",
+  "Product & Services" : "  المنتج او خدمة",
+  "Vendor" : " المورد ",
+  "VENDOR" : "  المورد",
+
+
   "Zipcode" : "كود Zipcode ",
   "“Attention is the new currency”" : "\"الإنتباه هو العملة الجديدة\""
 }
