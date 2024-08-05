@@ -144,21 +144,21 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['XSS']);
 
     //Vender or supplier 
-    Route::get('purchase/items', [PurchaseController::class, 'items'])->name('purchase.items');
+    Route::get('purchase/items', [PurchaseController::class, 'items'])->name('purchase.items')->middleware(['auth', 'XSS']);;
     Route::resource('purchase', PurchaseController::class)->middleware(['auth', 'XSS']);
     Route::get('purchase/pdf/{id}', [PurchaseController::class, 'purchase'])->name('purchase.pdf')->middleware(['auth', 'XSS']);
 
-    Route::get('/vendor/purchase/{id}/', [PurchaseController::class, 'purchaseLink'])->name('purchase.link.copy');
+    Route::get('/vendor/purchase/{id}/', [PurchaseController::class, 'purchaseLink'])->name('purchase.link.copy')->middleware(['auth', 'XSS']);;
     //    Route::get('/bill/{id}/', 'PurchaseController@purchaseLink')->name('purchase.link.copy');
-    Route::get('purchase/{id}/payment', [PurchaseController::class, 'payment'])->name('purchase.payment');
-    Route::post('purchase/{id}/payment', [PurchaseController::class, 'createPayment'])->name('purchase.payment');
+    Route::get('purchase/{id}/payment', [PurchaseController::class, 'payment'])->name('purchase.payment')->middleware(['auth', 'XSS']);;
+    Route::post('purchase/{id}/payment', [PurchaseController::class, 'createPayment'])->name('purchase.payment')->middleware(['auth', 'XSS']);;
     Route::post('purchase/{id}/payment/{pid}/destroy', [PurchaseController::class, 'paymentDestroy'])->name('purchase.payment.destroy');
     Route::post('purchase/product/destroy', [PurchaseController::class, 'productDestroy'])->name('purchase.product.destroy');
-    Route::post('purchase/vender', [PurchaseController::class, 'vender'])->name('purchase.vender');
-    Route::post('purchase/product', [PurchaseController::class, 'product'])->name('purchase.product');
-    Route::get('purchase/create/{cid}', [PurchaseController::class, 'create'])->name('purchase.create');
-    Route::get('purchase/{id}/sent', [PurchaseController::class, 'sent'])->name('purchase.sent');
-    Route::get('purchase/{id}/resent', [PurchaseController::class, 'resent'])->name('purchase.resent'); 
+    Route::post('purchase/vender', [PurchaseController::class, 'vender'])->name('purchase.vender')->middleware(['auth', 'XSS']);;
+    Route::post('purchase/product', [PurchaseController::class, 'product'])->name('purchase.product')->middleware(['auth', 'XSS']);;
+    Route::get('purchase/create/{cid}', [PurchaseController::class, 'create'])->name('purchase.create')->middleware(['auth', 'XSS']);;
+    Route::get('purchase/{id}/sent', [PurchaseController::class, 'sent'])->name('purchase.sent')->middleware(['auth', 'XSS']);;
+    Route::get('purchase/{id}/resent', [PurchaseController::class, 'resent'])->name('purchase.resent')->middleware(['auth', 'XSS']);; 
    // 
    Route::post('bill/vender', [BillController::class, 'vender'])->name('bill.vender');
    Route::resource('vender', VenderController::class)->middleware(['auth', 'XSS']);
