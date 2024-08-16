@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
+use Twilio\Rest\Client;
+use App\Models\Languages;
+use Jenssegers\Date\Date;
+use Illuminate\Support\Str;
+use App\Models\TransactionLines;
 use App\Mail\CommonEmailTemplate;
 use App\Models\EmailTemplateLang;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Languages;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Jenssegers\Date\Date;
-use Twilio\Rest\Client;
 
 class Utility extends Model
 {
@@ -89,6 +90,8 @@ class Utility extends Model
             "site_time_format" => "g:i A",
             "company_name" => "",
             "purchase_prefix" => "#PUR",
+            "expense_prefix" => "#EXP",
+
             "purchase_color" => "ffffff",
             "purchase_template" => "template2",
             'vat_gst_number_switch' => 'off',
@@ -1160,6 +1163,84 @@ class Utility extends Model
         }
 
         return $taxRate;
+    }
+    //inventory management (Quantity)
+    public static function total_quantity($type, $quantity, $product_id)
+    {
+        $product = Product::find($product_id);
+
+        if (($product->type == 'product') ) {
+            $pro_quantity = $product->quantity;
+
+            if ($type == 'minus') {
+                $product->quantity = $pro_quantity - $quantity;
+            } else {
+                $product->quantity = $pro_quantity + $quantity;
+            }
+            $product->save();
+        }
+
+    }
+        //add quantity in product stock
+        public static function addProductStock($product_id, $quantity, $type, $description, $type_id)
+        {
+    
+            $stocks = new StockReport();
+            $stocks->product_id = $product_id;
+            $stocks->quantity = $quantity;
+            $stocks->type = $type;
+            $stocks->type_id = $type_id;
+            $stocks->description = $description;
+            $stocks->created_by = \Auth::user()->creatorId();
+            $stocks->save();
+        }
+        
+    public static function updateUserBalance($users, $id, $amount, $type)
+    {
+        if ($users == 'customer') {
+            $user = User::find($id);
+        } else {
+            $user = Supplier::find($id);
+        }
+
+        if (!empty($user)) {
+            if ($type == 'credit') {
+                $oldBalance = $user->balance;
+                $userBalance = $oldBalance - $amount;
+                $user->balance = $userBalance;
+                $user->save();
+            } elseif ($type == 'debit') {
+                $oldBalance = $user->balance;
+                $userBalance = $oldBalance + $amount;
+                $user->balance = $userBalance;
+                $user->save();
+            }
+        }
+    }
+    public static function addTransactionLines($data)
+    {
+        $existingTransaction = TransactionLines::where('reference_id', $data['reference_id'])
+            ->where('reference_sub_id', $data['reference_sub_id'])->where('reference', $data['reference'])
+            ->first();
+        if ($existingTransaction) {
+            $transactionLines = $existingTransaction;
+        } else {
+            $transactionLines = new TransactionLines();
+        }
+        $transactionLines->account_id = $data['account_id'] ?? 1;
+        $transactionLines->reference = $data['reference'];
+        $transactionLines->reference_id = $data['reference_id'];
+        $transactionLines->reference_sub_id = $data['reference_sub_id'];
+        $transactionLines->date = $data['date'];
+        if ($data['transaction_type'] == "Credit") {
+            $transactionLines->credit = $data['transaction_amount'];
+            $transactionLines->debit = 0;
+        } else {
+            $transactionLines->credit = 0;
+            $transactionLines->debit = $data['transaction_amount'];
+        }
+        $transactionLines->created_by = Auth::user()->creatorId();
+        $transactionLines->save();
     }
 
     // get font-color code accourding to bg-color
@@ -2741,6 +2822,8 @@ class Utility extends Model
             "company_email" => "",
             "company_email_from_name" => "",
             "invoice_prefix" => "#INV",
+            "expense_prefix" => "#EXP",
+
             "invoice_color" => "ffffff",
             "quote_template" => "template1",
             "quote_color" => "ffffff",
