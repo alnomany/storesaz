@@ -145,7 +145,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['XSS']);
 
     //Vender or supplier 
-    Route::get('purchase/items', [PurchaseController::class, 'items'])->name('purchase.items')->middleware(['auth', 'XSS']);;
+    Route::get('purchase/items', [PurchaseController::class, 'items'])->name('purchase.items')->middleware(['auth', 'XSS']);
     Route::resource('purchase', PurchaseController::class)->middleware(['auth', 'XSS']);
     Route::get('purchase/pdf/{id}', [PurchaseController::class, 'purchase'])->name('purchase.pdf')->middleware(['auth', 'XSS']);
 
@@ -690,13 +690,13 @@ Route::middleware(['auth', 'XSS'])->group(function () {
 });
 //Expense //////////////////////////////////////////////////////////////////
 
-Route::resource('expense', ExpenseController::class);
-Route::get('/expenses/create/{id}', [ExpenseController::class, 'create1'])->name('expenses.create');
-Route::post('expense/employee', [ExpenseController::class, 'employee'])->name('expense.employee');
-Route::any('expense/customer', [ExpenseController::class, 'customer'])->name('expense.customer');
-Route::post('expense/vender', [ExpenseController::class, 'vender'])->name('expense.vender');
-Route::post('expense/employee', [ExpenseController::class, 'employee'])->name('expense.employee');
-Route::post('expense/product', [ExpenseController::class, 'product'])->name('expense.product');
+Route::resource('expense', ExpenseController::class)->middleware(['auth', 'XSS']);
+Route::get('/expenses/create/{id}', [ExpenseController::class, 'create1'])->name('expenses.create')->middleware(['auth', 'XSS']);;
+Route::post('expense/employee', [ExpenseController::class, 'employee'])->name('expense.employee')->middleware(['auth', 'XSS']);;
+Route::any('expense/customer', [ExpenseController::class, 'customer'])->name('expense.customer')->middleware(['auth', 'XSS']);;
+Route::post('expense/vender', [ExpenseController::class, 'vender'])->name('expense.vender')->middleware(['auth', 'XSS']);;
+Route::post('expense/employee', [ExpenseController::class, 'employee'])->name('expense.employee')->middleware(['auth', 'XSS']);;
+Route::post('expense/product', [ExpenseController::class, 'product'])->name('expense.product')->middleware(['auth', 'XSS']);;
 
 
 ////////////////End Expense
