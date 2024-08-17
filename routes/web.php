@@ -22,6 +22,7 @@ use App\Http\Controllers\PaytabController;
 Use App\Http\Controllers\UserController;
 use App\Http\Controllers\VenderController;
 use App\Http\Controllers\XenditController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\FedapayController;
 use App\Http\Controllers\IyziPayController;
 use App\Http\Controllers\PayfastController;
@@ -687,7 +688,18 @@ Route::middleware(['auth', 'XSS'])->group(function () {
     Route::get('pos-productVariant/{id}/{session}', [ProductController::class, 'productVariant']);
     Route::get('addToCartVariant/{id}/{session}/{variation_id?}', [ProductController::class, 'addToCartVariant'])->name('addToCartVariant');
 });
+//Expense //////////////////////////////////////////////////////////////////
 
+Route::resource('expense', ExpenseController::class);
+Route::get('/expenses/create/{id}', [ExpenseController::class, 'create1'])->name('expenses.create');
+Route::post('expense/employee', [ExpenseController::class, 'employee'])->name('expense.employee');
+Route::any('expense/customer', [ExpenseController::class, 'customer'])->name('expense.customer');
+Route::post('expense/vender', [ExpenseController::class, 'vender'])->name('expense.vender');
+Route::post('expense/employee', [ExpenseController::class, 'employee'])->name('expense.employee');
+Route::post('expense/product', [ExpenseController::class, 'product'])->name('expense.product');
+
+
+////////////////End Expense
 Route::get('express-checkout/create/{id}/',[ExpresscheckoutController::class,'create'])->name('expresscheckout.create')->middleware(['auth','XSS']);
 Route::post('express-checkout/store',[ExpresscheckoutController::class,'store'])->name('expresscheckout.store')->middleware(['auth','XSS']);
 Route::get('express-checkout/edit/{id}',[ExpresscheckoutController::class,'edit'])->name('expresscheckout.edit')->middleware(['auth','XSS']);
