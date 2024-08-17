@@ -73,7 +73,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->lang;
     }
-    
+    public function expenseNumberFormat($number)
+    {
+        $settings = Utility::settings();
+
+        return $settings["expense_prefix"] . sprintf("%05d", $number);
+    }
     public function purchaseNumberFormat($number)
     {
         $settings = Utility::settings();
