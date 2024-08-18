@@ -44,13 +44,14 @@
                                 <div class="row">
                                     <div class="col-3"></div>
                                     <div class="col-3"></div>
-                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 month">
+                                  {{--  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 month">
                                         <div class="btn-box">
                                             {{Form::label('bill_date',__('Payment Date'),['class'=>'form-label'])}}
                                             {{ Form::text('bill_date', isset($_GET['bill_date'])?$_GET['bill_date']:null, array('class' => 'form-control month-btn','id'=>'pc-daterangepicker-1','readonly')) }}
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                    --}} 
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                         <div class="btn-box">
                                             {{ Form::label('category', __('Category'),['class'=>'form-label'])}}
                                             {{ Form::select('category',$category,isset($_GET['category'])?$_GET['category']:'', array('class' => 'form-control select')) }}
