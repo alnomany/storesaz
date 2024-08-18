@@ -87,6 +87,7 @@ class ProductController extends Controller
                 $request->all(),
                 [
                     'name' => 'required|max:120',
+                    'SKU' => 'required|unique:products,SKU',
                 ]
             );
 
