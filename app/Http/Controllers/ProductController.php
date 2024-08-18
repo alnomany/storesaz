@@ -1240,10 +1240,10 @@ class ProductController extends Controller
 
             } else {
                 if($request->cat_id == '0'){
-                    $products = Product::where('name', 'LIKE', "%{$request->search}%")->orWhere('sku', 'LIKE', "%{$request->search}%")->where('store_id',$request->store_id)->get();
+                    $products = Product::where('name', 'LIKE', "%{$request->search}%")->orWhere('sku', '=', $request->search)->where('store_id',$request->store_id)->get();
                    
                 }else{
-                    $products = Product::where('name', 'LIKE', "%{$request->search}%")->orWhere('sku', 'LIKE', "%{$request->search}%")->where('store_id',$request->store_id)->Where('product_categorie', $request->cat_id)->get();
+                    $products = Product::where('name', 'LIKE', "%{$request->search}%")->orWhere('sku', '=', $request->search)->where('store_id',$request->store_id)->Where('product_categorie', $request->cat_id)->get();
                    
                 }
             }
