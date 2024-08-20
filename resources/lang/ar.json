@@ -1514,6 +1514,9 @@
   "VENDOR" : "  المورد",
   "Partialy Paid" : "دفع جزئي",
   "Manage Expenses" : "  تعديل المصروفات",
+  "Expense Create" : "   أضافة مصروف",
+  "Expense Detail" : "  معلومات عن المصروف",
+
   "Expense" : "  المصروفات",
   "Payment Date" : "  تاريخ الدفع",
   "Bill to" : "  الفاتورة الى",
