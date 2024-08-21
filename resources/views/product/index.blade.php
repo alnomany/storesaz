@@ -53,6 +53,8 @@
                                 <th>{{ __('Quantity') }}</th>
                                 <th>{{ __('Stock') }}</th>
                                 <th>{{ __('Created at') }}</th>
+                                <th>{{ __('SKU') }}</th>
+
                                 <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
@@ -116,6 +118,9 @@
                                     </td>
                                     <td>
                                         {{ \App\Models\Utility::dateFormat($product->created_at) }}
+                                    </td>
+                                    <td>
+                                        {{ $product->SKU}}
                                     </td>
                                     <td>
                                         <div class="d-flex">
