@@ -18,11 +18,11 @@ class BankAccount extends Model
         'bank_address',
         'created_by',
     ];
-/*
+
     public function chartAccount()
     {
         return $this->hasOne('App\Models\ChartOfAccount', 'id', 'chart_account_id');
     }
-        */
+    
 
 }

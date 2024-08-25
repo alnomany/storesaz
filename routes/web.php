@@ -47,6 +47,7 @@ use App\Http\Controllers\AiTemplateController;
 use App\Http\Controllers\PageOptionController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductTaxController;
+use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\PaiementProController;
 use App\Http\Controllers\PaymentWallController;
 use App\Http\Controllers\PlanRequestController;
@@ -55,6 +56,7 @@ use App\Http\Controllers\EmailTemplateController;
 use App\Http\Controllers\ProductCouponController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\BenefitPaymentController;
+use App\Http\Controllers\ChartOfAccountController;
 use App\Http\Controllers\ExpresscheckoutController;
 use App\Http\Controllers\NepalstePaymnetController;
 use App\Http\Controllers\ReferralProgramController;
@@ -182,6 +184,9 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('orders', OrderController::class)->middleware(['auth', 'XSS']);
     Route::delete('order/product/{id}/{variant_id?}/{order_id}/{key}', [OrderController::class, 'delete_order_item'])->name('delete.order_item');
     Route::get('bank_transfer_order_show/{id}', [OrderController::class, 'bank_transfer_order_show'])->name('bank_transfer.order.show');
+    Route::resource('bank-account', BankAccountController::class)->middleware(['auth', 'XSS']);
+
+
     Route::post('order_status_edit/{id}', [OrderController::class, 'StatusEdit'])->name('order.status.edit');
 
     // storefront
@@ -208,6 +213,20 @@ Route::group(['middleware' => ['verified']], function () {
         Route::resource('stores', StoreController::class);
         Route::post('store-setting/{id}', [StoreController::class, 'savestoresetting'])->name('settings.store');
     });
+    Route::post('chart-of-account/subtype', [ChartOfAccountController::class, 'getSubType'])->name('charofAccount.subType')->middleware(['auth', 'XSS']);
+
+    Route::group(
+        [
+            'middleware' => [
+                'auth',
+                'XSS',
+               
+            ],
+        ], function () {
+            Route::resource('chart-of-account', ChartOfAccountController::class);
+        }
+    );
+    Route::get('ledger-report/{account?}', [ReportController::class, 'ledgerSummary'])->name('report.ledger');
 
     Route::middleware(['auth', 'XSS'])->group(function () {
         Route::get('change-language/{lang}', [LanguageController::class, 'changeLanquage'])->name('change.language');

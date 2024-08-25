@@ -1020,8 +1020,1537 @@ class Utility extends Model
         }
         return self::$data;
     }
+    public static $chartOfAccountType = [
+        'assets' => 'Assets',
+        'liabilities' => 'Liabilities',
+        'equity' => 'Equity',
+        'income' => 'Income',
+        'costs of goods sold' => 'Costs of Goods Sold',
+        'expenses' => 'Expenses',
 
+    ];
 
+    public static $chartOfAccountSubType = array(
+        "assets" => array(
+            '1' => 'Current Asset',
+            '2' => 'Inventory Asset',
+            '3' => 'Non-current Asset',
+        ),
+        "liabilities" => array(
+            '1' => 'Current Liabilities',
+            '2' => 'Long Term Liabilities',
+            '3' => 'Share Capital',
+            '4' => 'Retained Earnings',
+        ),
+        "equity" => array(
+            '1' => 'Owners Equity',
+        ),
+        "income" => array(
+            '1' => 'Sales Revenue',
+            '2' => 'Other Revenue',
+        ),
+        "costs of goods sold" => array(
+            '1' => 'Costs of Goods Sold',
+        ),
+        "expenses" => array(
+            '1' => 'Payroll Expenses',
+            '2' => 'General and Administrative expenses',
+        ),
+
+    );
+
+    public static function chartOfAccountTypeData($company_id)
+    {
+        $chartOfAccountTypes = Self::$chartOfAccountType;
+        foreach ($chartOfAccountTypes as $k => $type) {
+
+            $accountType = ChartOfAccountType::create(
+                [
+                    'name' => $type,
+                    'created_by' => $company_id,
+                ]
+            );
+
+            $chartOfAccountSubTypes = Self::$chartOfAccountSubType;
+
+            foreach ($chartOfAccountSubTypes[$k] as $subType) {
+                ChartOfAccountSubType::create(
+                    [
+                        'name' => $subType,
+                        'type' => $accountType->id,
+                        'created_by' => $company_id,
+                    ]
+                );
+            }
+        }
+    }
+
+    public static $chartOfAccount = array(
+
+        [
+            'code' => '1060',
+            'name' => 'Checking Account',
+            'type' => 1,
+            'sub_type' => 1,
+        ],
+        [
+            'code' => '1065',
+            'name' => 'Petty Cash',
+            'type' => 1,
+            'sub_type' => 1,
+        ],
+        [
+            'code' => '1200',
+            'name' => 'Account Receivables',
+            'type' => 1,
+            'sub_type' => 1,
+        ],
+        [
+            'code' => '1205',
+            'name' => 'Allowance for doubtful accounts',
+            'type' => 1,
+            'sub_type' => 1,
+        ],
+        [
+            'code' => '1510',
+            'name' => 'Inventory',
+            'type' => 1,
+            'sub_type' => 2,
+        ],
+        [
+            'code' => '1520',
+            'name' => 'Stock of Raw Materials',
+            'type' => 1,
+            'sub_type' => 2,
+        ],
+        [
+            'code' => '1530',
+            'name' => 'Stock of Work In Progress',
+            'type' => 1,
+            'sub_type' => 2,
+        ],
+        [
+            'code' => '1540',
+            'name' => 'Stock of Finished Goods',
+            'type' => 1,
+            'sub_type' => 2,
+        ],
+        [
+            'code' => '1550',
+            'name' => 'Goods Received Clearing account',
+            'type' => 1,
+            'sub_type' => 2,
+        ],
+        [
+            'code' => '1810',
+            'name' => 'Land and Buildings',
+            'type' => 1,
+            'sub_type' => 3,
+        ],
+        [
+            'code' => '1820',
+            'name' => 'Office Furniture and Equipement',
+            'type' => 1,
+            'sub_type' => 3,
+        ],
+        [
+            'code' => '1825',
+            'name' => 'Accum.depreciation-Furn. and Equip',
+            'type' => 1,
+            'sub_type' => 3,
+        ],
+        [
+            'code' => '1840',
+            'name' => 'Motor Vehicle',
+            'type' => 1,
+            'sub_type' => 3,
+        ],
+        [
+            'code' => '1845',
+            'name' => 'Accum.depreciation-Motor Vehicle',
+            'type' => 1,
+            'sub_type' => 3,
+        ],
+        [
+            'code' => '2100',
+            'name' => 'Account Payable',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2105',
+            'name' => 'Deferred Income',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2110',
+            'name' => 'Accrued Income Tax-Central',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2120',
+            'name' => 'Income Tax Payable',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2130',
+            'name' => 'Accrued Franchise Tax',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2140',
+            'name' => 'Vat Provision',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2145',
+            'name' => 'Purchase Tax',
+            'type' => 2,
+            'sub_type' => 4,
+        ], [
+            'code' => '2150',
+            'name' => 'VAT Pay / Refund',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2151',
+            'name' => 'Zero Rated',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2152',
+            'name' => 'Capital import',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2153',
+            'name' => 'Standard Import',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2154',
+            'name' => 'Capital Standard',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2155',
+            'name' => 'Vat Exempt',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2160',
+            'name' => 'Accrued Use Tax Payable',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2210',
+            'name' => 'Accrued Wages',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2220',
+            'name' => 'Accrued Comp Time',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2230',
+            'name' => 'Accrued Holiday Pay',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2240',
+            'name' => 'Accrued Vacation Pay',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2310',
+            'name' => 'Accr. Benefits - Central Provident Fund',
+            'type' => 2,
+            'sub_type' => 4,
+        ], [
+            'code' => '2320',
+            'name' => 'Accr. Benefits - Stock Purchase',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2330',
+            'name' => 'Accr. Benefits - Med, Den',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2340',
+            'name' => 'Accr. Benefits - Payroll Taxes',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2350',
+            'name' => 'Accr. Benefits - Credit Union',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2360',
+            'name' => 'Accr. Benefits - Savings Bond',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2370',
+            'name' => 'Accr. Benefits - Group Insurance',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2380',
+            'name' => 'Accr. Benefits - Charity Cont.',
+            'type' => 2,
+            'sub_type' => 4,
+        ],
+        [
+            'code' => '2620',
+            'name' => 'Bank Loans',
+            'type' => 2,
+            'sub_type' => 5,
+        ],
+        [
+            'code' => '2680',
+            'name' => 'Loans from Shareholders',
+            'type' => 2,
+            'sub_type' => 5,
+        ],
+        [
+            'code' => '3350',
+            'name' => 'Common Shares',
+            'type' => 2,
+            'sub_type' => 6,
+        ],
+        [
+            'code' => '3590',
+            'name' => 'Reserves and Surplus',
+            'type' => 2,
+            'sub_type' => 7,
+        ],
+        [
+            'code' => '3595',
+            'name' => 'Owners Drawings',
+            'type' => 2,
+            'sub_type' => 7,
+        ],
+        [
+            'code' => '3020',
+            'name' => 'Opening Balances and adjustments',
+            'type' => 3,
+            'sub_type' => 8,
+        ],
+        [
+            'code' => '3025',
+            'name' => 'Owners Contribution',
+            'type' => 3,
+            'sub_type' => 8,
+        ],
+        [
+            'code' => '3030',
+            'name' => 'Profit and Loss ( current Year)',
+            'type' => 3,
+            'sub_type' => 8,
+        ],
+        [
+            'code' => '3035',
+            'name' => 'Retained income',
+            'type' => 3,
+            'sub_type' => 8,
+        ],
+        [
+            'code' => '4010',
+            'name' => 'Sales Income',
+            'type' => 4,
+            'sub_type' => 9,
+        ],
+        [
+            'code' => '4020',
+            'name' => 'Service Income',
+            'type' => 4,
+            'sub_type' => 9,
+        ],
+        [
+            'code' => '4430',
+            'name' => 'Shipping and Handling',
+            'type' => 4,
+            'sub_type' => 10,
+        ],
+        [
+            'code' => '4435',
+            'name' => 'Sundry Income',
+            'type' => 4,
+            'sub_type' => 10,
+        ],
+        [
+            'code' => '4440',
+            'name' => 'Interest Received',
+            'type' => 4,
+            'sub_type' => 10,
+        ],
+        [
+            'code' => '4450',
+            'name' => 'Foreign Exchange Gain',
+            'type' => 4,
+            'sub_type' => 10,
+        ],
+        [
+            'code' => '4500',
+            'name' => 'Unallocated Income',
+            'type' => 4,
+            'sub_type' => 10,
+        ],
+        [
+            'code' => '4510',
+            'name' => 'Discounts Received',
+            'type' => 4,
+            'sub_type' => 10,
+        ],
+        [
+            'code' => '5005',
+            'name' => 'Cost of Sales- On Services',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5010',
+            'name' => 'Cost of Sales - Purchases',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5015',
+            'name' => 'Operating Costs',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5020',
+            'name' => 'Material Usage Varaiance',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5025',
+            'name' => 'Breakage and Replacement Costs',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5030',
+            'name' => 'Consumable Materials',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5035',
+            'name' => 'Sub-contractor Costs',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5040',
+            'name' => 'Purchase Price Variance',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5045',
+            'name' => 'Direct Labour - COS',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5050',
+            'name' => 'Purchases of Materials',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5060',
+            'name' => 'Discounts Received',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5100',
+            'name' => 'Freight Costs',
+            'type' => 5,
+            'sub_type' => 11,
+        ],
+        [
+            'code' => '5410',
+            'name' => 'Salaries and Wages',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5415',
+            'name' => 'Directors Fees & Remuneration',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5420',
+            'name' => 'Wages - Overtime',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5425',
+            'name' => 'Members Salaries',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5430',
+            'name' => 'UIF Payments',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5440',
+            'name' => 'Payroll Taxes',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5450',
+            'name' => 'Workers Compensation ( Coida )',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5460',
+            'name' => 'Normal Taxation Paid',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5470',
+            'name' => 'General Benefits',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5510',
+            'name' => 'Provisional Tax Paid',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5520',
+            'name' => 'Inc Tax Exp - State',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5530',
+            'name' => 'Taxes - Real Estate',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5540',
+            'name' => 'Taxes - Personal Property',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5550',
+            'name' => 'Taxes - Franchise',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5560',
+            'name' => 'Taxes - Foreign Withholding',
+            'type' => 6,
+            'sub_type' => 12,
+        ],
+        [
+            'code' => '5610',
+            'name' => 'Accounting Fees',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5615',
+            'name' => 'Advertising and Promotions',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5620',
+            'name' => 'Bad Debts',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5625',
+            'name' => 'Courier and Postage',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5660',
+            'name' => 'Depreciation Expense',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5685',
+            'name' => 'Insurance Expense',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5690',
+            'name' => 'Bank Charges',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5695',
+            'name' => 'Interest Paid',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5700',
+            'name' => 'Office Expenses - Consumables',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5705',
+            'name' => 'Printing and Stationary',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5710',
+            'name' => 'Security Expenses',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5715',
+            'name' => 'Subscription - Membership Fees',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5755',
+            'name' => 'Electricity, Gas and Water',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5760',
+            'name' => 'Rent Paid',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5765',
+            'name' => 'Repairs and Maintenance',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5770',
+            'name' => 'Motor Vehicle Expenses',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5771',
+            'name' => 'Petrol and Oil',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5775',
+            'name' => 'Equipment Hire - Rental',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5780',
+            'name' => 'Telephone and Internet',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5785',
+            'name' => 'Travel and Accommodation',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5786',
+            'name' => 'Meals and Entertainment',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5787',
+            'name' => 'Staff Training',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5790',
+            'name' => 'Utilities',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5791',
+            'name' => 'Computer Expenses',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5795',
+            'name' => 'Registrations',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5800',
+            'name' => 'Licenses',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '5810',
+            'name' => 'Foreign Exchange Loss',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+        [
+            'code' => '9990',
+            'name' => 'Profit and Loss',
+            'type' => 6,
+            'sub_type' => 13,
+        ],
+
+    );
+
+    public static $chartOfAccount1 = array(
+
+        [
+            'code' => '1060',
+            'name' => 'Checking Account',
+            'type' => 'Assets',
+            'sub_type' => 'Current Asset',
+        ],
+        [
+            'code' => '1065',
+            'name' => 'Petty Cash',
+            'type' => 'Assets',
+            'sub_type' => 'Current Asset',
+        ],
+        [
+            'code' => '1200',
+            'name' => 'Account Receivables',
+            'type' => 'Assets',
+            'sub_type' => 'Current Asset',
+        ],
+        [
+            'code' => '1205',
+            'name' => 'Allowance for doubtful accounts',
+            'type' => 'Assets',
+            'sub_type' => 'Current Asset',
+        ],
+        [
+            'code' => '1510',
+            'name' => 'Inventory',
+            'type' => 'Assets',
+            'sub_type' => 'Inventory Asset',
+        ],
+        [
+            'code' => '1520',
+            'name' => 'Stock of Raw Materials',
+            'type' => 'Assets',
+            'sub_type' => 'Inventory Asset',
+        ],
+        [
+            'code' => '1530',
+            'name' => 'Stock of Work In Progress',
+            'type' => 'Assets',
+            'sub_type' => 'Inventory Asset',
+        ],
+        [
+            'code' => '1540',
+            'name' => 'Stock of Finished Goods',
+            'type' => 'Assets',
+            'sub_type' => 'Inventory Asset',
+        ],
+        [
+            'code' => '1550',
+            'name' => 'Goods Received Clearing account',
+            'type' => 'Assets',
+            'sub_type' => 'Inventory Asset',
+        ],
+        [
+            'code' => '1810',
+            'name' => 'Land and Buildings',
+            'type' => 'Assets',
+            'sub_type' => 'Non-current Asset',
+        ],
+        [
+            'code' => '1820',
+            'name' => 'Office Furniture and Equipement',
+            'type' => 'Assets',
+            'sub_type' => 'Non-current Asset',
+        ],
+        [
+            'code' => '1825',
+            'name' => 'Accum.depreciation-Furn. and Equip',
+            'type' => 'Assets',
+            'sub_type' => 'Non-current Asset',
+        ],
+        [
+            'code' => '1840',
+            'name' => 'Motor Vehicle',
+            'type' => 'Assets',
+            'sub_type' => 'Non-current Asset',
+        ],
+        [
+            'code' => '1845',
+            'name' => 'Accum.depreciation-Motor Vehicle',
+            'type' => 'Assets',
+            'sub_type' => 'Non-current Asset',
+        ],
+        [
+            'code' => '2100',
+            'name' => 'Account Payable',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2105',
+            'name' => 'Deferred Income',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2110',
+            'name' => 'Accrued Income Tax-Central',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2120',
+            'name' => 'Income Tax Payable',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2130',
+            'name' => 'Accrued Franchise Tax',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2140',
+            'name' => 'Vat Provision',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2145',
+            'name' => 'Purchase Tax',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ], [
+            'code' => '2150',
+            'name' => 'VAT Pay / Refund',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2151',
+            'name' => 'Zero Rated',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2152',
+            'name' => 'Capital import',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2153',
+            'name' => 'Standard Import',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2154',
+            'name' => 'Capital Standard',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2155',
+            'name' => 'Vat Exempt',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2160',
+            'name' => 'Accrued Use Tax Payable',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2210',
+            'name' => 'Accrued Wages',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2220',
+            'name' => 'Accrued Comp Time',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2230',
+            'name' => 'Accrued Holiday Pay',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2240',
+            'name' => 'Accrued Vacation Pay',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2310',
+            'name' => 'Accr. Benefits - Central Provident Fund',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ], [
+            'code' => '2320',
+            'name' => 'Accr. Benefits - Stock Purchase',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2330',
+            'name' => 'Accr. Benefits - Med, Den',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2340',
+            'name' => 'Accr. Benefits - Payroll Taxes',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2350',
+            'name' => 'Accr. Benefits - Credit Union',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2360',
+            'name' => 'Accr. Benefits - Savings Bond',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2370',
+            'name' => 'Accr. Benefits - Group Insurance',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2380',
+            'name' => 'Accr. Benefits - Charity Cont.',
+            'type' => 'Liabilities',
+            'sub_type' => 'Current Liabilities',
+        ],
+        [
+            'code' => '2620',
+            'name' => 'Bank Loans',
+            'type' => 'Liabilities',
+            'sub_type' => 'Long Term Liabilities',
+        ],
+        [
+            'code' => '2680',
+            'name' => 'Loans from Shareholders',
+            'type' => 'Liabilities',
+            'sub_type' => 'Long Term Liabilities',
+        ],
+        [
+            'code' => '3350',
+            'name' => 'Common Shares',
+            'type' => 'Liabilities',
+            'sub_type' => 'Share Capital',
+        ],
+        [
+            'code' => '3590',
+            'name' => 'Reserves and Surplus',
+            'type' => 'Liabilities',
+            'sub_type' => 'Retained Earnings',
+        ],
+        [
+            'code' => '3595',
+            'name' => 'Owners Drawings',
+            'type' => 'Liabilities',
+            'sub_type' => 'Retained Earnings',
+        ],
+        [
+            'code' => '3020',
+            'name' => 'Opening Balances and adjustments',
+            'type' => 'Equity',
+            'sub_type' => 'Owners Equity',
+        ],
+        [
+            'code' => '3025',
+            'name' => 'Owners Contribution',
+            'type' => 'Equity',
+            'sub_type' => 'Owners Equity',
+        ],
+        [
+            'code' => '3030',
+            'name' => 'Profit and Loss ( current Year)',
+            'type' => 'Equity',
+            'sub_type' => 'Owners Equity',
+        ],
+        [
+            'code' => '3035',
+            'name' => 'Retained income',
+            'type' => 'Equity',
+            'sub_type' => 'Owners Equity',
+        ],
+        [
+            'code' => '4010',
+            'name' => 'Sales Income',
+            'type' => 'Income',
+            'sub_type' => 'Sales Revenue',
+        ],
+        [
+            'code' => '4020',
+            'name' => 'Service Income',
+            'type' => 'Income',
+            'sub_type' => 'Sales Revenue',
+        ],
+        [
+            'code' => '4430',
+            'name' => 'Shipping and Handling',
+            'type' => 'Income',
+            'sub_type' => 'Other Revenue',
+        ],
+        [
+            'code' => '4435',
+            'name' => 'Sundry Income',
+            'type' => 'Income',
+            'sub_type' => 'Other Revenue',
+        ],
+        [
+            'code' => '4440',
+            'name' => 'Interest Received',
+            'type' => 'Income',
+            'sub_type' => 'Other Revenue',
+        ],
+        [
+            'code' => '4450',
+            'name' => 'Foreign Exchange Gain',
+            'type' => 'Income',
+            'sub_type' => 'Other Revenue',
+        ],
+        [
+            'code' => '4500',
+            'name' => 'Unallocated Income',
+            'type' => 'Income',
+            'sub_type' => 'Other Revenue',
+        ],
+        [
+            'code' => '4510',
+            'name' => 'Discounts Received',
+            'type' => 'Income',
+            'sub_type' => 'Other Revenue',
+        ],
+        [
+            'code' => '5005',
+            'name' => 'Cost of Sales- On Services',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5010',
+            'name' => 'Cost of Sales - Purchases',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5015',
+            'name' => 'Operating Costs',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5020',
+            'name' => 'Material Usage Varaiance',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5025',
+            'name' => 'Breakage and Replacement Costs',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5030',
+            'name' => 'Consumable Materials',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5035',
+            'name' => 'Sub-contractor Costs',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5040',
+            'name' => 'Purchase Price Variance',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5045',
+            'name' => 'Direct Labour - COS',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5050',
+            'name' => 'Purchases of Materials',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5060',
+            'name' => 'Discounts Received',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5100',
+            'name' => 'Freight Costs',
+            'type' => 'Costs of Goods Sold',
+            'sub_type' => 'Costs of Goods Sold',
+        ],
+        [
+            'code' => '5410',
+            'name' => 'Salaries and Wages',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5415',
+            'name' => 'Directors Fees & Remuneration',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5420',
+            'name' => 'Wages - Overtime',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5425',
+            'name' => 'Members Salaries',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5430',
+            'name' => 'UIF Payments',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5440',
+            'name' => 'Payroll Taxes',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5450',
+            'name' => 'Workers Compensation ( Coida )',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5460',
+            'name' => 'Normal Taxation Paid',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5470',
+            'name' => 'General Benefits',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5510',
+            'name' => 'Provisional Tax Paid',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5520',
+            'name' => 'Inc Tax Exp - State',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5530',
+            'name' => 'Taxes - Real Estate',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5540',
+            'name' => 'Taxes - Personal Property',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5550',
+            'name' => 'Taxes - Franchise',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5560',
+            'name' => 'Taxes - Foreign Withholding',
+            'type' => 'Expenses',
+            'sub_type' => 'Payroll Expenses',
+        ],
+        [
+            'code' => '5610',
+            'name' => 'Accounting Fees',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5615',
+            'name' => 'Advertising and Promotions',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5620',
+            'name' => 'Bad Debts',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5625',
+            'name' => 'Courier and Postage',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5660',
+            'name' => 'Depreciation Expense',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5685',
+            'name' => 'Insurance Expense',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5690',
+            'name' => 'Bank Charges',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5695',
+            'name' => 'Interest Paid',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5700',
+            'name' => 'Office Expenses - Consumables',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5705',
+            'name' => 'Printing and Stationary',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5710',
+            'name' => 'Security Expenses',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5715',
+            'name' => 'Subscription - Membership Fees',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5755',
+            'name' => 'Electricity, Gas and Water',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5760',
+            'name' => 'Rent Paid',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5765',
+            'name' => 'Repairs and Maintenance',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5770',
+            'name' => 'Motor Vehicle Expenses',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5771',
+            'name' => 'Petrol and Oil',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5775',
+            'name' => 'Equipment Hire - Rental',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5780',
+            'name' => 'Telephone and Internet',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5785',
+            'name' => 'Travel and Accommodation',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5786',
+            'name' => 'Meals and Entertainment',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5787',
+            'name' => 'Staff Training',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5790',
+            'name' => 'Utilities',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5791',
+            'name' => 'Computer Expenses',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5795',
+            'name' => 'Registrations',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5800',
+            'name' => 'Licenses',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '5810',
+            'name' => 'Foreign Exchange Loss',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+        [
+            'code' => '9990',
+            'name' => 'Profit and Loss',
+            'type' => 'Expenses',
+            'sub_type' => 'General and Administrative expenses',
+        ],
+
+    );
+
+// chart of account for new company Utility::chartOfAccountData1
+    public static function chartOfAccountData1($user)
+    {
+        $chartOfAccounts = Self::$chartOfAccount1;
+
+        foreach ($chartOfAccounts as $account) {
+
+            $type = ChartOfAccountType::where('created_by', $user)->where('name', $account['type'])->first();
+            $sub_type = ChartOfAccountSubType::where('type', $type->id)->where('name', $account['sub_type'])->first();
+
+            ChartOfAccount::create(
+                [
+                    'code' => $account['code'],
+                    'name' => $account['name'],
+                    'type' => $type->id,
+                    'sub_type' => $sub_type->id,
+                    'is_enabled' => 1,
+                    'created_by' => $user,
+                ]
+            );
+        }
+    }
+
+    public static function chartOfAccountData($user)
+    {
+        $chartOfAccounts = Self::$chartOfAccount;
+        foreach ($chartOfAccounts as $account) {
+            ChartOfAccount::create(
+                [
+                    'code' => $account['code'],
+                    'name' => $account['name'],
+                    'type' => $account['type'],
+                    'sub_type' => $account['sub_type'],
+                    'is_enabled' => 1,
+                    'created_by' => $user->id,
+                ]
+            );
+
+        }
+    }
+    public static function getAccountBalance($account_id, $start_date = null, $end_date = null)
+    {
+
+        if (!empty($start_date) && !empty($end_date)) {
+            $start = $start_date;
+            $end = $end_date;
+        } else {
+            $start = date('Y-m-01');
+            $end = date('Y-m-t');
+        }
+
+        // $types = ChartOfAccountType::where('created_by', \Auth::user()->creatorId())->get();
+
+        // foreach ($types as $type) {
+        $total = TransactionLines::
+            select('chart_of_accounts.id', 'chart_of_accounts.code', 'chart_of_accounts.name',
+            \DB::raw('sum(debit) as totalDebit'),
+            \DB::raw('sum(credit) as totalCredit'));
+        $total->leftjoin('chart_of_accounts', 'transaction_lines.account_id', 'chart_of_accounts.id');
+        $total->leftjoin('chart_of_account_types', 'chart_of_accounts.type', 'chart_of_account_types.id');
+        // $total->where('chart_of_accounts.type', $type->id);
+        $total->where('transaction_lines.created_by', \Auth::user()->creatorId());
+        $total->where('transaction_lines.account_id', $account_id);
+        $total->where('transaction_lines.date', '>=', $start);
+        $total->where('transaction_lines.date', '<=', $end);
+        $total->groupBy('account_id');
+        $total = $total->get()->toArray();
+
+        // $name = $type->name;
+
+        // if (isset($totalAccount[$name])) {
+        //     $totalAccount[$name]["totalCredit"] += $total["totalCredit"];
+        //     $totalAccount[$name]["totalDebit"] += $total["totalDebit"];
+        // } else {
+        //     $totalAccount[$name] = $total;
+        // }
+        // }
+
+        // foreach ($totalAccount as $category => $entries) {
+        //     foreach ($entries as $entry) {
+        //         $name = $entry['name'];
+        //         if (!isset($totalAccounts[$category][$name])) {
+        //             $totalAccounts[$category][$name] = [
+        //                 'id' => $entry['id'],
+        //                 'code' => $entry['code'],
+        //                 'name' => $name,
+        //                 'totalDebit' => 0,
+        //                 'totalCredit' => 0,
+        //             ];
+        //         }
+        //         if ($entry['totalDebit'] < 0) {
+        //             $totalAccounts[$category][$name]['totalDebit'] += 0;
+        //             $totalAccounts[$category][$name]['totalCredit'] += -$entry['totalDebit'];
+        //         } else {
+        //             $totalAccounts[$category][$name]['totalDebit'] += $entry['totalDebit'];
+        //             $totalAccounts[$category][$name]['totalCredit'] += $entry['totalCredit'];
+        //         }
+
+        //     }
+        // }
+
+        $balance = 0;
+        $totalDebit = 0;
+        $totalCredit = 0;
+
+        foreach ($total as $key => $record) {
+            $totalDebit = $record['totalDebit'];
+            $totalCredit = $record['totalCredit'];
+
+        }
+
+        $balance += $totalCredit - $totalDebit;
+
+        return $balance;
+
+    }
     public static function sendEmailTemplate1($emailTemplate, $mailTo, $obj)
     {
         $usr = Auth::user();
@@ -1614,6 +3143,7 @@ class Utility extends Model
             $emailTemplateLang->save();
         }
     }
+
 
     // For Email template Module
     public static function defaultEmail()
