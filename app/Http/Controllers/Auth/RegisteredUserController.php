@@ -89,6 +89,7 @@ class RegisteredUserController extends Controller
         if(Utility::getValByName('email_verification') == 'on'){
             if(isset($settings['RECAPTCHA_MODULE']) && $settings['RECAPTCHA_MODULE'] == 'yes')
             {
+                
                 $validation['g-recaptcha-response'] = 'required';
             } else {
                 $validation = [];
@@ -208,6 +209,11 @@ class RegisteredUserController extends Controller
                 'used_referral_code'=> $ref,
                 'created_by' => 1,
             ]);
+            //i added
+            Utility::chartOfAccountTypeData($objUser->id);
+            // Utility::chartOfAccountData($user);
+            // default chart of account for new company
+            Utility::chartOfAccountData1($objUser->id);    
             $objStore = Store::create(
                 [
                     'created_by' => $objUser->id,
