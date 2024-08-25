@@ -1529,6 +1529,17 @@
   "Employee" : "الموظف",
   "Payee" : "  المستفيد",
 
+  "Manage Bank Account" : "إدارة الحساب البنكي",
+"Bank" : "البنك",
+"Account Number" : "رقم الحساب",
+"Current Balance" : "الرصيد الحالي",
+"Contact Number" : "رقم الاتصال",
+"Bank Branch" : "فرع البنك",
+"Create New Bank Account" : "إنشاء حساب بنكي جديد",
+"Bank Address" : "عنوان البنك",
+"Opening Balance" : "الرصيد الافتتاحي",
+"Bank Holder Name" : "اسم صاحب الحساب",
+
 
 
 
