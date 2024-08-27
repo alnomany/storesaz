@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\TransactionLines;
 use App\Mail\CommonEmailTemplate;
 use App\Models\EmailTemplateLang;
+use App\Models\ChartOfAccountType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
