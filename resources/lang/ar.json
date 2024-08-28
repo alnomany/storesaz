@@ -1536,10 +1536,22 @@
 "Contact Number" : "رقم الاتصال",
 "Bank Branch" : "فرع البنك",
 "Create New Bank Account" : "إنشاء حساب بنكي جديد",
+"Create New  Account" : "إنشاء حساب  جديد",
+
 "Bank Address" : "عنوان البنك",
 "Opening Balance" : "الرصيد الافتتاحي",
 "Bank Holder Name" : "اسم صاحب الحساب",
-
+"Account Type": "نوع الحساب",
+"Enter Code": "أدخل الرمز",
+"Is Enabled": "تفعيل",
+"Create New Account": "إنشاء حساب جديد",
+"Start Date": "تاريخ البدء",
+"End Date": "تاريخ الانتهاء",
+"Assets": "الأصول",
+"PARENT ACCOUNT NAME": "اسم الحساب الأصلي",
+"BALANCE": "الرصيد",
+"Manage Chart of Accounts": "إدارة جدول الحسابات",
+"Chart of Account": "جدول الحسابات",
 
 
 
