@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Crypt;
 
 use App\Models\BillPayment;
 use App\Models\BillProduct;
+use App\Models\ProductCategorie;
+
+
 use Illuminate\Http\Request;
 use App\Models\ChartOfAccount;
 use Illuminate\Support\Facades\DB;
@@ -108,6 +111,7 @@ class ExpenseController extends Controller
 
        $category =['','مصروفات','بنزين'];
 
+       $category = ProductCategorie::where('created_by', '=', \Auth::user()->creatorId())->get();
 
             $expense_number = \Auth::user()->expenseNumberFormat($this->expenseNumber());
 
@@ -126,7 +130,7 @@ class ExpenseController extends Controller
 
             $product_services = Product::where('store_id', $store_id->id)->get()->pluck('name', 'id');
             $product_services->prepend('Select Item', '');
-/*
+
             $chartAccounts = ChartOfAccount::select(\DB::raw('CONCAT(code, " - ", name) AS code_name, id'))
                 ->where('created_by', \Auth::user()->creatorId())->get()
                 ->pluck('code_name', 'id');
@@ -137,7 +141,7 @@ class ExpenseController extends Controller
             $subAccounts->where('chart_of_accounts.parent', '!=', 0);
             $subAccounts->where('chart_of_accounts.created_by', \Auth::user()->creatorId());
             $subAccounts = $subAccounts->get()->toArray();
-*/
+
            $chartAccounts =[0=>"الاصول",1=>"المرتبات"];
             $accounts = BankAccount::select('*', DB::raw("CONCAT(bank_name,' ',holder_name) AS name"))
                 ->where('created_by', \Auth::user()->creatorId())
