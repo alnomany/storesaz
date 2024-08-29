@@ -32,6 +32,8 @@ $store_logo=\App\Models\Utility::get_file('uploads/product_image/');
                             <tr>
                                 <th>{{ __('Product Image') }}</th>
                                 <th>{{ __('Category Name') }}</th>
+                                <th>{{ __('Category Type') }}</th>
+
                                 <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
@@ -48,6 +50,9 @@ $store_logo=\App\Models\Utility::get_file('uploads/product_image/');
                                         </div>
                                     </td>
                                     <td>{{ $product_category->name }}</td>
+                                    <td class="font-style">
+                                        {{ $product_category->type }}
+                                    </td>
                                     <td>
                                         <div class="d-flex">
                                             @can('Edit Product category')
