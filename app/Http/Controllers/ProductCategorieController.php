@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Product;
-use App\Models\ProductCategorie;
+use App\Models\Utility;
 use Illuminate\Http\Request;
+use App\Models\ChartOfAccount;
+use App\Models\ProductCategorie;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Utility;
 
 class ProductCategorieController extends Controller
 {
@@ -18,6 +20,11 @@ class ProductCategorieController extends Controller
      */
     public function index()
     {
+
+    
+        $chart_accounts = ChartOfAccount::select(\DB::raw('CONCAT(code, " - ", name) AS code_name, id'))
+        ->where('created_by', \Auth::user()->creatorId())->get()
+        ->pluck('code_name', 'id');
         if(\Auth::user()->can('Manage Product category')){
             $user = \Auth::user()->current_store;
 
@@ -39,12 +46,87 @@ class ProductCategorieController extends Controller
      */
     public function create()
     {
+  
+
         if(\Auth::user()->can('Create Product category')){
-            return view('product_category.create');
+            $types = ProductCategorie::$catTypes;
+
+            $type = ['' => 'Select Category Type'];
+            $types = array_merge($type, $types);
+
+             $chart_accounts = ChartOfAccount::select(DB::raw('CONCAT(code, " - ", name) AS code_name, id'))
+                ->where('created_by', \Auth::user()->creatorId())->get()
+                ->pluck('code_name', 'id');
+            $chart_accounts->prepend('Select Account', '');
+            return view('product_category.create', compact('types', 'chart_accounts'));
         }
         else{
             return redirect()->back()->with('error', 'Permission denied.');
         }
+    }
+    
+    public function getAccount(Request $request)
+    {
+        $chart_accounts = [];
+        if ($request->type == 'income') {
+            $chart_accounts = ChartOfAccount::select(\DB::raw('CONCAT(chart_of_accounts.code, " - ", chart_of_accounts.name) AS code_name, chart_of_accounts.id as id'))
+            ->leftjoin('chart_of_account_types', 'chart_of_account_types.id','chart_of_accounts.type')
+            ->where('chart_of_account_types.name' ,'Income')
+            ->where('parent', '=', 0)
+            ->where('chart_of_accounts.created_by', \Auth::user()->creatorId())->get()
+            ->pluck('code_name', 'id');
+        } elseif ($request->type == 'expense') {
+            $chart_accounts = ChartOfAccount::select(\DB::raw('CONCAT(chart_of_accounts.code, " - ", chart_of_accounts.name) AS code_name, chart_of_accounts.id as id'))
+            ->leftjoin('chart_of_account_types', 'chart_of_account_types.id','chart_of_accounts.type')
+            ->where('chart_of_account_types.name' ,'Expenses')
+            ->where('parent', '=', 0)
+            ->where('chart_of_accounts.created_by', \Auth::user()->creatorId())->get()
+            ->pluck('code_name', 'id');
+        } elseif ($request->type == 'asset') {
+            $chart_accounts = ChartOfAccount::select(\DB::raw('CONCAT(chart_of_accounts.code, " - ", chart_of_accounts.name) AS code_name, chart_of_accounts.id as id'))
+            ->leftjoin('chart_of_account_types', 'chart_of_account_types.id','chart_of_accounts.type')
+            ->where('chart_of_account_types.name' ,'Assets')
+            ->where('parent', '=', 0)
+            ->where('chart_of_accounts.created_by', \Auth::user()->creatorId())->get()
+            ->pluck('code_name', 'id');
+        } elseif ($request->type == 'liability') {
+            $chart_accounts = ChartOfAccount::select(\DB::raw('CONCAT(chart_of_accounts.code, " - ", chart_of_accounts.name) AS code_name, chart_of_accounts.id as id'))
+            ->leftjoin('chart_of_account_types', 'chart_of_account_types.id','chart_of_accounts.type')
+            ->where('chart_of_account_types.name' ,'Liabilities')
+            ->where('parent', '=', 0)
+            ->where('chart_of_accounts.created_by', \Auth::user()->creatorId())->get()
+            ->pluck('code_name', 'id');
+        } elseif ($request->type == 'equity') {
+            $chart_accounts = ChartOfAccount::select(\DB::raw('CONCAT(chart_of_accounts.code, " - ", chart_of_accounts.name) AS code_name, chart_of_accounts.id as id'))
+            ->leftjoin('chart_of_account_types', 'chart_of_account_types.id','chart_of_accounts.type')
+            ->where('chart_of_account_types.name' ,'Equity')
+            ->where('parent', '=', 0)
+            ->where('chart_of_accounts.created_by', \Auth::user()->creatorId())->get()
+            ->pluck('code_name', 'id');
+        } elseif ($request->type == 'costs of good sold') {
+            $chart_accounts = ChartOfAccount::select(\DB::raw('CONCAT(chart_of_accounts.code, " - ", chart_of_accounts.name) AS code_name, chart_of_accounts.id as id'))
+            ->leftjoin('chart_of_account_types', 'chart_of_account_types.id','chart_of_accounts.type')
+            ->where('chart_of_account_types.name' ,'Costs of Goods Sold')
+            ->where('parent', '=', 0)
+            ->where('chart_of_accounts.created_by', \Auth::user()->creatorId())->get()
+            ->pluck('code_name', 'id');
+        } else {
+            $chart_accounts = 0;
+        }
+
+        $subAccounts = ChartOfAccount::select('chart_of_accounts.id', 'chart_of_accounts.code', 'chart_of_accounts.name' , 'chart_of_account_parents.account');
+        $subAccounts->leftjoin('chart_of_account_parents', 'chart_of_accounts.parent', 'chart_of_account_parents.id');
+        $subAccounts->where('chart_of_accounts.parent', '!=', 0);
+        $subAccounts->where('chart_of_accounts.created_by', \Auth::user()->creatorId());
+        $subAccounts = $subAccounts->get()->toArray();
+
+    $response = [
+        'chart_accounts' => $chart_accounts,
+        'sub_accounts' => $subAccounts,
+    ];
+
+        return response()->json($response);
+
     }
 
     /**
@@ -101,6 +183,8 @@ class ProductCategorieController extends Controller
 
             $productCategorie             = new ProductCategorie();
             $productCategorie['store_id'] = \Auth::user()->current_store;
+            $productCategorie['type'] = $request->type;
+            $productCategorie['chart_account_id'] = !empty($request->chart_account) ? $request->chart_account : 0;
             $productCategorie['name']     = $request->name;
             if(!empty($fileNameToStores))
             {

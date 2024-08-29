@@ -289,6 +289,8 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('webhook', WebhookController::class)->middleware(['auth', 'XSS',]);
 
     Route::resource('product_categorie', ProductCategorieController::class)->middleware(['auth', 'XSS']);
+    Route::post('product-category/getaccount', [ProductCategorieController::class, 'getAccount'])->name('productServiceCategory.getaccount')->middleware(['auth', 'XSS']);
+
     Route::resource('product_tax', ProductTaxController::class)->middleware(['auth', 'XSS']);
 
     //=================================product import/export=============================

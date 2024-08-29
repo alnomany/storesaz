@@ -10,4 +10,14 @@ class ProductCategorie extends Model
         'name',
         'created_by',
     ];
+    public static $catTypes = [
+        'product & service' => 'Product & Service',
+        'income' => 'Income',
+        'expense' => 'Expense',
+        'asset'=> 'Asset',
+        'liability' => 'Liability',
+        'equity' => 'Equity',
+        'costs of good sold' => 'Costs of Goods Sold',
+    ];
+
 }
