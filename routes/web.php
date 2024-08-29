@@ -223,7 +223,7 @@ Route::group(['middleware' => ['verified']], function () {
                
             ],
         ], function () {
-            Route::resource('chart-of-account', ChartOfAccountController::class);
+            Route::resource('chart-of-account', ChartOfAccountController::class)->middleware(['XSS', 'auth']);
         }
     );
     Route::get('ledger-report/{account?}', [ReportController::class, 'ledgerSummary'])->name('report.ledger');

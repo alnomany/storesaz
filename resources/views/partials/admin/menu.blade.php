@@ -248,6 +248,37 @@
                                     --}}
                                 </ul>
                             </li>
+                                  <!-- accounting-->
+                                  <li class="dash-item dash-hasmenu ">
+                                    <a href="#!" class="dash-link ">
+                                        <span class="dash-micon">
+                                            <i class="ti ti-box"></i>
+                                        </span>
+                                        <span class="dash-mtext">{{ __('Account manage') }}</span>
+                                        <span class="dash-arrow">
+                                            <i data-feather="chevron-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="dash-submenu">
+                                        @can('Manage Role')
+                                            <li class="dash-item">
+                                                <a class="dash-link"
+                                                    href="{{ route('chart-of-account.index') }}">{{ __('Account manage') }}</a>
+                                            </li>
+                                            <li class="dash-item">
+                                                <a class="dash-link"
+                                                    href="{{ route('bank-account.index') }}">{{ __('Bank') }}</a>
+                                            </li>
+                                        @endcan
+                                       {{-- @can('Manage User')
+                                            <li
+                                                class="dash-item {{ Request::segment(1) == 'vender.index'  ? ' active dash-trigger' : 'collapsed' }}">
+                                                <a class="dash-link" href="{{ route('vender.index') }}">{{ __('suppliers') }}</a>
+                                            </li>
+                                        @endcan
+                                        --}}
+                                    </ul>
+                                </li>
                     @can('Manage Pos')
                         <li class="dash-item {{ Request::segment(1) == 'pos' ? ' active' : 'collapsed' }}">
                             <a href="{{ route('pos.index') }}"
