@@ -145,6 +145,10 @@ class ExpenseController extends Controller
             $subAccounts = $subAccounts->get()->toArray();
 
            $chartAccounts =[0=>"الاصول",1=>"المرتبات"];
+           $chartAccounts = ChartOfAccount::select(\DB::raw('CONCAT(code, " - ", name) AS code_name, id'))
+           ->where('created_by', \Auth::user()->creatorId())->get()
+           ->pluck('code_name', 'id');
+       $chartAccounts->prepend('Select Account', '');
             $accounts = BankAccount::select('*', DB::raw("CONCAT(bank_name,' ',holder_name) AS name"))
                 ->where('created_by', \Auth::user()->creatorId())
                 ->get()->pluck('name', 'id');
