@@ -3951,7 +3951,7 @@ class StoreController extends Controller
 
         $json = $request->array;
         foreach ($json as $key => $jsn) {
-            foreach ($jsn['inner - list'] as $IN_key => $js) {
+            foreach ($jsn['inner-list'] as $IN_key => $js) {
                 if ($js['field_type'] == 'multi file upload') {
 
                     if (!empty($js['multi_image'])) {
