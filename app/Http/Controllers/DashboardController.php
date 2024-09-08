@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomDomainRequest;
-use App\Models\Order;
+use File;
+use Stripe;
+use App\Models\Bill;
 use App\Models\Plan;
-use App\Models\PlanOrder;
-use App\Models\Product;
-use App\Models\Store;
 use App\Models\User;
-use App\Models\UserStore;
+use App\Models\Order;
+use App\Models\Store;
+use App\Models\Product;
 use App\Models\Utility;
+use App\Models\PlanOrder;
+use App\Models\UserStore;
 use Illuminate\Http\Request;
+use App\Models\CustomDomainRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Constraint\Count;
-use Stripe;
-use File;
 
 class DashboardController extends Controller
 {
@@ -133,7 +134,8 @@ class DashboardController extends Controller
                     }
                     $totle_sale = 0;
                     $totle_order = 0;
-                    $orders = Order::where('user_id', $store->current_store)->get();
+                    $total_purchase_price = 0;
+                     $orders = Order::where('user_id', $store->current_store)->get();
                     if (!empty($orders)) {
                         $pro_qty = 0;
                         $item_id = [];
@@ -141,7 +143,14 @@ class DashboardController extends Controller
                         foreach ($orders as $order) {
                             $order_array = json_decode($order->product);
                             $pro_id = [];
+                            
                             foreach ($order_array as $key => $item) {
+                                $product = Product::find($item->id);
+
+                                if ($product) {
+                                    // Calculate total purchase price based on quantity
+                                    $total_purchase_price += $product->purchase_price * $item->quantity;
+                                }
                                 if (!in_array($item->id, $item_id)) {
                                     $item_id[] = $item->id;
                                     $totle_qty[] = $item->quantity;
@@ -154,6 +163,20 @@ class DashboardController extends Controller
                             $totle_order++;
                         }
                     }
+                    // Retrieve all expenses
+                    $expenses = Bill::with('debitNote', 'payments.bankAccount')->get();
+                    $totalExpenses = 0;
+
+                    // Iterate through each expense
+                    foreach ($expenses as $expense) {
+                        // Calculate total for each expense using your existing logic
+                        $totalExpense = $expense->getTotal(); // Assuming you have implemented getTotal() method in Bill model
+
+                        // Accumulate total expenses
+                        $totalExpenses += $totalExpense;
+                    }
+                     $totalExpenses;
+
                     $users = \Auth::user()->currentuser();
                     $plan = Plan::find($users->plan);
                     if($plan->storage_limit > 0)
@@ -163,7 +186,7 @@ class DashboardController extends Controller
                     else{
                         $storage_limit = 0;
                     }
-                    return view('home', compact('products','saleData', 'store_id', 'totle_sale', 'store', 'orders', 'totle_order', 'newproduct', 'item_id', 'totle_qty', 'chartData', 'new_orders','storage_limit','plan','users'));
+                    return view('home', compact('products','saleData', 'store_id', 'totle_sale','totalExpenses', 'total_purchase_price','store', 'orders', 'totle_order', 'newproduct', 'item_id', 'totle_qty', 'chartData', 'new_orders','storage_limit','plan','users'));
                 }
             }else{
                 return redirect()->back()->with('error', 'Permission denied.');

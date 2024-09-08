@@ -80,6 +80,7 @@ $company_logo = \App\Models\Utility::getValByName('company_logo');
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-lg-4 col-6">
                         <div class="card">
                             <div class="card-body">
@@ -160,7 +161,7 @@ $company_logo = \App\Models\Utility::getValByName('company_logo');
             </div>
             <div class="col-lg-8">
                 <div class="row gy-4">
-                    <div class="col-xl-3 col-lg-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
                         <div class="card shadow-none mb-0">
                             <div class="card-body border rounded  p-3">
                                 <div class="mb-4 d-flex align-items-center justify-content-between">
@@ -189,7 +190,7 @@ $company_logo = \App\Models\Utility::getValByName('company_logo');
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
                         <div class="card shadow-none mb-0">
                             <div class="card-body border rounded  p-3">
                                 <div class="mb-3 d-flex align-items-center justify-content-between">
@@ -208,7 +209,7 @@ $company_logo = \App\Models\Utility::getValByName('company_logo');
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
                         <div class="card shadow-none mb-0">
                             <div class="card-body border rounded  p-3">
                                 <div class="mb-3 d-flex align-items-center justify-content-between">
@@ -227,7 +228,26 @@ $company_logo = \App\Models\Utility::getValByName('company_logo');
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-6 col-sm-6">
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
+                        <div class="card shadow-none mb-0">
+                            <div class="card-body border rounded  p-3">
+                                <div class="mb-3 d-flex align-items-center justify-content-between">
+                                    <h6 class="mb-0">{{ __('Selling Cost') }}</h6>
+                                    <span>
+                                        <i data-feather="arrow-up-right"></i>
+                                    </span>
+                                </div>
+                                <div class="mb-3 d-flex align-items-center justify-content-between">
+                                    <span class="f-30 f-w-600" style=" word-break: break-word; ">{{ \App\Models\Utility::priceFormat($total_purchase_price) }}</span>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <div id="TotalSales" class="remove-min"></div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
                         <div class="card shadow-none mb-0">
                             <div class="card-body border rounded  p-3">
                                 <div class="mb-3 d-flex align-items-center justify-content-between">
@@ -238,6 +258,43 @@ $company_logo = \App\Models\Utility::getValByName('company_logo');
                                 </div>
                                 <div class="mb-3 d-flex align-items-center justify-content-between">
                                     <span class="f-30 f-w-600">{{ $totle_order }}</span>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <div id="TotalOrders" class="remove-min"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
+                        <div class="card shadow-none mb-0">
+                            <div class="card-body border rounded  p-3">
+                                <div class="mb-3 d-flex align-items-center justify-content-between">
+                                    <h6 class="mb-0">{{ __('Operating Expenses') }}</h6>
+                                    <span>
+                                        <i data-feather="arrow-up-right"></i>
+                                    </span>
+                                </div>
+                                <div class="mb-3 d-flex align-items-center justify-content-between">
+                                    <span class="f-30 f-w-600">{{ \App\Models\Utility::priceFormat($totalExpenses) }}</span>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <div id="TotalOrders" class="remove-min"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-4">
+                        <div class="card shadow-none mb-0">
+                            <div class="card-body border rounded  p-3">
+                                <div class="mb-3 d-flex align-items-center justify-content-between">
+                                    <h6 class="mb-0">{{ __('Net Income') }}</h6>
+                                    <span>
+                                        <i data-feather="arrow-up-right"></i>
+                                    </span>
+                                </div>
+                                <div class="mb-3 d-flex align-items-center justify-content-between">
+                                   <?php $totalall = $totle_sale - ($totalExpenses+$total_purchase_price) ?>
+                                    <span class="f-30 f-w-600">{{ \App\Models\Utility::priceFormat($totalall) }}</span>
                                 </div>
                                 <div class="chart-wrapper">
                                     <div id="TotalOrders" class="remove-min"></div>
