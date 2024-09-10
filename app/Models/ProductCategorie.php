@@ -11,13 +11,13 @@ class ProductCategorie extends Model
         'created_by',
     ];
     public static $catTypes = [
-        'product' => 'product',
-        'income' => 'Income',
-        'expense' => 'Expense',
-        'asset'=> 'Asset',
-        'liability' => 'Liability',
-        'equity' => 'Equity',
-        'costs of good sold' => 'Costs of Goods Sold',
+        'product' => 'Product - منتج',
+        'income' => 'Income - دخل',
+        'expense' => 'Expense - مصروف',
+        'asset'=> 'Asset - أصل',
+        'liability' => 'Liability - التزام',
+        'equity' => 'Equity - حقوق الملكية',
+        'costs of good sold' => 'Costs of Goods Sold - تكلفة البضاعة المباعة',
     ];
 
 }
