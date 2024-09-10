@@ -11,7 +11,7 @@ class ProductCategorie extends Model
         'created_by',
     ];
     public static $catTypes = [
-        'product & service' => 'Product & Service',
+        'product' => 'product',
         'income' => 'Income',
         'expense' => 'Expense',
         'asset'=> 'Asset',

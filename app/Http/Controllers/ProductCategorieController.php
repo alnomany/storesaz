@@ -340,7 +340,7 @@ class ProductCategorieController extends Controller
     }
     public function getProductCategories(){
         $user = \Auth::user()->current_store;
-        $productCategory = ProductCategorie::where('store_id',$user)->where('type',"")->get();    
+        $productCategory = ProductCategorie::where('store_id',$user)->where('type',"")->orwhere('type','product')->get();    
         $html = '<div class="mb-3 mr-2 mx-2 zoom-in ">
                     <div class="card rounded-10 card-stats mb-0 cat-active overflow-hidden" data-id="0">
                     <div class="category-select" data-cat-id="0">

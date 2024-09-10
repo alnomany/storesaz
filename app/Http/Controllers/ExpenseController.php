@@ -112,7 +112,8 @@ class ExpenseController extends Controller
        $category =['','مصروفات','بنزين'];
 
        $category = ProductCategorie::where('created_by', '=', \Auth::user()->creatorId())->get()
-       ->whereNotNull('type')
+       ->where('type', '!=', '')
+       ->orwhere('type', 'product')
        ->pluck('name', 'id');
 
             $expense_number = \Auth::user()->expenseNumberFormat($this->expenseNumber());
