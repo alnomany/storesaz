@@ -1190,9 +1190,20 @@ class ProductController extends Controller
 
                 $productData->name = $product[0];
                 $productData->description = $product[1];
-                $productData->SKU = $product[2];
-                $productData->price = $product[3];
-                $productData->quantity = $product[4];
+                $productData->product_categorie = $product[2];
+                $productData->product_tax = $product[3];
+
+                $productData->price = $product[4];
+                $productData->last_price = $product[5];
+                $productData->purchase_price = $product[6];
+                //$productData->last_price = $product[5];
+
+
+                $productData->quantity = $product[7];
+                $productData->SKU = $product[8];
+                $productData->product_display = $product[9];
+
+
                 $productData->store_id = $store_id->id;
                 $productData->created_by = \Auth::user()->creatorId();
 

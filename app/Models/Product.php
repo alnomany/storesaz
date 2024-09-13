@@ -14,6 +14,7 @@ class Product extends Model
         'product_categorie',
         'price',
         'purchase_price',
+        "last_price",
         'quantity',
         'SKU',
         'product_tax',

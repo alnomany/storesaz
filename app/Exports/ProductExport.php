@@ -58,6 +58,9 @@ class ProductExport implements FromCollection, WithHeadings
             "Product Categorie",
             "Price",
             "Last Price",
+
+            'purchase_price',
+
             "Quantity",
             "SKU",
             "Product Tax",
