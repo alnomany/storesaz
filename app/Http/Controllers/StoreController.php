@@ -811,6 +811,10 @@ class StoreController extends Controller
         $store['enable_shipping'] = $request->enable_shipping ?? 'off';
         $store['address'] = $request->address;
         $store['city'] = $request->city;
+        $store['commercial_register'] = $request->commercial_register;
+        $store['tax_number'] = $request->tax_number;
+        $store['limit_inventory'] = $request->Limit_inventory;
+
         $store['state'] = $request->state;
         $store['zipcode'] = $request->zipcode;
         $store['country'] = $request->country;

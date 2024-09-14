@@ -3327,6 +3327,7 @@
                             </div>
                         {!! Form::close() !!}
                     </div>
+                    <!--       here -->
                     <div class="tab-pane fade" id="pills-store_setting" role="tabpanel" aria-labelledby="pills-brand_setting-tab">
                         {{ Form::model($store_settings, ['route' => ['settings.store', $store_settings['id']], 'method' => 'POST', 'enctype' => 'multipart/form-data']) }}
                         <div class="row">
@@ -3452,6 +3453,33 @@
                                                     {{ Form::label('email', __('Email'), ['class' => 'form-label']) }}
                                                     {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => __('Email')]) }}
                                                     @error('email')
+                                                        <span class="invalid-email" role="alert">
+                                                            <strong class="text-danger">{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {{ Form::label('commercial_register', __('commercial_register'), ['class' => 'form-label']) }}
+                                                    {{ Form::text('commercial_register', null, ['class' => 'form-control', 'placeholder' => __('commercial_register')]) }}
+                                                    @error('commercial_register')
+                                                        <span class="invalid-email" role="alert">
+                                                            <strong class="text-danger">{{ $message }}</stronAg>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {{ Form::label('limit_inventory', __('limit_inventory'), ['class' => 'form-label']) }}
+                                                    {{ Form::number('limit_inventory', isset($store_settings['limit_inventory']) ? $store_settings['limit_inventory'] : 2, ['class' => 'form-control', 'placeholder' => __('limit_inventory')]) }}
+                                                    @error('limit_inventory')
+                                                        <span class="invalid-email" role="alert">
+                                                            <strong class="text-danger">{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {{ Form::label('tax_number', __('tax_number'), ['class' => 'form-label']) }}
+                                                    {{ Form::text('tax_number', null, ['class' => 'form-control', 'placeholder' => __('tax_number')]) }}
+                                                    @error('tax_number')
                                                         <span class="invalid-email" role="alert">
                                                             <strong class="text-danger">{{ $message }}</strong>
                                                         </span>

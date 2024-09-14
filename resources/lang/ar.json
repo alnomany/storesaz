@@ -995,6 +995,10 @@
   "Net Income":"صافي الدخل",
   "Post" : "ترحيل ",
   "Postal Code" : "الكود البريدي ",
+  "tax_number" : " رقم ضريبي ",
+  "limit_inventory" : " الحد من المخزون ",
+  "commercial_register" : " السجل التجاري ",
+
   "Pre" : "مسبق ",
   "Price" : "السعر ",
   "Price:" : "السعر : ",
