@@ -14,6 +14,7 @@ use App\Models\Utility;
 use App\Models\PlanOrder;
 use App\Models\UserStore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\CustomDomainRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -116,6 +117,16 @@ class DashboardController extends Controller
                     $userstore = UserStore::where('store_id', $store->current_store)->first();
                     $newproduct = Product::where('store_id', $store->current_store)->count();
                     $products = Product::where('store_id', $store->current_store)->limit(5)->get();
+                    ////////////////////////////////////////
+/*
+                    $topProducts = Product::select('products.*', DB::raw('SUM(orders.quantity) as total_sales'))
+                    ->join('orders', 'products.id', '=', 'orders.product_id') // Assuming `product_id` is the foreign key in orders
+                    ->where('products.store_id', $store->current_store)
+                    ->groupBy('products.id')
+                    ->orderBy('total_sales', 'desc')
+                    ->limit(5)
+                    ->get(); */
+                    //////////////////////////
                     $new_orders = Order::where('user_id', $store->current_store)->limit(8)->orderBy('id', 'DESC')->get();
                     $chartData = $this->getOrderChart(['duration' => 'week'],$userstore);
                     $saleData = $this->getSaleChart(['duration' => 'week'],$userstore);
@@ -164,7 +175,13 @@ class DashboardController extends Controller
                         }
                     }
                     // Retrieve all expenses
-                    $expenses = Bill::with('debitNote', 'payments.bankAccount')->get();
+                   // $expenses = Bill::with('debitNote', 'payments.bankAccount')->get();
+                    $expenses = Bill::with([
+                        'debitNote',
+                        'payments.bankAccount',
+                        'billProducts.product.store' // Eager load store relation through billProducts and product
+                    ])->get();
+                    
                     $totalExpenses = 0;
 
                     // Iterate through each expense
