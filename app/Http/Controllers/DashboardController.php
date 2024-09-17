@@ -178,6 +178,7 @@ class DashboardController extends Controller
                    // $expenses = Bill::with('debitNote', 'payments.bankAccount')->get();
                    $user1 =Auth::user();
                    $store_id1 = Store::where('id', $user1->current_store)->first();
+                   $store_id1= $store_id1->id;
 
                    $expenses = Bill::whereHas('billProducts.product.store', function ($query) use ($store_id1) {
                     $query->where('store_id', $store_id1);
