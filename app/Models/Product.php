@@ -176,4 +176,12 @@ class Product extends Model
         $dsji = ProductVariantOption::where('product_id',$id)->get();
             return $dsji;
     }
+    public function orders()
+{
+    return $this->hasMany(Order::class);
+}
+public function store()
+{
+    return $this->belongsTo(Store::class);
+}
 }

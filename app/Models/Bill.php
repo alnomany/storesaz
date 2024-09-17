@@ -59,7 +59,10 @@ class Bill extends Model
     {
         return $this->hasMany('App\Models\BillPayment', 'bill_id', 'id');
     }
-
+    public function billProducts()
+    {
+        return $this->hasMany(BillProduct::class);
+    }
 
     public function getSubTotal()
     {
