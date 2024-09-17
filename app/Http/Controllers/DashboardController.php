@@ -176,11 +176,18 @@ class DashboardController extends Controller
                     }
                     // Retrieve all expenses
                    // $expenses = Bill::with('debitNote', 'payments.bankAccount')->get();
-                    $expenses = Bill::with([
-                        'debitNote',
-                        'payments.bankAccount',
-                        'billProducts.product.store' // Eager load store relation through billProducts and product
-                    ])->get();
+                   $user1 =Auth::user();
+                   $store_id1 = Store::where('id', $user1->current_store)->first();
+
+                   $expenses = Bill::whereHas('billProducts.product.store', function ($query) use ($store_id1) {
+                    $query->where('store_id', $store_id1);
+                })
+                ->with([
+                    'debitNote',
+                    'payments.bankAccount',
+                    'billProducts.product.store' // Eager load store relation through billProducts and product
+                ])
+                ->get();
                     
                     $totalExpenses = 0;
 
