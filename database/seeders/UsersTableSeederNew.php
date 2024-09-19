@@ -16,7 +16,7 @@ class UsersTableSeederNew extends Seeder
     {
         //
 
-        $admin=User::where('email','owner@example.com')->first();
+        $admin=User::where('email','Luxuryksa80s@gmail.com')->first();
         Utility::chartOfAccountData($admin);
         Utility::chartOfAccountTypeData($admin->id);
     }
