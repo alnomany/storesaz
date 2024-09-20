@@ -997,6 +997,7 @@
   "Postal Code" : "الكود البريدي ",
   "tax_number" : " رقم ضريبي ",
   "limit_inventory" : " الحد من المخزون ",
+  "Low Stock" : "نقص في المخزون",
   "commercial_register" : " السجل التجاري ",
 
   "Pre" : "مسبق ",

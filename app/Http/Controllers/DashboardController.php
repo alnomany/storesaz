@@ -115,8 +115,12 @@ class DashboardController extends Controller
                 } else {
                     $store = Auth::user();
                     $userstore = UserStore::where('store_id', $store->current_store)->first();
+                   // $currentstore = Store::where('id', $store->current_store)->first();
+
                     $newproduct = Product::where('store_id', $store->current_store)->count();
                     $products = Product::where('store_id', $store->current_store)->limit(5)->get();
+                    $lowStockThreshold =0;
+              
                     ////////////////////////////////////////
 /*
                     $topProducts = Product::select('products.*', DB::raw('SUM(orders.quantity) as total_sales'))
@@ -143,6 +147,14 @@ class DashboardController extends Controller
                             $store_id['store_url'] = 'https://' . $store_id['subdomain'] . '/';
                         }
                     }
+                    $lowStockThreshold =   $store_id->limit_inventory;
+                    
+
+                     $lowStockProducts = Product::where('store_id', $store->current_store)
+                    ->where('quantity', '<', $lowStockThreshold)
+                    ->limit(50)
+                    ->get();
+                    
                     $totle_sale = 0;
                     $totle_order = 0;
                     $total_purchase_price = 0;
@@ -210,8 +222,9 @@ class DashboardController extends Controller
                     }   
                     else{
                         $storage_limit = 0;
+
                     }
-                    return view('home', compact('products','saleData', 'store_id', 'totle_sale','totalExpenses', 'total_purchase_price','store', 'orders', 'totle_order', 'newproduct', 'item_id', 'totle_qty', 'chartData', 'new_orders','storage_limit','plan','users'));
+                    return view('home', compact('products','lowStockProducts','saleData', 'store_id', 'totle_sale','totalExpenses', 'total_purchase_price','store', 'orders', 'totle_order', 'newproduct', 'item_id', 'totle_qty', 'chartData', 'new_orders','storage_limit','plan','users'));
                 }
             }else{
                 return redirect()->back()->with('error', 'Permission denied.');

@@ -381,6 +381,69 @@ $company_logo = \App\Models\Utility::getValByName('company_logo');
                 </div>
             </div>
             <div class="col-lg-12">
+                <h4 >{{ __('Low Stock') }}</h4>
+                <div class="card mb-0 shadow-none">
+                    <div class="card-body border border-bottom-0 overflow-hidden rounded pb-0 table-border-style">
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-transparent">{{ __('Product') }}</th>
+                                        <th class="bg-transparent"> {{ __('Quantity') }}</th>
+                                        <th class="bg-transparent">{{ __('Price') }}</th>
+                                        <th class="bg-transparent"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if(!empty($lowStockProducts))
+                                        @foreach ($lowStockProducts as $product)
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="theme-avtar me-2">
+                                                                    @if (!empty($product->is_cover))
+                                                                        <img src="{{ $logo1 . $product->is_cover }}" alt="">
+                                                                    @else
+                                                                        <img src="{{ asset(Storage::url('uploads/is_cover_image/default.jpg')) }}" alt="">
+                                                                    @endif                                                                
+                                                                </div>
+                                                                <a href="#" class=" text-dark f-w-600">{{ $product->name }}</a>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            @if($product->enable_product_variant == 'on')
+                                                                {{ __("In Variant") }}
+                                                            @else   
+                                                                {{ $product->quantity }}
+                                                            @endif  
+                                                        </td>
+                                                        <td>
+                                                            <span class="f-w-700">
+                                                                @if($product->enable_product_variant == 'on')
+                                                                    {{ __("In Variant") }}
+                                                                @else   
+                                                                    {{ \App\Models\Utility::priceFormat($product->price) }}
+                                                                @endif  
+                                                            </span>
+                                                        </td>
+                                                        <td><span class="badge rounded p-2 f-10 bg-light-primary">{{ $totle_qty[$k] }}
+                                                            {{ __('Sold') }}</span></td>
+                                                    </tr>
+                                       @endforeach
+                                    @else
+                                        <tr height="150px">
+                                            <td class="dataTables-empty" colspan="4"> 
+                                                {{ __('No data available in table.') }}
+                                            </td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
                 <h4>{{ __('Orders') }}</h4>
                 <div class="card shadow-none mb-0">
                     <div class="card-body p-3 rounded border">
