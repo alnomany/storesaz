@@ -362,7 +362,7 @@ $company_logo = \App\Models\Utility::getValByName('company_logo');
                                                             </span>
                                                         </td>
                                                         <td><span class="badge rounded p-2 f-10 bg-light-primary">{{ $totle_qty[$k] }}
-                                                            {{ __('Sold') }}</span></td>
+                                                            {{ __('Sold') }}</span></td> -->
                                                     </tr>
                                                 @endif
                                             @endforeach
@@ -426,8 +426,8 @@ $company_logo = \App\Models\Utility::getValByName('company_logo');
                                                                 @endif  
                                                             </span>
                                                         </td>
-                                                        <td><span class="badge rounded p-2 f-10 bg-light-primary">{{ $totle_qty[$k] }}
-                                                            {{ __('Sold') }}</span></td>
+                                                        {{--<td><span class="badge rounded p-2 f-10 bg-light-primary">{{ $totle_qty[$k] }}
+                                                            {{ __('Sold') }}</span></td> --}}
                                                     </tr>
                                        @endforeach
                                     @else
