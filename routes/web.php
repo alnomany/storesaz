@@ -198,6 +198,10 @@ Route::group(['middleware' => ['verified']], function () {
     // Route::resource('blog', BlogController::class)->middleware(['auth']);
 
     Route::get('/customer', [StoreController::class, 'customerindex'])->name('customer.index')->middleware(['auth', 'XSS']);
+    Route::post('/customer', [StoreController::class, 'customerpost'])->name('customer.post')->middleware(['auth', 'XSS']);
+
+    Route::get('/customer/create', [StoreController::class, 'customercreate'])->name('customer.create')->middleware(['auth', 'XSS']);
+
 
     Route::get('/plans', [PlanController::class, 'index'])->name('plans.index')->middleware(['auth', 'XSS']);
     Route::get('settings', [SettingController::class, 'index'])->name('settings');

@@ -284,6 +284,36 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function customercreate(){
+        return view('customer.create');
+
+
+    }
+    public function customerpost(Request $request)
+    {
+     
+        //name contact email in form 
+        //	name phone_number , email in database 
+            // Validate the request
+            try{
+                $validated = $request->validate([
+                    'name' => 'required|string|max:255',
+                    'phone_number' => 'required|string|max:15',
+                    'email' => 'required|email|unique:customers,email',
+                ]);
+                     //$user = User::Auth()->id;
+                     $user = Auth::id();
+                     $user_store = UserStore::where('user_id', $user)->first();
+                     $store = Store::where('id', $user_store->store_id)->first();
+                     $validated['store_id'] = $store->id;
+                Customer::create($validated);
+           
+            }catch (\Exception $e) {
+                dd($e->getMessage()); // This will display the error message
+            }
+      
+            return redirect()->back()->with('success', 'Contact saved successfully!');
+    }
     public function show(Store $store)
     {
         //
@@ -303,6 +333,8 @@ class StoreController extends Controller
                 $user = User::find($id);
                 $user_store = UserStore::where('user_id', $id)->first();
                 $store = Store::where('id', $user_store->store_id)->first();
+              //  $validated['store_id'] = Auth::user()->id;
+
 
                 return view('admin_store.edit', compact('store', 'user'));
             }

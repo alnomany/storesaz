@@ -16,7 +16,11 @@
 <a class="btn btn-sm btn-icon  bg-light-secondary me-2" href="{{ route('customer.export') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Export') }}"> 
     <i  data-feather="download"></i>
 </a>
+<a class="btn btn-sm btn-icon text-light btn-primary me-2" data-url="{{ route('customer.create') }}" data-title="{{ __('Add Role') }}" data-size="lg" data-ajax-popup="true" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Create') }}">
+    <i  data-feather="plus"></i>
+</a>
 @endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
