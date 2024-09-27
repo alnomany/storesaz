@@ -120,7 +120,11 @@
                     </div>
                 </div>
             </div>
+          
                 <div class="col-lg-5 ps-lg-0">
+                    <a class="btn btn-sm btn-icon text-light btn-primary me-2" data-url="{{ route('customer.create') }}" data-title="{{ __('Add Role') }}" data-size="lg" data-ajax-popup="true" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Customer Create') }}">
+                        <i  data-feather="plus"></i>
+                    </a>
                     <div class="card m-0">
                         <div class="card-header p-2">
                             <div class="row">
