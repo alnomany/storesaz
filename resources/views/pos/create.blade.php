@@ -3,6 +3,14 @@
     $company_logo=Utility::getValByName('company_logo_dark');
 @endphp
 @if (!empty($sales) && count($sales['data']) > 0)
+<style>
+    .payment-red-btn{
+        font-weight: bolder;
+    background: red;
+    border: 1px solid red;
+    }
+</style>
+
     <div class="card">
         <div class="card-body">
             <div class="row mt-2">
@@ -126,10 +134,16 @@
 
             @if ($details['pay'] == 'show')
                 <button class="btn btn-success payment-done-btn rounded mt-2 float-right" data-url="{{ route('pos.printview') }}" data-ajax-popup="true" data-size="sm"
-                    data-bs-toggle="tooltip" data-title="{{ __('POS Invoice') }}">
+                    data-bs-toggle="tooltip" data-payment-type="cash" data-title="{{ __('POS Invoice') }}">
                     {{ __('Cash Payment') }}
                 </button>
             @endif
+            @if ($details['pay'] == 'show')
+            <button class="btn btn-success payment-done-btn payment-red-btn rounded mt-2 float-right" data-url="{{ route('pos.printview') }}" data-ajax-popup="true" data-size="sm"
+                data-bs-toggle="tooltip" data-payment-type="credit" data-title="{{ __('POS Invoice') }}">
+                {{ __('Credit / Debit Card') }}
+            </button>
+        @endif
         </div>
     </div>
 
@@ -157,6 +171,8 @@
         $('.modal-dialog').removeClass('modal-xl');
         e.preventDefault();
         var ele = $(this);
+        const paymentType = $(this).data('payment-type');
+
         $.ajax({
             url: "{{ route('pos.data.store') }}",
             method: 'GET',
@@ -164,6 +180,7 @@
                 vc_name: $('#vc_name_hidden').val(),
                 store_id: $('#store_id').val(),
                 discount : $('#discount_hidden').val(),
+                payment_type: paymentType,
                 price:$('.totalamount').text(),
             },
             beforeSend: function () {

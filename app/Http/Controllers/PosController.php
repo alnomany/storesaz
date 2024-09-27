@@ -245,6 +245,9 @@ class PosController extends Controller
                     $pos->price_currency = $store->currency_code;
                     $pos->txn_id = '';
                     $pos->payment_type = __('POS');
+                    $paymentType = $request->input('payment_type');
+                    $pos->payment_method = $paymentType;
+
                     $pos->payment_status = 'approved';
                     $pos->receipt = '';
                     $pos->user_id = $store['id'];
