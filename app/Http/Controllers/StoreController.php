@@ -309,7 +309,9 @@ class StoreController extends Controller
                 Customer::create($validated);
            
             }catch (\Exception $e) {
-                dd($e->getMessage()); // This will display the error message
+                //dd($e->getMessage()); // This will display the error message
+                return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+
             }
       
             return redirect()->back()->with('success', 'Contact saved successfully!');
