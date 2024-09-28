@@ -153,8 +153,19 @@ $imgpath=\App\Models\Utility::get_file('uploads/store_logo/');
                     <img class="mt-2 mb-2" src="{{asset(Storage::url($logo_url))}}" alt="Logo" width="120">
             @endif
         </div>
+        <?php
+        $orderdetails=env('APP_URL') .'/' . $store->slug . '/order/' . $order_id;
+        ?>
         <div class="info">
             <h2>{{__('SALE RECEIPT')}}</h2>
+         <h2>   Vat #  {!! $store->tax_number!!} </h2>
+         <h2>   store name  {!! $store->name!!} </h2>
+         {!! QrCode::generate($orderdetails) !!}
+
+   
+
+
+
         </div>
         <!--End Info-->
     </center><!--End InvoiceTop-->
@@ -267,7 +278,7 @@ $imgpath=\App\Models\Utility::get_file('uploads/store_logo/');
     </div>
     <!--End InvoiceBot-->
     <div class="footer pt-2">
-        <center><p class="text-dark p-2">Merchandise may not be returned for refund at any time. Power bases cannot be exchanged and are non-refundable. For purchases made in a Milo Showroom, no refunds are available and sales c</p></center>
+        <center><p class="text-dark p-2"></p></center>
     </div>
 </div>
 <script>
