@@ -140,6 +140,7 @@
                                                             <i  class="ti ti-eye f-20"></i>
                                                         </a>
                                                     @endcan
+                                                    {{--
                                                     @can('Delete Orders')
                                                         <a class="bs-pass-para btn btn-sm btn-icon bg-light-secondary" href="#"
                                                             data-title="{{ __('Delete Lead') }}"
@@ -153,6 +154,7 @@
                                                         {!! Form::open(['method' => 'DELETE', 'route' => ['orders.destroy', $order->id], 'id' => 'delete-form-' . $order->id]) !!}
                                                         {!! Form::close() !!}
                                                     @endcan
+                                                    --}}
                                                     @if($order->payment_status == 'pending' && $order->payment_type == 'Bank Transfer')
                                                        
                                                         <a href="#"  class="btn btn-sm btn-icon bg-light-secondary ms-2"
