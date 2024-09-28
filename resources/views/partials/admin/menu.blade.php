@@ -152,11 +152,7 @@
                                     href="{{ route('storeanalytic') }}">{{ __('Store Analytics') }}</a>
                             </li>
                             @endcan
-                            @can('Manage Orders')
-                                <li class="dash-item {{ Request::segment(1) == 'orders.index' || Request::route()->getName() == 'orders.show' ? ' active dash-trigger' : 'collapsed' }}">
-                                    <a class="dash-link" href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
-                                </li>
-                            @endcan
+                       
                         </ul>
                     </li>
                     @can('Manage Themes')
@@ -170,10 +166,30 @@
                             </a>
                         </li>
                     @endcan
+                    @can('Manage Orders')
+                    <li class="dash-item {{ Request::segment(1) == 'orders.index' || Request::route()->getName() == 'orders.show' ? ' active dash-trigger' : 'collapsed' }}">
+                        <a href="{{ route('orders.index') }}"
+                            class="dash-link {{ request()->is('orders.index') ? 'active' : '' }}">
+                            <span class="dash-micon">
+                                <i class="ti ti-shopping-cart"></i>
+                            </span>
+                            <span class="dash-mtext">{{ __('Orders and Bills') }}</span>
+                        </a>
+                    </li>
+               
+                @endcan
                     <li class="dash-item dash-hasmenu {{ Request::segment(1) == 'users' || Request::segment(1) == 'roles' ? ' active dash-trigger' : 'collapsed' }}">
                         <a href="#!" class="dash-link ">
                             <span class="dash-micon">
-                                <i class="ti ti-users"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-group" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                    <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+                                    <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                    <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+                                    <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                    <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+                                  </svg>
                             </span>
                             <span class="dash-mtext">{{ __('Staff') }}</span>
                             <span class="dash-arrow">
@@ -199,8 +215,15 @@
                     <li class="dash-item dash-hasmenu ">
                         <a href="#!" class="dash-link ">
                             <span class="dash-micon">
-                                <i class="ti ti-users"></i>
-                            </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-credit-card-pay" width="65" height="65" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M12 19h-6a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5" />
+                                    <path d="M3 10h18" />
+                                    <path d="M16 19h6" />
+                                    <path d="M19 16l3 3l-3 3" />
+                                    <path d="M7.005 15h.005" />
+                                    <path d="M11 15h2" />
+                                  </svg>                            </span>
                             <span class="dash-mtext">{{ __('purchases') }}</span>
                             <span class="dash-arrow">
                                 <i data-feather="chevron-right"></i>
@@ -225,8 +248,11 @@
                              <li class="dash-item dash-hasmenu ">
                                 <a href="#!" class="dash-link ">
                                     <span class="dash-micon">
-                                        <i class="ti ti-box"></i>
-                                    </span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-export" width="65" height="65" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
+                                          </svg>                                    </span>
                                     <span class="dash-mtext">{{ __('Expense') }}</span>
                                     <span class="dash-arrow">
                                         <i data-feather="chevron-right"></i>
