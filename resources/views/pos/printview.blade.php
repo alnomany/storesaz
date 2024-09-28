@@ -20,6 +20,10 @@ $orderdetails=env('APP_URL') .'/' . $store->slug . '/order/' . $x;
 
             </div>
             <div class="text-left">
+             Vat #  {!! $store->tax_number!!}
+            </div>
+
+            <div class="text-left">
                 {!! $details['user']['details'] !!}
             </div>
             <br>
