@@ -639,6 +639,7 @@
                     @endforeach
                 @endforeach
             </div>
+            {{---
             @if ($getStoreThemeSetting[16]['section_enable'] == 'on')
                 <div class="row align-items-center justify-content-md-between py-2 delimiter-top">
                     @if ($getStoreThemeSetting[16]['section_enable'] == 'on')
@@ -686,6 +687,7 @@
 
                 </div>
             @endif
+            --}}
         </div>
     </footer>
     @if ($getStoreThemeSetting[16]['section_enable'] == 'on')
