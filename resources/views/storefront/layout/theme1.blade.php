@@ -690,11 +690,13 @@
             --}}
         </div>
     </footer>
+    {{---
     @if ($getStoreThemeSetting[16]['section_enable'] == 'on')
         <script>
             {!! $getStoreThemeSetting[18]['inner-list'][0]['field_default_text'] !!}
         </script>
     @endif
+    --}}
     <div class="modal fade modal-popup" id="commonModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-inner lg-dialog" role="document">
             <div class="modal-content">
