@@ -64,7 +64,9 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                         @for ($i = 0; $i < $storethemesetting['loop_number']; $i++)
                             <div class="col-lg-4 col-sm-4 col-12">
                                 <div class="store-promotions-box">
-                                {!! $storethemesetting['homepage-promotions-font-icon'][$i] !!}
+                                <div class="avtar-img">
+                                    <img alt="" src="{{ $imgpath . (!empty($storethemesetting['homepage-promotions-font-icon'][$i]['field_prev_text']) ? $storethemesetting['homepage-promotions-font-icon'][$i]['field_prev_text'] : 'avatar.png') }}">
+                                </div>
                                     <h4>{{ $storethemesetting['homepage-promotions-title'][$i] }}</h4>
                                     <p>{{ $storethemesetting['homepage-promotions-description'][$i] }}</p>
                                 </div>
