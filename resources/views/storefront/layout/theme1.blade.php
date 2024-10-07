@@ -111,6 +111,37 @@
     .mobile-menu-bottom ul li:hover .menu-dropdown {
         min-width: 160px;
     }
+    .main-navigationbar .menu-right>li.search-header a,.loginuser, .main-navigationbar .menu-right>li.wishlist-btn a, .main-navigationbar .menu-right>li.cart-header a
+    {
+
+    padding: 0;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 14px 28px rgb(0 0 0/16%),0 10px 10px rgb(104 104 104/22%);
+  height: 2.5rem;
+  width: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  margin: 1px;
+  color:black;
+}
+.set .acnav-label:after{
+    display: none;
+}
+@media screen and (max-width: 767px){
+.mobile-menu-bottom ul>li.has-children>a{
+
+    padding: 0;
+  background: #fff !important;
+  border-radius: 20px;
+  box-shadow: 0 14px 28px rgb(0 0 0/16%),0 10px 10px rgb(104 104 104/22%);
+  height: 2.5rem;
+  width: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  margin: 1px;
+  color:black;
+}}
     @media screen and (max-width: 767px){
         [dir=""] .mobile-menu-bottom ul .language-header-2 .menu-dropdown {
             left: auto !important;
@@ -272,8 +303,8 @@
 
                             @if (Utility::CustomerAuthCheck($store->slug) == true)
                                 <li class="login-btn-header set has-children">
-                                    <a class="acnav-label">
-                                        <i class="fa-regular fa-user">{{ ucFirst(Auth::guard('customers')->user()->name) }}</i>
+                                    <a class="acnav-label loginuser" style="background-color: white;border-radius:15px;">
+                                        <i class="far fa-user">{{-- ucFirst(Auth::guard('customers')->user()->name) --}}</i>
                                     </a>
                                     <div class="menu-dropdown acnav-list">
                                         <ul>
@@ -297,7 +328,6 @@
                                             <li>
                                                 @if (Utility::CustomerAuthCheck($store->slug) == false)
                                                     <a href="{{ route('customer.login', $store->slug) }}">
-                                                        {{ __('Sign in') }}
                                                     </a>
                                                 @else
                                                     <a href="#"
@@ -316,9 +346,11 @@
                                     </div>
                                 </li>
                             @else
-                                <li class="login-btn-header set has-children">
-                                    <a href="{{ route('customer.login', $store->slug) }}" class="">
-                                        <img class="" src="{{ asset('storage/uploads/theme1/avatar/icon33.svg') }}" alt="{{ __('Log in') }}">
+                  
+                                <li class="login-btn-header set has-children cart-header">
+                                    <a href="{{ route('customer.login', $store->slug) }}" class="loginuser">
+                                          <i class="far fa-user"></i>
+                                   
                                        
                                     </a>
                                 </li>
@@ -354,16 +386,18 @@
             <div class="mobile-menu-bottom">
                 <ul>
                     @if (Utility::CustomerAuthCheck($store->slug) == true)
-                        <li class="login-btn-header set has-children login-btn-header-2">
+                        <li class="login-btn-header set has-children login-btn-header-2 cart-header" >
                             <a href="javascript:void(0)" class="acnav-label">
-                                <span class="login-text"
-                                    style="display: block;">{{ ucFirst(Auth::guard('customers')->user()->name) }}</span>
+                           
+                                    <i class="far fa-user"></i>
+
                             </a>
                             <div class="menu-dropdown acnav-list">
                                 <ul>
-                                    <li data-name="profile">
-                                        <a
-                                            href="{{ route('store.slug', $store->slug) }}">{{ __('My Dashboard') }}</a>
+                                    <li data-name="profile" >
+                                        <a style="color:green;">{{ ucFirst(Auth::guard('customers')->user()->name) }}</a>
+                                        <a href="{{ route('store.slug', $store->slug) }}">{{ __('My Dashboard') }}</a>
+                                        
                                     </li>
                                     <li data-name="activity">
                                         <a href="#" data-ajax-popup="true"
@@ -399,13 +433,14 @@
                     @else
                         <li class="login-btn-header set has-children login-btn-header-2">
                             <a href="{{ route('customer.login', $store->slug) }}" class="acnav-label">
-                                <span class="login-text" style="display: block;">{{ __('Log in') }}</span>
+                                <i class="far fa-user"></i>
+
                             </a>
                         </li>
                     @endif
                     <li class="language-header-2 set has-children has-item">
                         <a href="javascript:void(0)" class="acnav-label">
-                            <i class="fas fa-language"></i>
+                            <img  src="{{ asset('storage/uploads/theme1/avatar/sa.svg') }}" width="25" height="18">
                             <span class="select">{{ ucFirst($langName->fullName) }}</span>
                         </a>
                         <div class="menu-dropdown acnav-list">
