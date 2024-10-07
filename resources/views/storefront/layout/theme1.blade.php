@@ -132,11 +132,13 @@
 .mobile-menu-bottom ul>li.has-children>a{
 
     padding: 0;
+    padding-right: 5px;
+
   background: #fff !important;
   border-radius: 20px;
   box-shadow: 0 14px 28px rgb(0 0 0/16%),0 10px 10px rgb(104 104 104/22%);
   height: 2.5rem;
-  width: 2.5rem;
+  width: 6.5rem;
   justify-content: center;
   align-items: center;
   margin: 1px;
@@ -431,16 +433,16 @@
                             </div>
                         </li>
                     @else
-                        <li class="login-btn-header set has-children login-btn-header-2">
+                        <li class="login-btn-header  has-children login-btn-header-2">
                             <a href="{{ route('customer.login', $store->slug) }}" class="acnav-label">
                                 <i class="far fa-user"></i>
 
                             </a>
                         </li>
                     @endif
-                    <li class="language-header-2 set has-children has-item">
+                    <li class="language-header-2  has-children has-item">
                         <a href="javascript:void(0)" class="acnav-label">
-                            <img  src="{{ asset('storage/uploads/theme1/avatar/sa.svg') }}" width="25" height="18">
+                            <img  src="{{ asset('storage/uploads/theme1/avatar/sa.svg') }}" width="30" height="30">
                             <span class="select">{{ ucFirst($langName->fullName) }}</span>
                         </a>
                         <div class="menu-dropdown acnav-list">
