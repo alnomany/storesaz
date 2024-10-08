@@ -62,9 +62,9 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                 @if ($storethemesetting['section_name'] == 'Home-Promotions')
                     @if (isset($storethemesetting['homepage-promotions-font-icon']) || isset($storethemesetting['homepage-promotions-title']) || isset($storethemesetting['homepage-promotions-description']))
                         @for ($i = 0; $i < $storethemesetting['loop_number']; $i++)
-                            <div class="col-lg-4 col-sm-4 col-12">
+                            <div class="col-lg-4 col-sm-4 col-4">
                                 <div class="store-promotions-box">
-                                <div class="avtar-img">
+                                <div class="avtar-img promotions-img">
                                     <img alt="" src="{{ $imgpath . (!empty($storethemesetting['homepage-promotions-font-icon'][$i]['field_prev_text']) ? $storethemesetting['homepage-promotions-font-icon'][$i]['field_prev_text'] : 'avatar.png') }}">
                                 </div>
                                     <h4>{{ $storethemesetting['homepage-promotions-title'][$i] }}</h4>
@@ -74,7 +74,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                         @endfor
                     @else
                         @for ($i = 0; $i < $storethemesetting['loop_number']; $i++)
-                            <div class="col-lg-4 col-sm-4 col-12">
+                            <div class="col-lg-4 col-sm-4 col-4">
                                 <div class="store-promotions-box">
                                     {!! $storethemesetting['inner-list'][0]['field_default_text'] !!}
                                     <h4>{{ $storethemesetting['inner-list'][1]['field_default_text'] }}</h4>
