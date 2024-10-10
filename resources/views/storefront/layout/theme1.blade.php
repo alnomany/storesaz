@@ -117,6 +117,8 @@
     padding: 0;
   background: #fff;
   border-radius: 20px;
+  border: 1px solid #fff !important;
+
   box-shadow: 0 14px 28px rgb(0 0 0/16%),0 10px 10px rgb(104 104 104/22%);
   height: 2.5rem;
   width: 2.5rem;
@@ -135,6 +137,7 @@
     padding-right: 5px;
 
   background: #fff !important;
+  border: 1px solid #fff !important;
   border-radius: 20px;
   box-shadow: 0 14px 28px rgb(0 0 0/16%),0 10px 10px rgb(104 104 104/22%);
   height: 2.5rem;
@@ -152,6 +155,44 @@
             right: auto !important;
         }
     }
+    .marquee {
+    background-color: #4CAF50; /* لون الخلفية */
+    color: white; /* لون النص */
+    padding: 2px;
+    white-space: nowrap; /* لمنع النص من الانتقال إلى السطر التالي */
+    overflow: hidden; /* لإخفاء النص الزائد */
+    position: relative;
+}
+
+.marquee p {
+    display: inline-block;
+    animation: marquee 10s linear infinite; /* مدة الحركة */
+}
+@keyframes marquee {
+    0% {
+        transform: translateX(100%); /* بداية من خارج الشاشة */
+    }
+    100% {
+        transform: translateX(-100%); /* نهاية عند الخروج من الشاشة */
+    }
+}
+/* -------------------------------------------- top hdear css*/
+.fab ,.far,.fas{
+}
+.socialall{
+    font-size: 22px !important;
+
+}
+.main-home-first-section{
+    padding:20% 0 !important;
+}
+
+/*-----------------------------Products-------------*/
+.product-card:hover {
+  background-color: #fff;
+  color: #0000 !important;
+}
+/*--------------------------------------------*/
     </style>
     @stack('css-page')
 </head>
@@ -173,9 +214,9 @@
     <!--header start here-->
     <header class="site-header">
         @if ($storethemesetting['enable_top_bar'] == 'on')
-            <div class="header-top">
+            <div class="header-top marquee">
                 <div class="container">
-                    <div class="header-top-info">
+                    <div class="header-top-info ">
                         <div class="header-top-left">
                             <p><i class="fas fa-bell"></i>
                                 {{ !empty($storethemesetting['top_bar_title']) ? $storethemesetting['top_bar_title'] : '' }}
@@ -185,7 +226,7 @@
                             <ul>
                                 <li>
                                     <a
-                                        href="tel:{{ !empty($storethemesetting['top_bar_number']) ? $storethemesetting['top_bar_number'] : '2123081220' }}">
+                                        href="tel:{{ !empty($storethemesetting['top_bar_number']) ? $storethemesetting['top_bar_number'] : '2123081220' }}" class="socialall phone">
                                         <i class="fas fa-phone-volume"></i>
                                         <b>{{ !empty($storethemesetting['top_bar_number']) ? $storethemesetting['top_bar_number'] : '(212) 308-1220' }}</b>
                                         {{ __('Request a call') }}</a>
@@ -193,28 +234,28 @@
                                 @if (!empty($storethemesetting['top_bar_whatsapp']))
                                     <li>
                                         <a href="https://wa.me/{{ $storethemesetting['top_bar_whatsapp'] }}"
-                                            target="_blank">
+                                            target="_blank" class="socialall whatsapp">
                                             <i class="fab fa-whatsapp"></i>
                                         </a>
                                     </li>
                                 @endif
                                 @if (!empty($storethemesetting['top_bar_instagram']))
                                     <li>
-                                        <a href="{{ $storethemesetting['top_bar_instagram'] }}" target="_blank">
+                                        <a href="{{ $storethemesetting['top_bar_instagram'] }}" target="_blank" class="socialall instagram">
                                             <i class="fab fa-instagram"></i>
                                         </a>
                                     </li>
                                 @endif
                                 @if (!empty($storethemesetting['top_bar_twitter']))
                                     <li>
-                                        <a href="{{ $storethemesetting['top_bar_twitter'] }}" target="_blank">
+                                        <a href="{{ $storethemesetting['top_bar_twitter'] }}" target="_blank" class="socialall twitter">
                                             <i class="fab fa-twitter-square"></i>
                                         </a>
                                     </li>
                                 @endif
                                 @if (!empty($storethemesetting['top_bar_messenger']))
                                     <li>
-                                        <a href="{{ $storethemesetting['top_bar_messenger'] }}" target="_blank">
+                                        <a href="{{ $storethemesetting['top_bar_messenger'] }}" target="_blank" class="socialall messenger">
                                             <i class="far fa-envelope"></i>
                                         </a>
                                     </li>
