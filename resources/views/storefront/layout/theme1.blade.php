@@ -72,6 +72,7 @@
         <link rel="stylesheet" href="{{ asset('assets/theme1/css/main-style.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/theme1/css/responsive.css') }}">
     @endif
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     {{-- pwa customer app --}}
     <meta name="mobile-wep-app-capable" content="yes">
@@ -189,8 +190,12 @@
 
 /*-----------------------------Products-------------*/
 .product-card:hover {
-  background-color: #fff;
+  background-color: transparent;
   color: #0000 !important;
+}
+/*--------------------------------rating----------------*/
+.rating i {
+    font-size: 16px;
 }
 /*--------------------------------------------*/
     </style>

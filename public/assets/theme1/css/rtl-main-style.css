@@ -2663,7 +2663,8 @@ button, input {
     top: 10px !important;
     left: 10px;
     color: var(--theme-color);
-    background: var(--border-color);
+    border:2px solid var(--border-color);
+    background: #ffff;
     width: 35px;
     height: 35px;
     display: flex;
@@ -2751,8 +2752,10 @@ button, input {
 }
 .showmore-btn{
     padding: 12px 30px;
-    background-color: var(--theme-color);
+    background-color: #ffff;
+    border: 2px solid var(--theme-color);
     color: var(--white);
+    color:#000000;
     border-radius: 60px;
     -webkit-border-radius: 60px;
     -moz-border-radius: 60px;

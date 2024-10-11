@@ -162,7 +162,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                                     @if ($store->enable_rating == 'on')
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @php
-                                                                $icon = 'fa-star';
+                                                                $icon = 'fa-regular fa-star';
                                                                 $color = '';
                                                                 $newVal1 = $i - 0.5;
                                                                 if ($product->product_rating() < $i && $product->product_rating() >= $newVal1) {
@@ -172,7 +172,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                                                     $color = 'text-warning';
                                                                 }
                                                             @endphp
-                                                            <i class="star fas {{ $icon . ' ' . $color }}"></i>
+                                                            <i class="{{ $icon . ' ' . $color }}"></i>
                                                         @endfor
                                                     @endif
                                                 </div>
