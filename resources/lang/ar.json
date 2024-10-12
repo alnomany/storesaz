@@ -50,8 +50,8 @@
   "Subtotal":"المجموع بدون ضريبة",
   "Add some products to cart!" : "اضافة بعض المنتجات الى عربة التسوق ! ",
   "Add Subscriber" : "اضافة المشتركين ",
-  "Add To Cart" : "اضافة الى عربة ",
-  "ADD TO CART" : "اضافة الى عربة التسوق ",
+  "Add To Cart" : "إضافة للسلة ",
+  "ADD TO CART" : "إضافة للسلة ",
   "purchases" : "المشتريات",
   "suppliers" : "الموردين",
   "Suppliers" : "الموردين",
@@ -81,7 +81,7 @@
    
 
   
-  "Add to cart" : "اضافة الى عربة التسوق ",
+  "Add to cart" : "إضافة للسلة ",
   "Add User" : "اضافة مستخدم ",
   "Add Variant" : "اضافة خيارات ",
   "Add Variants" : "اضافة خياراتات ",
@@ -595,7 +595,7 @@
   "Home Pages" : "الصفحات الرئيسية ",
   "Home Section" : "القسم الرئيسي ",
   "How to Get Google reCaptcha Site and Secret key" : "كيفية الحصول على موقع Google reCaptcha والمفتاح السري ",
-  "ID" : "الكود ",
+  "ID" : "رقم الموديل ",
   "If you did not request a password reset, no further action is required.." : "اذا لم تطلب اعادة تحديد كلمة المرور ، فلن يكون هناك تصرف آخر مطلوب. ",
   "If you’re having trouble clicking the \"Reset Password\" button, copy and paste the URL below into your web browser:" : "اذا كان لديك مشكلة في الضغط على الاختيار \"ارجاع كلمة المرور\" ، قم بنسخ ولصق عنوان URL في برنامج استعراض الانترنت الخاص بك : ",
   "Image" : "صورة ",
