@@ -2,6 +2,24 @@
 @section('page-title')
     {{__('Cart')}}
 @endsection
+@push('css-page')
+    <style>
+      
+        .checkout-btn {
+    text-align: center;
+    padding: 15px 25px;
+    font-family: var(--first-font);
+    border:2px solid var(--theme-color);
+
+    color: #000 !important;
+    background-color: #ffff !important;
+} 
+.checkout-box{
+    background-color:#fff;
+
+}
+    </style>
+@endpush
 @section('content')
     @php
         $cart = session()->get($store->slug);
