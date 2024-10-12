@@ -97,7 +97,7 @@ $proimg=\App\Models\Utility::get_file('uploads/is_cover_image/');
                                 <div class="rating-pdp">
                                     <span>
                                         @for ($i = 0; $i < 5; $i++)
-                                        <i class="star fas fa-star {{ $product_rating->ratting > $i ? 'text-primary' : '' }}"></i>
+                                        <i class="fa-regular fa-star {{ $product_rating->ratting > $i ? 'text-primary' : '' }}"></i>
                                         @endfor
                                     </span>
                                     <p>{{ $avg_rating }}/5 ({{ $user_count }} {{ __('reviews') }})</p>
@@ -127,7 +127,8 @@ $proimg=\App\Models\Utility::get_file('uploads/is_cover_image/');
                                                         $color = 'text-primary';
                                                     }
                                                 @endphp
-                                                <i class="star fas {{ $icon . ' ' . $color }}"></i>
+                                                
+                                                <i class="fa-regular {{ $icon . ' ' . $color }}"></i>
                                             @endfor
                                         </span>
                                         <p>{{ $avg_rating }}/5 ({{ $user_count }} {{ __('reviews') }})</p>
@@ -335,7 +336,7 @@ $proimg=\App\Models\Utility::get_file('uploads/is_cover_image/');
                                                     }
                                                     
                                                 @endphp
-                                                <i class="star fas {{ $icon . ' ' . $color }}"></i>
+                                                <i class="fa-regular {{ $icon . ' ' . $color }}"></i>
                                             @endfor
                                         @endif
                                     </div>
