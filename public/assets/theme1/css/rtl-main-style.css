@@ -1499,8 +1499,9 @@ p:not(:last-of-type) {
     text-align: center;
     padding: 15px 25px;
     font-family: var(--first-font);
-    color: var(--white);
-    background-color: var(--theme-color);
+    border:2px solid var(--theme-color);
+    color: #000 !important;
+    background-color: #ffff;
     box-shadow: none;
     appearance: none;
     outline: none;
@@ -3748,10 +3749,11 @@ max-width: 90px;
 .customer-product-review h2{
     color: var(--theme-color);
     font-weight: 500;
+    font-size: 1.5rem;
     margin: 15px 0;
 }
 .customer-product-review .price {
-    font-size: 30px;
+    font-size: 1.25rem;
     color: var(--third-color);
     justify-content: start;
     margin: 30px 0;
