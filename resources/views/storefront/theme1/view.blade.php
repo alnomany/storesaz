@@ -11,6 +11,15 @@ $proimg=\App\Models\Utility::get_file('uploads/is_cover_image/');
         [dir="rtl"] .slick-slide {
             float: right;
         }
+        .btn {
+    text-align: center;
+    padding: 15px 25px;
+    font-family: var(--first-font);
+    border:2px solid var(--theme-color);
+
+    color: #000 !important;
+    background-color: #ffff !important;
+} 
     </style>
 @endpush
 @section('content')
