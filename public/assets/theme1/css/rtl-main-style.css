@@ -1500,8 +1500,7 @@ p:not(:last-of-type) {
     padding: 15px 25px;
     font-family: var(--first-font);
     border:2px solid var(--theme-color);
-    color: #000 !important;
-    background-color: #ffff;
+ 
     box-shadow: none;
     appearance: none;
     outline: none;
@@ -1530,6 +1529,8 @@ p:not(:last-of-type) {
     appearance: none;
     position: relative;
     z-index: 1;
+    color: #000 !important;
+    background-color: #ffff !important;
 } 
 .btn svg   {
     max-width: 13px;
