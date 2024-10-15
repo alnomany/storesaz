@@ -21,6 +21,14 @@
 <link href="{{-- URL::asset('assets/css/app.min.css') --}}" id="app-style" rel="stylesheet" type="text/css" />
 <!-- custom Css-->
 <link href="{{ URL::asset('assets/css/custom.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+<style>
+    .form-control{
+        border: 2px solid #fff !important;
+    border-radius: 25px !important;
+    background: #fff !important;
+    }
+ 
+</style>
 @endpush
 @section('content')
 <div class="wrapper">
@@ -212,7 +220,7 @@
                         <div class="coupon-body">
                             <form action="">
                                 <div class="input-wrapper">
-                                    <input type="text" class="coupon hidd_val" id="stripe_coupon" name="coupon" placeholder="Enter Coupon Code">
+                                    <input type="text" class="coupon hidd_val form-control" id="stripe_coupon" name="coupon" placeholder="Enter Coupon Code">
                                     <input type="hidden" name="coupon" class="form-control hidden_coupon form-check-input code-switcher" value="">
                                 </div>
                                 <div class="btn-wrapper apply-stripe-btn-coupon">
