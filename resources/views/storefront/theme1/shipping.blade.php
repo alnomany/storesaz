@@ -27,7 +27,16 @@
     border-radius: 25px !important;
     background: #fff !important;
     }
- 
+    .radio-group label {
+        color: black !important;
+        border: 1px solid var(--vz-input-check-border) !important;
+    }
+    .shiping-type{
+        border: 2px solid #405189;
+    padding: 8px;
+    text-align: left;
+    margin-bottom: 20px;
+     }
 </style>
 @endpush
 @section('content')
@@ -152,6 +161,21 @@
                                 </div>
                             </div>
                         @endif
+                        <div class="col-md-6 col-12">
+                            
+
+                            <div id="location_hide" style="display: none">
+                                <div class="shiping-type">
+                                    <h4>{{__('Select Shipping')}}</h4>
+                                    <div class="radio-group" id="shipping_location_content">
+                                        <img src="{{asset(Storage::url('uploads/is_cover_image/free-delivery.gif'))}}" alt="Shipping Icon" style="width: 24px; height: 24px;">
+                                        
+                                    </div>
+                                    <p>Delivery within 24hrs</p>
+
+                                </div>
+                            </div>
+                        </div>
 <!--
                         <div class="col-md-12 col-12">
                             <div class="row align-items-center">
@@ -205,14 +229,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-12">
-                    <div id="location_hide" style="display: none">
-                        <div class="shiping-type">
-                            <h5>{{__('Select Shipping')}}</h5>
-                            <div class="radio-group" id="shipping_location_content">
-
-                            </div>
-                        </div>
-                    </div>
+                 
                     <div class="coupon-form">
                         <div class="coupon-header">
                             <h4>{{__('Coupon')}}</h4>
@@ -476,7 +493,7 @@
                         }
 
                         html += '<div class="radio-group"><input type="radio" name="shipping_id" data-id="' + value.price + '" value="' + value.id + '" id="shipping_price' + key + '" class="shipping_mode" ' + checked + '>' +
-                            ' <label name="shipping_label" for="shipping_price' + key + '"> ' + value.name + '</label></div>';
+                            ' <label name="shipping_label" class="fontsizeh3" for="shipping_price' + key + '"><h3>' + value.name + '</h3></label></div>';
 
                     });
                     $('#shipping_location_content').html(html);
