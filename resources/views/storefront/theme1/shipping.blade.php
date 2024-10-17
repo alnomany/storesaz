@@ -167,8 +167,8 @@
                             <div id="location_hide" style="display: none">
                                 <div class="shiping-type">
                                     <h4>{{__('Select Shipping')}}</h4>
+
                                     <div class="radio-group" id="shipping_location_content">
-                                        <img src="{{asset(Storage::url('uploads/is_cover_image/free-delivery.gif'))}}" alt="Shipping Icon" style="width: 24px; height: 24px;">
                                         
                                     </div>
                                     <p>Delivery within 24hrs</p>
@@ -493,7 +493,11 @@
                         }
 
                         html += '<div class="radio-group"><input type="radio" name="shipping_id" data-id="' + value.price + '" value="' + value.id + '" id="shipping_price' + key + '" class="shipping_mode" ' + checked + '>' +
-                            ' <label name="shipping_label" class="fontsizeh3" for="shipping_price' + key + '"><h3>' + value.name + '</h3></label></div>';
+                            '<label name="shipping_label" class="fontsizeh3" for="shipping_price' + key + '">' +
+                                '<h3>' + value.name + '</h3>' +
+                                '<img src="{{ asset(Storage::url('uploads/is_cover_image/free-delivery.gif')) }}" alt="Shipping Icon" style="width: 24px; height: 24px;">' +
+                                '</label>' +
+                            '</div>';
 
                     });
                     $('#shipping_location_content').html(html);
