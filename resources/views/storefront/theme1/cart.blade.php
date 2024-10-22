@@ -22,6 +22,15 @@
 .checkout-box span:last-child{
     color:black !important;
 }
+@media screen and (max-width: 991px) {
+    .cart-section {
+        margin-top: 56% !important;
+        padding-top:0 !important;
+    }}
+    .card  {
+        
+    margin-top: 10%;
+    }
 
 
     </style>
@@ -51,7 +60,6 @@
             @endphp
             @foreach($products['products'] as $key => $product)   
             @if($product['variant_id'] != 0 )
-            <br><br><br><br>
 
             <div class="card product" data-id="{{$key}}" id="product-variant-id-{{ $product['variant_id'] }}">
                 <div class="card-body">
@@ -153,7 +161,6 @@
                 <!-- end card footer -->
             </div>
             @else
-            <br><br><br><br>
 
             <div class="card product" data-id="{{$key}}"  id="product-id-{{ $product['product_id'] }}">
                 <div class="card-body">
@@ -210,9 +217,9 @@
 
                                 </div>
                                 <div>
-                                    <a href="#" class="d-block text-body p-1 px-2"><i
+                                    <!--<a href="#" class="d-block text-body p-1 px-2"><i
                                             class="ri-star-fill text-muted align-bottom me-1"></i> Add
-                                        Wishlist</a>
+                                        Wishlist</a> -->
                                 </div>
                             </div>
                         </div>
