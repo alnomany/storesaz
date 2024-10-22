@@ -16,8 +16,14 @@
 } 
 .checkout-box{
     background-color:#fff;
+    padding-bottom: 110px;
 
 }
+.checkout-box span:last-child{
+    color:black !important;
+}
+
+
     </style>
 @endpush
 @section('content')
@@ -25,14 +31,265 @@
         $cart = session()->get($store->slug);
         $imgpath=\App\Models\Utility::get_file('uploads/is_cover_image/');
     @endphp
-
+<!-- Bootstrap Css -->
+<link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<!-- Icons Css -->
+<link href="{{ URL::asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+<!-- App Css-->
+<link href="{{ URL::asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 @if(!empty($cart['products']) || $cart['products'] = [])
 <div class="wrapper">
     <section class="cart-section">
         <div class="container">
             <div class="cart-title">
                 <h2>{{__('My Cart')}}</h2>
-            </div>    
+            </div> 
+            @if(!empty($products))
+            @php
+                $sub_tax = 0;
+                $total = 0;
+            @endphp
+            @foreach($products['products'] as $key => $product)   
+            @if($product['variant_id'] != 0 )
+            <br><br><br><br>
+
+            <div class="card product" data-id="{{$key}}" id="product-variant-id-{{ $product['variant_id'] }}">
+                <div class="card-body">
+                    <div class="row gy-3">
+                        <div class="col-sm-auto">
+                            <div class="avatar-lg bg-light rounded p-1">
+                                @if(!empty($product['image']))
+                                <img alt="" src="{{ $imgpath.$product['image']}}" class="img-fluid d-block" style="width:66px;">
+                            @else
+                                <img alt="" src="{{asset(Storage::url('uploads/is_cover_image/default.jpg'))}}" class="img-fluid d-block" style="width:66px;">
+                            @endif
+                                    
+                            </div>
+                            
+                        </div>
+                        <div class="col-sm">
+                            <h5 class="fs-14 text-truncate"><a href="{{route('store.product.product_view',[$store->slug,$product['id']])}}"
+                                    class="text-dark">{{$product['product_name']}}</a></h5>
+
+                            <ul class="list-inline text-muted">
+                                <li class="list-inline-item"> <span class="fw-medium">{{$product['variant_name']}}</span>
+                                </li>
+                               
+                            </ul>
+    
+                            <div class="input-step qty-spinner"  data-id="{{$key}}">
+                                <button type="button"  class="quantity-decrement qty-minus product_qty">–</button>
+                                <input type="number" class="quantity product_qty_input bx-cart-qty"  data-cke-saved-name="quantity" name="quantity" data-id="{{$product['product_id']}}" value="{{$product['quantity']}}" id="product_qty">
+                                <button type="button" class="quantity-increment qty-plus product_qty">+</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-auto">
+                            <div class="text-lg-end">
+                                <p class="text-muted mb-1">{{ __('Price') }}</p>
+                                <h5 class="fs-14"><span id="ticket_price"
+                                        class="product-price">{{\App\Models\Utility::priceFormat($product['variant_price'])}}</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- card body -->
+                <div class="card-footer">
+                    <div class="row align-items-center gy-3">
+                        <div class="col-sm">
+                            <div class="d-flex flex-wrap my-n1">
+                                <div>
+
+                                   
+                                        <a href="#" class="d-block text-body p-1 px-2"
+                                        data-bs-toggle="modal"  data-product-id="{{$key}}" data-bs-target="#removeItemModal"><i
+                                            class="ri-delete-bin-fill text-muted align-bottom me-1"></i>
+                                        Remove</a>
+  
+                                </div>
+                                <div>
+                                    <!--
+                                    <a href="#" class="d-block text-body p-1 px-2"><i
+                                            class="ri-star-fill text-muted align-bottom me-1"></i> Add
+                                        Wishlist</a> -->
+                                </div>
+                            </div>
+                        </div>
+                            <div class="col-sm-auto">
+                                <div>{{ __('Tax') }}</div>
+
+                                @php
+                                    
+                                $total_tax=0;
+                                @endphp
+                                @if(!empty($product['tax']))
+                                    @foreach($product['tax'] as $k => $tax)
+                                        @php
+                                            $sub_tax = ($product['variant_price']* $product['quantity'] * $tax['tax']) / 100;
+                                            $total_tax += $sub_tax;
+                                        @endphp
+                                        <p class="t-gray p-title mb-0  variant_tax_{{ $k }}">
+                                        {{$tax['tax_name'].' '.$tax['tax'].'%'.' ('.$sub_tax.')'}}
+                                        </p>
+                                    @endforeach
+                                @else
+                                    -
+                                @endif
+                            </div>
+                            <div class="d-flex align-items-center gap-2 text-muted">
+                                <div>{{ __('Total') }}</div>
+                                @php
+                               
+                                //////////////////////////////////////////////////////////
+
+                                $totalprice = $product['variant_price'] * $product['quantity'] + $total_tax;
+                                $total += $totalprice;
+                                @endphp
+                                <h5 class="fs-14 mb-0"><span class="product-line-price subtotal">{{\App\Models\Utility::priceFormat($totalprice)}}</span>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card footer -->
+            </div>
+            @else
+            <br><br><br><br>
+
+            <div class="card product" data-id="{{$key}}"  id="product-id-{{ $product['product_id'] }}">
+                <div class="card-body">
+                    <div class="row gy-3">
+                        
+                        <div class="col-sm-auto">
+                            <div class="avatar-lg bg-light rounded p-1">
+                               
+                                    @if(!empty($product['image']))
+                                    <img alt="" src="{{ $imgpath.$product['image']}}" class="img-fluid d-block" style="width:66px;">
+                                    @else
+                                        <img alt="" src="{{asset(Storage::url('uploads/is_cover_image/default.jpg'))}}" class="img-fluid d-block" style="width:66px;">
+                                    @endif
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <h5 class="fs-14 text-truncate">
+                              
+                                    <a href="{{route('store.product.product_view',[$store->slug,$product['id']])}}" class="text-dark">{{$product['product_name']}}</a>
+
+                                </h5>
+                       
+    
+                            <div class="input-step qty-spinner"  data-id="{{$key}}">
+                                <button type="button" class="quantity-decrement qty-minus product_qty">–</button>
+                                <input type="number" class="quantity product_qty_input bx-cart-qty"  data-cke-saved-name="quantity" name="quantity" data-id="{{$product['product_id']}}" value="{{$product['quantity']}}" id="product_qty"
+                                   >
+                                <button type="button" class="quantity-increment qty-plus product_qty">+</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-auto">
+                            <div class="text-lg-end">
+                                <p class="text-muted mb-1">{{ __('Price') }}</p>
+                                <h5 class="fs-14">
+                                    <span id="ticket_price" class="product-price">
+                                        {{\App\Models\Utility::priceFormat($product['price'])}}
+
+                                    </span>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- card body -->
+                <div class="card-footer">
+                    <div class="row align-items-center gy-3">
+                        <div class="col-sm">
+                            <div class="d-flex flex-wrap my-n1">
+                                <div>
+                                    <a href="#" class="d-block text-body p-1 px-2"
+                                        data-bs-toggle="modal" data-bs-target="#removeItemModal"><i
+                                            class="ri-delete-bin-fill text-muted align-bottom me-1"></i>
+                                        Remove</a>
+
+                                </div>
+                                <div>
+                                    <a href="#" class="d-block text-body p-1 px-2"><i
+                                            class="ri-star-fill text-muted align-bottom me-1"></i> Add
+                                        Wishlist</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-auto">
+                            <div class="d-flex align-items-center gap-2 text-muted">
+
+                                <div>{{ __('Tax') }}</div>
+
+                                @php
+                                    
+                                                        $total_tax=0;
+                                                    @endphp
+                                                    @if(!empty($product['tax']))
+                                                    @foreach($product['tax'] as $k => $tax)
+                                                        @php
+                                                            $sub_tax = ($product['price']* $product['quantity'] * $tax['tax']) / 100;
+                                                            $total_tax += $sub_tax;
+                                                        @endphp
+                                                        <p class="t-gray p-title mb-0 tax_{{ $k }}">
+                                                            {{$tax['tax_name'].' '.$tax['tax'].'%'.' ('.$sub_tax.')'}}
+                                                        </p>
+                                                    @endforeach
+                                                    @else
+                                                        -
+                                                    @endif
+                                                    </div>
+                                                    <div class="d-flex align-items-center gap-2 text-muted">
+                                                        <div>{{ __('Total') }}</div>
+                               @php
+                               
+                                                           //////////////////////////////////////////////////////////
+
+                                $totalprice = $product['price'] * $product['quantity'] + $total_tax;
+                                $total += $totalprice;
+                                @endphp
+                                <h5 class="fs-14 mb-0"><span class="product-line-price subtotal">{{\App\Models\Utility::priceFormat($totalprice)}}</span>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card footer -->
+            </div>
+            @endif
+                   <!-- removeItemModal -->
+                   <div id="removeItemModal" class="modal fade" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                    id="close-modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mt-2 text-center">
+                                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+                                        colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
+                                    <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                                        <h4>{{__('Are You Sure?')}}</h4>
+                                        <p class="text-muted mx-4 mb-0">{{__('This action can not be undone. Do you want to continue?')}}</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                                    <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn w-sm btn-danger" id="remove-product" data-confirm-yes="document.getElementById('delete-product-cart-{{$key}}').submit();">Yes, Delete It!</button>
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['delete.cart_item',[$store->slug,$product['product_id'],$product['variant_id']]], 'id'=>'delete-product-cart-'.$key]) !!}
+                                    @csrf
+                                {!! Form::close() !!}
+                                </div>
+                            </div>
+                
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            @endforeach
+           
+            @endif
+            {{--
             <div class="row" id="carthtml">
                 <div class="col-12">
                     <div class="cart-tble">
@@ -180,11 +437,12 @@
                     </div>
                 </div>
             </div>
+        --}}
             <div class="checkout-box">
                 <div class="row align-items-center">
                     <div class="col-md-8 col-12">
                         @if($store_settings['is_checkout_login_required'] == null || $store_settings['is_checkout_login_required'] == 'off' && !Auth::guard('customers')->user())
-                            <a href="#" class="checkout-btn modal-target" data-modal="Checkout" id="checkout-btn">
+                            <a href="#" class="checkout-btn modal-target btn btn-success btn-label right ms-auto" data-modal="Checkout" id="checkout-btn">
                                 {{__('Proceed to checkout')}}
                                 <i class="fas fa-shopping-basket"></i>
                             </a>
@@ -499,6 +757,7 @@
     </section>
 </div>
 @endif
+                                 
 @endsection
 
 @push('script-page')
@@ -507,12 +766,16 @@
         e.preventDefault();
         var currEle = $(this);
         var product_id = $(this).siblings(".bx-cart-qty").attr('data-id');
-        var arrkey = $(this).parents('tr').attr('data-id');
+        var arrkey = $(this).parents('div').attr('data-id');
         var sum = 0;
+       
         setTimeout(function () {
             if (currEle.hasClass('qty-minus') == true) {
                 qty_id = currEle.next().val()
+               
             } else {
+                
+
                 qty_id = currEle.prev().val();
             }
             
@@ -581,7 +844,9 @@
         var product_id = $(this).attr('data-id');
         var arrkey = $(this).parents('div').attr('data-id');
         var qty_id = $(this).val();
-        
+       
+
+
 
         setTimeout(function () {
             if (qty_id == 0 || qty_id == '' || qty_id < 0) {
@@ -620,17 +885,29 @@
     }
 
     $(document).on('click', '.qty-plus', function () {
-          $(this).prev().val(+$(this).prev().val() );
+        
+          var currentVal = +$(this).prev().val(); // Get the current value as a number
+          $(this).prev().val(+$(this).prev().val());
         
     });
 
     $(document).on('click', '.qty-minus', function () {
+        
+
         if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() );
     });
+    $(document).on('click', '#remove-product', function() {
+    var confirmAction = $(this).data('confirm-yes'); // Get the action from data-confirm-yes
+    if (confirmAction) {
+        eval(confirmAction); // Execute the action
+    }
+});
+
 </script>
 <script>
     var site_currency_symbol_position = '{{ \App\Models\Utility::getValByName('currency_symbol_position') }}';
     var site_currency_symbol = '{{ $store->currency }}';
 </script>
+<script src="{{ URL::asset('assets/js/pages/plugins/lord-icon-2.1.0.min.js') }}"></script>
 
 @endpush

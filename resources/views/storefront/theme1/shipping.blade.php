@@ -34,9 +34,53 @@
     .shiping-type{
         border: 2px solid #405189;
     padding: 8px;
-    text-align: left;
+    text-align: right;
     margin-bottom: 20px;
+    border-radius: 25px;
      }
+     #location_hide {
+    font-family: Arial, sans-serif;
+}
+
+.shipping-type {
+    margin: 20px;
+}
+
+.shipping-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.shipping-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 10px;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.shipping-label img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.shipping_mode {
+    display: none; /* Hide the default radio button */
+}
+
+.shipping_mode:checked + .shipping-label {
+    border-color: #007BFF; /* Highlight the selected option */
+}
+
+.shipping-label h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
 </style>
 @endpush
 @section('content')
@@ -161,6 +205,7 @@
                                 </div>
                             </div>
                         @endif
+                        
                         <div class="col-md-6 col-12">
                             
 
@@ -171,7 +216,7 @@
                                     <div class="radio-group" id="shipping_location_content">
                                         
                                     </div>
-                                    <p>Delivery within 24hrs</p>
+                                    <p>شحن سريع خلال 24 ساعة</p>
 
                                 </div>
                             </div>
