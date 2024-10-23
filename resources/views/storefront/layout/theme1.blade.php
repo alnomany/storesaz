@@ -186,7 +186,7 @@
 
 }
 .main-home-first-section{
-    padding:20% 0 !important;
+    padding:28% 0 !important;
 }
 
 /*-----------------------------Products-------------*/
@@ -203,6 +203,10 @@ b{
 }
 .main-home-first-section::before{
     height: 0% !important;
+}
+/*--------------*/
+.header-top-right ul li a b{
+    font-size:16px;
 }
 /*--------------------------------------------*/
     </style>
@@ -240,7 +244,8 @@ b{
                                     <a
                                         href="tel:{{ !empty($storethemesetting['top_bar_number']) ? $storethemesetting['top_bar_number'] : '2123081220' }}" class="socialall phone">
                                         <i class="fas fa-phone-volume"></i>
-                                        <b>{{ !empty($storethemesetting['top_bar_number']) ? $storethemesetting['top_bar_number'] : '(212) 308-1220' }}</b>
+                                        
+                                        <b>{{-- !empty($storethemesetting['top_bar_number']) ? $storethemesetting['top_bar_number'] : '(212) 308-1220' --}}</b>
                                         </a>
                                 </li>
                                 @if (!empty($storethemesetting['top_bar_whatsapp']))
