@@ -157,8 +157,9 @@
         }
     }
     .marquee {
-    background-color: #4CAF50; /* لون الخلفية */
+    background-color: #ef7878; /* لون الخلفية */
     color: white; /* لون النص */
+    font-weight: bold;
     padding: 2px;
     white-space: nowrap; /* لمنع النص من الانتقال إلى السطر التالي */
     overflow: hidden; /* لإخفاء النص الزائد */
@@ -197,6 +198,12 @@
 .rating i {
     font-size: 16px;
 }
+b{
+    color:white !important;
+}
+.main-home-first-section::before{
+    height: 0% !important;
+}
 /*--------------------------------------------*/
     </style>
     @stack('css-page')
@@ -227,14 +234,14 @@
                                 {{ !empty($storethemesetting['top_bar_title']) ? $storethemesetting['top_bar_title'] : '' }}
                             </p>
                         </div>
-                        <div class="header-top-right">
+                        <div class="header-top-right marquee">
                             <ul>
                                 <li>
                                     <a
                                         href="tel:{{ !empty($storethemesetting['top_bar_number']) ? $storethemesetting['top_bar_number'] : '2123081220' }}" class="socialall phone">
                                         <i class="fas fa-phone-volume"></i>
                                         <b>{{ !empty($storethemesetting['top_bar_number']) ? $storethemesetting['top_bar_number'] : '(212) 308-1220' }}</b>
-                                        {{ __('Request a call') }}</a>
+                                        </a>
                                 </li>
                                 @if (!empty($storethemesetting['top_bar_whatsapp']))
                                     <li>
@@ -511,6 +518,7 @@
 
     <footer class="footer">
         <div class="container">
+
             <div class="row footer-top">
 
                 @foreach ($getStoreThemeSetting as $key => $storethemesetting)
