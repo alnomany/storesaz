@@ -39,6 +39,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>@yield('page-title') - {{ $store->tagline ? $store->tagline : env('APP_NAME', ucfirst($store->name)) }} </title>
     <!-- Primary Meta Tags -->
     <meta name="title" content="{{ $store->metakeyword }}">
@@ -209,6 +210,13 @@ b{
     font-size:16px;
 }
 /*--------------------------------------------*/
+@media screen and (max-width: 991px) {
+  .header-top-left {
+    display: block !important;
+  }
+}
+
+/*-------------------------------*/
     </style>
     @stack('css-page')
 </head>
@@ -232,8 +240,8 @@ b{
         @if ($storethemesetting['enable_top_bar'] == 'on')
             <div class="header-top marquee">
                 <div class="container">
-                    <div class="header-top-info ">
-                        <div class="header-top-left">
+                    <div class="header-top-info marquee">
+                        <div class="header-top-left marquee">
                             <p><i class="fas fa-bell"></i>
                                 {{ !empty($storethemesetting['top_bar_title']) ? $storethemesetting['top_bar_title'] : '' }}
                             </p>
