@@ -209,13 +209,26 @@ b{
 .header-top-right ul li a b{
     font-size:16px;
 }
-/*--------------------------------------------*/
+/*-------------------------------------------- top bar*/
 @media screen and (max-width: 991px) {
   .header-top-left {
     display: block !important;
   }
 }
-
+/* product */
+.product-title {
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+}
+.product-card-price {
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+}
 /*-------------------------------*/
     </style>
     @stack('css-page')

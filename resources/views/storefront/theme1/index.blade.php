@@ -177,12 +177,12 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                                     @endif
                                                 </div>
                                                 <h6>
-                                                    <a href="{{ route('store.product.product_view', [$store->slug, $product->id]) }}">{{ $product->name }}</a>
+                                                    <a href="{{ route('store.product.product_view', [$store->slug, $product->id]) }}" class="product-title">{{ $product->name }}</a>
                                                 </h6>
-                                            <p><span class="td-gray">{{ __('Category') }}:</span>{{ $product->product_category() }}</p>
+                                           {{--}} <p><span class="td-gray">{{ __('Category') }}:</span>{{ $product->product_category() }}</p> --}}
 
                                                 <div class="last-btn">
-                                                    <div class="price">
+                                                    <div class="price product-card-price">
                                                         <ins>
                                                             @if ($product->enable_product_variant == 'on')
                                                                 {{ __('In variant') }}
@@ -325,9 +325,9 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                     @endif
                                 </div>
                                 <h6>
-                                    <a href="#">{{ $topRatedProduct->product->name }}</a>
+                                    <a href="#" class="product-title">{{ $topRatedProduct->product->name }}</a>
                                 </h6>
-                            <p><span class="td-gray">{{ __('Category') }}:</span> {{ $topRatedProduct->product->product_category() }}</p>
+                           {{-- <p><span class="td-gray">{{ __('Category') }}:</span> {{ $topRatedProduct->product->product_category() }}</p>--}}
 
                                 <div class="last-btn">
                                     <div class="price">
