@@ -67,8 +67,8 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                 <div class="avtar-img promotions-img">
                                     <img alt="" src="{{ $imgpath . (!empty($storethemesetting['homepage-promotions-font-icon'][$i]['field_prev_text']) ? $storethemesetting['homepage-promotions-font-icon'][$i]['field_prev_text'] : 'avatar.png') }}">
                                 </div>
-                                    <h4>{{ $storethemesetting['homepage-promotions-title'][$i] }}</h4>
-                                    <p>{{ $storethemesetting['homepage-promotions-description'][$i] }}</p>
+                                    <h4 class="product-title">{{ $storethemesetting['homepage-promotions-title'][$i] }}</h4>
+                                    <p class="product-title">{{ $storethemesetting['homepage-promotions-description'][$i] }}</p>
                                 </div>
                             </div>
                         @endfor
@@ -426,7 +426,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                     <div class="testimonial-card-inner">
                                         <p>{{ $storethemesetting['homepage-testimonial-card-description'][$i] }}</p>
                                     <div class="testi-info">
-                                        <div class="avtar-img">
+                                        <div class="avtar-img avata-img-testimoniail">
                                             <img alt="" src="{{ $imgpath . (!empty($storethemesetting['homepage-testimonial-card-image'][$i]['field_prev_text']) ? $storethemesetting['homepage-testimonial-card-image'][$i]['field_prev_text'] : 'avatar.png') }}">
                                         </div>
                                         <div class="testi-content-bottom">

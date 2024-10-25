@@ -229,6 +229,30 @@ b{
     line-height: 1.25rem;
     font-weight: 700;
 }
+/*--------------style comments ----------*/
+.testimonial-card-inner {
+    border: 1px solid white;
+    padding: 16px;
+    background: white;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.testimonial-card-inner p{
+    color:black;
+}
+.avata-img-testimoniail{
+    width: 60px;
+    height: 60px;
+    margin: auto;
+    border-radius: 100%;
+    border: 1px solid white;
+}
 /*-------------------------------*/
     </style>
     @stack('css-page')
