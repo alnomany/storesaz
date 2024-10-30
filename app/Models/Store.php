@@ -9,6 +9,9 @@ class Store extends Model
     protected $fillable = [
         'name',
         'email',
+        'color_theme1',
+        'color_theme2',
+
         'store_theme',
         'theme_dir',
         'domains',

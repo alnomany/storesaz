@@ -3,6 +3,7 @@
         {{ __('Manage Themes') }}
 @endsection
 
+
 @section('title')
     <div class="d-inline-block">
         <h5 class="h4 d-inline-block font-weight-bold mb-0 text-white">{{ __('Manage Themes') }}</h5>
@@ -21,6 +22,12 @@
 @endsection
 
 @section('content')
+<style>
+    :root {
+        --theme-color: red !important;
+        
+    }
+</style>
     <div class="tab-pane" id="pills-theme_setting" role="tabpanel" aria-labelledby="pills-theme_setting">
         {{ Form::open(['route' => ['store.changetheme', $store_settings->id], 'method' => 'POST']) }}
         <div class="d-flex mb-3 align-items-center justify-content-between">
@@ -30,6 +37,8 @@
                     class="me-2"></i>{{ __('Save Changes') }}</button>
 
         </div>
+        <!-- i added -->
+    
         @php
             $themeImg = \App\Models\Utility::get_file('uploads/store_theme/');
         @endphp
@@ -63,6 +72,18 @@
                                                 </label>
                                             @endforeach
                                         </div>
+                                        <!--i added -->
+                                        <div class="color-inputs">
+                                                <label class="colorinput">
+                                                    <input type ="color" class="colorinput-input color-1" name="theme_color1" id="color-picker-{{$key}}" >
+                                                        <input type="hidden" name="theme_color_new_{{ $key }}" id="theme_color-{{$key}}" value="{{ isset($store_settings['color_' . $key]) ? $store_settings['color_' . $key] : '' }}">
+                                                    <span class="border-box" id="value2">
+                                                        <span class="colorinput-color" id="value-{{$key}}"
+                                                            
+                                                            style="color:black; background: {{ isset($store_settings['color_' . $key]) ? $store_settings['color_' . $key] : 'white' }};"></span>
+                                                    </span>
+                                                </label>
+                                        </div>
                                         @can('Edit Themes')
                                             @if (isset($store_settings['theme_dir']) && $store_settings['theme_dir'] == $key)
                                                 <a href="{{ route('store.editproducts', [$store_settings->slug, $key]) }}"
@@ -84,6 +105,27 @@
 
 @push('script-page')
     <script>
+        var colorPicker = document.getElementById("color-picker-theme2");
+        var colorPicker1 = document.getElementById("color-picker-theme1");
+
+        var theme_color1 = document.getElementById("theme_color-theme1");
+        var theme_color2 = document.getElementById("theme_color-theme2");
+        //i stoped here
+       // var colorPicker1 = document.getElementById("color-picker-theme1");
+
+
+        
+        var colorValue1 = document.getElementById("value-theme1");
+        var colorValue2 = document.getElementById("value-theme2");
+
+        colorPicker.onchange = function() {
+            theme_color2.value = colorPicker.value;
+            colorValue2.style.backgroundColor = colorPicker.value;
+        }
+        colorPicker1.onchange = function() {
+            theme_color1.value = colorPicker1.value;
+            colorValue1.style.backgroundColor = colorPicker1.value;
+        }
         $(document).on('click', 'input[name="theme_color"]', function() {
             var eleParent = $(this).attr('data-theme');
             $('#themefile').val(eleParent);

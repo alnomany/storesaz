@@ -3882,6 +3882,7 @@ class StoreController extends Controller
 
     public function changeTheme(Request $request, $slug)
     {
+
         if(\Auth::user()->can('Edit Themes')){
             $validator = \Validator::make(
                 $request->all(), [
@@ -3894,10 +3895,15 @@ class StoreController extends Controller
                 $messages = $validator->getMessageBag();
                 return redirect()->back()->with('error', $messages->first());
             }
-
             $store = Store::find($slug);
             $store['store_theme'] = $request->theme_color;
             $store['theme_dir'] = $request->themefile;
+          
+            $store['color_theme1'] = $request->theme_color_new_theme1;
+            $store['color_theme2'] = $request->theme_color_new_theme2;
+           
+                
+
             $store->save();
 
             return redirect()->back()->with('success', __('Theme Successfully Updated.'));
@@ -3986,7 +3992,7 @@ class StoreController extends Controller
         if(!empty($getStoreThemeSetting['dashboard'])) {
             $getStoreThemeSetting = json_decode($getStoreThemeSetting['dashboard'], true);
         }
-
+return $getStoreThemeSetting;
         $json = $request->array;
         foreach ($json as $key => $jsn) {
             foreach ($jsn['inner-list'] as $IN_key => $js) {
@@ -4035,6 +4041,7 @@ class StoreController extends Controller
                     }else {
 
                         if(!empty($jsn['prev_image'])) {
+                            
                             foreach ($jsn['prev_image'] as $p_key => $p_value) {
                                 $json[$key]['inner-list'][$IN_key]['image_path'][] = $p_value;
                             }
@@ -4162,6 +4169,7 @@ class StoreController extends Controller
         }
 
         $json = json_encode($json);
+        
         $store = Store::where('slug', $slug)->where('created_by', Auth::user()->creatorId())->first();
         $arr = [
             'name' => 'dashboard',
