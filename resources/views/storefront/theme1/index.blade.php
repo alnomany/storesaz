@@ -14,6 +14,11 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
 @endphp
 
 @section('content')
+<style>
+    :root {
+        --theme-color: {{$store->color_theme1}};        
+    }
+</style>
 <div class="wrapper">
     @foreach ($pixelScript as $script)
         <?= $script; ?>
