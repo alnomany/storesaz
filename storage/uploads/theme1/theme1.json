@@ -175,14 +175,14 @@
           "field_name": "Title",
           "field_slug": "homepage-testimonial-card-title",
           "field_help_text": "Please add title here",
-          "field_default_text": "Rajodiya Infotech",
+          "field_default_text": "CEO ALI Ahmed",
           "field_type": "text"
         },
         {
           "field_name": "Sub Text",
           "field_slug": "homepage-testimonial-card-sub-text",
           "field_help_text": "Please add sub text here",
-          "field_default_text": "CEO Rajodiya Infotech",
+          "field_default_text": "CEO ALI Ahmedtech",
           "field_type": "text"
         },
         {
