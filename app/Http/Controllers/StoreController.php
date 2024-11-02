@@ -3992,7 +3992,6 @@ class StoreController extends Controller
         if(!empty($getStoreThemeSetting['dashboard'])) {
             $getStoreThemeSetting = json_decode($getStoreThemeSetting['dashboard'], true);
         }
-return $getStoreThemeSetting;
         $json = $request->array;
         foreach ($json as $key => $jsn) {
             foreach ($jsn['inner-list'] as $IN_key => $js) {
