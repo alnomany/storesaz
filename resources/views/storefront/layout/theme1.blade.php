@@ -193,7 +193,7 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 82vh;
-    margin-top: 18%;
+    margin-top: 14%;
 }
 @media (max-width: 768px) {
     .main-home-first-section {
@@ -205,8 +205,8 @@
 /* Media query for mobile phones */
 @media (max-width: 480px) {
     .main-home-first-section {
-        height: 19vh;  /* Further adjust height for mobile */
-        margin-top: 52%; /* Reduce margin for better fit */
+        height: 17vh;  /* Further adjust height for mobile */
+        margin-top: 42%; /* Reduce margin for better fit */
     }
 }
 
