@@ -206,7 +206,7 @@
 @media (max-width: 480px) {
     .main-home-first-section {
         height: 19vh;  /* Further adjust height for mobile */
-        margin-top: 41%; /* Reduce margin for better fit */
+        margin-top: 52%; /* Reduce margin for better fit */
     }
 }
 
