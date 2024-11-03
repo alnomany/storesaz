@@ -197,16 +197,16 @@
 }
 @media (max-width: 768px) {
     .main-home-first-section {
-        height: 70vh;  /* Adjust height for smaller screens */
-        margin-top: 10%; /* Adjust margin for better spacing */
+        height: 40vh;  /* Adjust height for smaller screens */
+        margin-top: 30%; /* Adjust margin for better spacing */
     }
 }
 
 /* Media query for mobile phones */
 @media (max-width: 480px) {
     .main-home-first-section {
-        height: 60vh;  /* Further adjust height for mobile */
-        margin-top: 5%; /* Reduce margin for better fit */
+        height: 19vh;  /* Further adjust height for mobile */
+        margin-top: 41%; /* Reduce margin for better fit */
     }
 }
 
