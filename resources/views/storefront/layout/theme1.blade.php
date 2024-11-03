@@ -187,7 +187,27 @@
 
 }
 .main-home-first-section{
-    padding:28% 0 !important;
+    background-image: url(https://emlhor.com/storage/uploads/theme1/header/nnn2411031730656396.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 82vh;
+    margin-top: 18%;
+}
+@media (max-width: 768px) {
+    .main-home-first-section {
+        height: 70vh;  /* Adjust height for smaller screens */
+        margin-top: 10%; /* Adjust margin for better spacing */
+    }
+}
+
+/* Media query for mobile phones */
+@media (max-width: 480px) {
+    .main-home-first-section {
+        height: 60vh;  /* Further adjust height for mobile */
+        margin-top: 5%; /* Reduce margin for better fit */
+    }
 }
 
 /*-----------------------------Products-------------*/
