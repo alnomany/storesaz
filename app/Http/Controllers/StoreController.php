@@ -1037,6 +1037,7 @@ class StoreController extends Controller
             }
             session(['slug' => $slug]);
             $cart = session()->get($slug);
+            return $userstore->store_id;
             $pro_categories = ProductCategorie::where('store_id', $userstore->store_id)->where('type',"")->orwhere('type','product')->get();
             return $categories = $pro_categories->pluck('name', 'id');
             $categories->prepend('Start shopping', 0);
