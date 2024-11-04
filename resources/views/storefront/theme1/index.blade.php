@@ -389,7 +389,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                             <div class="col-lg-4 col-md-6 col-6" style=" padding-top: 15px; ">
                                 <div class="category-card">
                                     <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="">
-
+                                    </a>
                                         <div class="category-card-inner">
                                             @if (!empty($pro_categorie->categorie_img))
                                                 <img src="{{  $catimg . $pro_categorie->categorie_img }}" alt="Image placeholder">
@@ -402,7 +402,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                                 {{--<a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="showmore-btn">{{-- __('Show more products') }} <i class="fas fa-shopping-basket"></i></a>--}}
                                             </div>
                                         </div>
-                                    </a>
+                                   
                                 </div>
                              
                             </div>
