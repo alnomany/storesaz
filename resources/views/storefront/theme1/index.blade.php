@@ -388,14 +388,18 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                         @if ($product_count[$key] > 0)
                             <div class="col-lg-4 col-md-6 col-6" style=" padding-top: 15px; ">
                                 <div class="category-card">
-                                    <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="">
-                                    </a>
                                         <div class="category-card-inner">
+
                                             @if (!empty($pro_categorie->categorie_img))
+                                            <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="">
+
                                                 <img src="{{  $catimg . $pro_categorie->categorie_img }}" alt="Image placeholder">
                                             @else
+                                            <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="">
+
                                                 <img src="{{ asset(Storage::url('uploads/product_image/default.jpg')) }}" alt="Image placeholder">
                                             @endif
+                                            </a>
                                             <div class="category-text">
                                                 <h3>{{-- $pro_categorie->name --}}</h3>
                                                 <p>{{-- __('Products') }}: {{ !empty($product_count[$key]) ? $product_count[$key] : '0' --}}</p></p>
