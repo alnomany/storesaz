@@ -379,7 +379,8 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                 <div class="row">
                     @foreach ($pro_categories as $key => $pro_categorie)
                         @if ($product_count[$key] > 0)
-                            <div class="col-lg-4 col-md-6 col-12" style=" padding-top: 15px; ">
+                            <div class="col-lg-4 col-md-6 col-6" style=" padding-top: 15px; ">
+                                <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="showmore-btn">
                                 <div class="category-card">
                                     <div class="category-card-inner">
                                         @if (!empty($pro_categorie->categorie_img))
@@ -388,12 +389,13 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                             <img src="{{ asset(Storage::url('uploads/product_image/default.jpg')) }}" alt="Image placeholder">
                                         @endif
                                         <div class="category-text">
-                                            <h3>{{ $pro_categorie->name }}</h3>
-                                            <p>{{ __('Products') }}: {{ !empty($product_count[$key]) ? $product_count[$key] : '0' }}</p></p>
-                                            <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="showmore-btn">{{ __('Show more products') }} <i class="fas fa-shopping-basket"></i></a>
+                                            <h3>{{-- $pro_categorie->name --}}</h3>
+                                            <p>{{-- __('Products') }}: {{ !empty($product_count[$key]) ? $product_count[$key] : '0' --}}</p></p>
+                                            <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="showmore-btn">{{-- __('Show more products') }} <i class="fas fa-shopping-basket"></i>--}}</a>
                                         </div>
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         @endif
                     @endforeach
