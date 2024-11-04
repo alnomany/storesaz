@@ -25,6 +25,30 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
         
         display:none;
     }
+    .category-card {
+    position: relative; /* Make the parent relative for absolute positioning of the image */
+    overflow: hidden; /* Prevent overflow of child elements */
+    border-radius: 20px; /* Adjust border-radius for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to the card */
+    height: 300px; /* Set a fixed height for the card */
+}
+
+.category-card img {
+    position: absolute;
+    top: 50%; /* Center the image vertically */
+    left: 50%; /* Center the image horizontally */
+    height: 100%;
+    width: 100%;
+    z-index: 0; /* Set a positive z-index */
+    transition: all ease-in-out 0.5s;
+    object-fit: contain; /* Change to contain to show the entire image */
+    transform: translate(-50%, -50%); /* Center the image */
+}
+
+.category-card:hover img {
+    transform: translate(-50%, -50%) scale(1.05); /* Optional: zoom effect on hover */
+}
+
 </style>
 <div class="wrapper">
     @foreach ($pixelScript as $script)
