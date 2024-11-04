@@ -18,6 +18,9 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
     :root {
         --theme-color: {{$store->color_theme1}};        
     }
+    .category-card-inner::before{
+        opacity: 0 !important;
+    }
 </style>
 <div class="wrapper">
     @foreach ($pixelScript as $script)
@@ -391,7 +394,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                         <div class="category-text">
                                             <h3>{{-- $pro_categorie->name --}}</h3>
                                             <p>{{-- __('Products') }}: {{ !empty($product_count[$key]) ? $product_count[$key] : '0' --}}</p></p>
-                                            <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="showmore-btn">{{-- __('Show more products') }} <i class="fas fa-shopping-basket"></i>--}}</a>
+                                            {{--<a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="showmore-btn">{{-- __('Show more products') }} <i class="fas fa-shopping-basket"></i>--}}</a>--}}
                                         </div>
                                     </div>
                                 </div>
