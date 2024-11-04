@@ -394,12 +394,14 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                             <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="">
 
                                                 <img src="{{  $catimg . $pro_categorie->categorie_img }}" alt="Image placeholder">
+                                            </a>
                                             @else
                                             <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="">
 
                                                 <img src="{{ asset(Storage::url('uploads/product_image/default.jpg')) }}" alt="Image placeholder">
-                                            @endif
                                             </a>
+                                            @endif
+                                            
                                             <div class="category-text">
                                                 <h3>{{-- $pro_categorie->name --}}</h3>
                                                 <p>{{-- __('Products') }}: {{ !empty($product_count[$key]) ? $product_count[$key] : '0' --}}</p></p>
