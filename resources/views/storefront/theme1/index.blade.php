@@ -380,7 +380,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                     @foreach ($pro_categories as $key => $pro_categorie)
                         @if ($product_count[$key] > 0)
                             <div class="col-lg-4 col-md-6 col-6" style=" padding-top: 15px; ">
-                                <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="showmore-btn">
+                                <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="">
                                 <div class="category-card">
                                     <div class="category-card-inner">
                                         @if (!empty($pro_categorie->categorie_img))
