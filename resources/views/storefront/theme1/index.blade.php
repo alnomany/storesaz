@@ -33,16 +33,17 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
     height: 300px; /* Set a fixed height for the card */
 }
 
+
 .category-card img {
     position: absolute;
-    top: 50%; /* Center the image vertically */
-    left: 50%; /* Center the image horizontally */
-    height: 100%;
-    width: 100%;
-    z-index: 0; /* Set a positive z-index */
+    top: 50%;
+    left: 50%;
+    height: 75%;
+    width: 75%;
+    z-index: 0;
     transition: all ease-in-out 0.5s;
-    object-fit: contain; /* Change to contain to show the entire image */
-    transform: translate(-50%, -50%); /* Center the image */
+    object-fit: contain;
+    transform: translate(-15%, -51%);
 }
 
 .category-card:hover img {
@@ -427,7 +428,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                             @endif
                                             
                                             <div class="category-text">
-                                                <h3>{{-- $pro_categorie->name --}}</h3>
+                                                <h3>{{ $pro_categorie->name }}</h3>
                                                 <p>{{-- __('Products') }}: {{ !empty($product_count[$key]) ? $product_count[$key] : '0' --}}</p></p>
                                                 {{--<a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="showmore-btn">{{-- __('Show more products') }} <i class="fas fa-shopping-basket"></i></a>--}}
                                             </div>
