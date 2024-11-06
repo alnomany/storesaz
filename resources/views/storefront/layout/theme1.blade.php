@@ -273,6 +273,14 @@ b{
     border-radius: 100%;
     border: 1px solid white;
 }
+p:not(:last-of-type){
+    text-align: right;
+    color:black;
+}
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+h2,a,p,h2,h3,h4,h5,h6,li,div{
+font-family: 'Rubik' !important;
+}
 /*-------------------------------*/
     </style>
     @stack('css-page')

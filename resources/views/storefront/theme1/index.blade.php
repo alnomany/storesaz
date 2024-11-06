@@ -34,16 +34,17 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
 }
 
 
+
 .category-card img {
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 75%;
-    width: 75%;
+    height: 35%;
+    width: 35%;
     z-index: 0;
     transition: all ease-in-out 0.5s;
     object-fit: contain;
-    transform: translate(-15%, -51%);
+    transform: translate(-80%, -51%);
 }
 
 .category-card:hover img {
