@@ -1045,7 +1045,7 @@ class StoreController extends Controller
             $categories->prepend('Start shopping', 0);
 
 
-            $products = [];
+            $products = []; 
             $product_count = []; 
 
             foreach ($categories as $id => $category) {
