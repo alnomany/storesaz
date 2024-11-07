@@ -1040,7 +1040,7 @@ class StoreController extends Controller
             $pro_categories = ProductCategorie::where('store_id', $userstore->store_id)->where(function ($query) {
                 $query->where('type', '')
                       ->orWhere('type', 'product');
-            })->get();
+            })->get(); 
             $categories = $pro_categories->pluck('name', 'id');
             $categories->prepend('Start shopping', 0);
 
