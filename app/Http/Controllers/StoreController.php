@@ -1046,7 +1046,7 @@ class StoreController extends Controller
 
 
             $products = [];
-            $product_count = [];
+            $product_count = []; 
 
             foreach ($categories as $id => $category) {
                 $product = Product::where('store_id', $store->id)->where('product_display', 'on');
