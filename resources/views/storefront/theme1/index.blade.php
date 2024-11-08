@@ -51,7 +51,12 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
     transform: translate(-50%, -50%) scale(1.05); /* Optional: zoom effect on hover 
 }
     */
+    .category-card img {
+    height: 79%;
+    width: 100%;
+    position: absolute !important;
 
+    }
 .category-text h3{
     color:black !important;
 }
