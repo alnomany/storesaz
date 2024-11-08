@@ -50,6 +50,12 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
 .category-card:hover img {
     transform: translate(-50%, -50%) scale(1.05); /* Optional: zoom effect on hover */
 }
+category-text h3{
+    color:black;
+}
+category-text:hover h3{
+    color:black;
+}
 
 </style>
 <div class="wrapper">
@@ -129,7 +135,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
 @endif
 
 
-<!-- Products -->
+<!-- Products category line -->
 
     @if ($products['Start shopping']->count() > 0)
     <section class="bestseller-section tabs-wrapper padding-bottom" id="pro_items">
@@ -256,6 +262,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
     </section>
     @endif
 
+<!--subscribation  -->
 @if($getStoreThemeSetting[2]['section_enable'] == 'on')
     @foreach ($getStoreThemeSetting as $storethemesetting)
         @if (isset($storethemesetting['section_name']) && $storethemesetting['section_name'] == 'Home-Email-Subscriber' && $storethemesetting['section_enable'] == 'on')
@@ -289,6 +296,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
         @endif
     @endforeach
 @endif
+<!-- top products -->
 @if (count($topRatedProducts) > 0)
     <section class="top-product padding-bottom">
         <div class="container">
@@ -391,6 +399,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
         </div>
     </section>
 @endif
+<!-- Category -->
 @foreach ($getStoreThemeSetting as $storethemesetting)
     @if (isset($storethemesetting['section_name']) && $storethemesetting['section_name'] == 'Home-Categories' && $storethemesetting['section_enable'] == 'on' && !empty($pro_categories))
         @php
@@ -417,19 +426,20 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
                                         <div class="category-card-inner">
 
                                             @if (!empty($pro_categorie->categorie_img))
-                                            <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="">
 
                                                 <img src="{{  $catimg . $pro_categorie->categorie_img }}" alt="Image placeholder">
-                                            </a>
+                                            
                                             @else
-                                            <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="">
 
                                                 <img src="{{ asset(Storage::url('uploads/product_image/default.jpg')) }}" alt="Image placeholder">
-                                            </a>
+                                            
                                             @endif
                                             
                                             <div class="category-text">
-                                                <h3>{{ $pro_categorie->name }}</h3>
+                                                <a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="">
+
+                                                    <h3>{{ $pro_categorie->name }}</h3>
+                                                </a>
                                                 <p>{{-- __('Products') }}: {{ !empty($product_count[$key]) ? $product_count[$key] : '0' --}}</p></p>
                                                 {{--<a href="{{ route('store.categorie.product', [$store->slug, $pro_categorie->name]) }}" class="showmore-btn">{{-- __('Show more products') }} <i class="fas fa-shopping-basket"></i></a>--}}
                                             </div>
@@ -445,7 +455,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
         </section>
     @endif
 @endforeach
-
+<!-- Testimonials -->
 @if($getStoreThemeSetting[4]['section_enable'] == 'on')
 <section class="testimonial-section padding-bottom">
     <div class="container">
@@ -509,6 +519,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
         </div>
     </div>
 </section>
+<!-- cliant logo --->
 @endif
     <section class="client-logo">
         <div class="container">
@@ -571,7 +582,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
     </section>
  </div>
 @endsection
-
+<!-- scripts -->
 @push('script-page')
     <script>
         $(".add_to_cart").click(function(e) {
