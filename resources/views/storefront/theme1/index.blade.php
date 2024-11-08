@@ -34,7 +34,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
 }
 
 
-
+/*
 .category-card img {
     position: absolute;
     top: 0%;
@@ -48,8 +48,10 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
 }
 
 .category-card:hover img {
-    transform: translate(-50%, -50%) scale(1.05); /* Optional: zoom effect on hover */
+    transform: translate(-50%, -50%) scale(1.05); /* Optional: zoom effect on hover 
 }
+    */
+
 .category-text h3{
     color:black !important;
 }
