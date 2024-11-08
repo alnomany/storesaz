@@ -64,6 +64,53 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
 .category-text:hover h3{
     color:black;
 }
+/* تحسين شكل البطاقة */
+.category-card {
+    border: 1px solid #ddd;  /* إضافة حدود خفيفة */
+    border-radius: 8px;  /* زوايا دائرية */
+    overflow: hidden;  /* منع العناصر التي تخرج عن الحافة */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* إضافة تأثير ظل خفيف */
+    background-color: #fff;  /* الخلفية البيضاء */
+    transition: transform 0.3s ease;  /* تأثير عند التمرير على العنصر */
+}
+
+.category-card:hover {
+    transform: translateY(-5px);  /* رفع العنصر عند التمرير */
+}
+
+/* تخصيص الصورة لتكون مستجيبة */
+.category-card-inner img {
+    width: 100%;  /* جعل الصورة تأخذ عرض العنصر بالكامل */
+    height: auto;  /* الحفاظ على نسبة العرض إلى الارتفاع */
+    object-fit: cover;  /* تغطية المساحة بالكامل دون تشويه الصورة */
+}
+
+/* تخصيص النص */
+.category-text {
+    padding: 15px;
+    text-align: center;  /* محاذاة النص في المنتصف */
+}
+
+/* تخصيص العنوان */
+.category-text h3 {
+    font-size: 18px;  /* حجم الخط */
+    font-weight: 600;  /* سمك الخط */
+    margin: 10px 0;  /* المسافة بين العنوان وبقية المحتوى */
+    color: #333;  /* لون العنوان */
+}
+
+/* استجابة التصميم للأجهزة الصغيرة */
+@media (max-width: 768px) {
+    .category-card {
+        margin-bottom: 20px;  /* مسافة بين البطاقة والعناصر الأخرى */
+    }
+}
+
+@media (max-width: 480px) {
+    .category-text h3 {
+        font-size: 16px;  /* تقليل حجم الخط للأجهزة الصغيرة */
+    }
+}
 
 </style>
 <div class="wrapper">
