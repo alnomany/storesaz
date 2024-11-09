@@ -59,11 +59,13 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
     }
 .category-text h3{
     color:black !important;
+    padding-top:40%;
 }
 
 .category-text:hover h3{
     color:black;
 }
+
 /* تحسين شكل البطاقة */
 .category-card {
     border: 1px solid #ddd;  /* إضافة حدود خفيفة */
@@ -72,6 +74,7 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* إضافة تأثير ظل خفيف */
     background-color: #fff;  /* الخلفية البيضاء */
     transition: transform 0.3s ease;  /* تأثير عند التمرير على العنصر */
+    height:100%;
 }
 .category-card img {
     position: absolute;
