@@ -73,7 +73,15 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
     background-color: #fff;  /* الخلفية البيضاء */
     transition: transform 0.3s ease;  /* تأثير عند التمرير على العنصر */
 }
-
+.category-card img {
+    position: absolute;
+    top: 0;
+    right: 25%;
+    padding-top: 6%;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
 .category-card:hover {
     transform: translateY(-5px);  /* رفع العنصر عند التمرير */
 }
