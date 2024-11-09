@@ -82,15 +82,14 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
     width: 100%;
     z-index: 0;
 }
-.category-card-inner img {
-    width: 40%;}
+
 .category-card:hover {
     transform: translateY(-5px);  /* رفع العنصر عند التمرير */
 }
 
 /* تخصيص الصورة لتكون مستجيبة */
 .category-card-inner img {
-    width: 100%;  /* جعل الصورة تأخذ عرض العنصر بالكامل */
+    width: 40%;  /* جعل الصورة تأخذ عرض العنصر بالكامل */
     height: auto;  /* الحفاظ على نسبة العرض إلى الارتفاع */
     object-fit: cover;  /* تغطية المساحة بالكامل دون تشويه الصورة */
 }
