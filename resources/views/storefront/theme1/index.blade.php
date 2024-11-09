@@ -82,6 +82,17 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
     width: 100%;
     z-index: 0;
 }
+.category-card img {
+    position: absolute !important;
+    top: 0;
+    right: 25%;
+    padding-top: 6%;
+    height: 100% !important;
+    width: 100% !important;
+    z-index: 0;
+
+
+}
 
 .category-card:hover {
     transform: translateY(-5px);  /* رفع العنصر عند التمرير */
