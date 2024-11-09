@@ -76,12 +76,14 @@ $default =\App\Models\Utility::get_file('uploads/theme1/header/logo4.png');
 .category-card img {
     position: absolute;
     top: 0;
-    right: 25%;
+    right: 30%;
     padding-top: 6%;
     height: 100%;
     width: 100%;
     z-index: 0;
 }
+.category-card-inner img {
+    width: 40%;}
 .category-card:hover {
     transform: translateY(-5px);  /* رفع العنصر عند التمرير */
 }
