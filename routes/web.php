@@ -514,11 +514,11 @@ Route::group(['middleware' => ['verified']], function () {
 Route::post('subscriptions/{id}', [SubscriptionController::class, 'store_email'])->name('subscriptions.store_email');
 Route::get('get-products-variant-quantity', [ProductController::class, 'getProductsVariantQuantity'])->name('get.products.variant.quantity');
 // customer side
-Route::get('page/{slug?}', [StoreController::class, 'pageOptionSlug'])->name('pageoption.slug')->middleware('DomainCheck');
+Route::get('page/{slug?}', [StoreController::class, 'pageOptionSlug'])->name('pageoption.slug');
 Route::get('store-blog/{slug?}', [StoreController::class, 'StoreBlog'])->name('store.blog');
 Route::get('store-blog-view/{slug?}/blog/{id}', [StoreController::class, 'StoreBlogView'])->name('store.store_blog_view');
 
-Route::get('store/{slug?}', [StoreController::class, 'storeSlug'])->name('store.slug')->middleware(['XSS','DomainCheck']);
+Route::get('store/{slug?}', [StoreController::class, 'storeSlug'])->name('store.slug')->middleware(['XSS']);
 Route::get('store/{slug?}/categorie/{name?}', [StoreController::class, 'product'])->name('store.categorie.product')->middleware('XSS');
 Route::get('user-cart-item/{slug?}/cart/{product_id?}/{quantity?}/{variant_id?}', [StoreController::class, 'StoreCart'])->name('store.cart');
 Route::get('checkoutPermission/{store?}', [StoreController::class, 'CheckoutPermit'])->name('checkout.permission');
@@ -667,7 +667,7 @@ Route::post('store/{slug}/addtowishlist/{id}', [StoreController::class, 'AddToWi
 Route::post('store/{slug}/downloadable_prodcut', [StoreController::class, 'downloadable_prodcut'])->name('user.downloadable_prodcut');
 /*=================================Customer Login==========================================*/
 
-Route::get('{slug}/user-create', [StoreController::class, 'userCreate'])->name('store.usercreate')->middleware('DomainCheck');
+Route::get('{slug}/user-create', [StoreController::class, 'userCreate'])->name('store.usercreate');
 Route::post('{slug}/user-create', [StoreController::class, 'userStore'])->name('store.userstore');
 
 Route::get('{slug}/customer-login', [CustomerLoginController::class, 'showLoginForm'])->name('customer.loginform')->middleware('DomainCheck');
