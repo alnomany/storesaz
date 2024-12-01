@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
+use App\Models\User;
+use App\Models\Store;
+use App\Models\Product;
+use App\Models\Ratting;
+use App\Models\Utility;
+use App\Models\ProductTax;
+use Illuminate\Http\Request;
 use App\Exports\ProductExport;
 use App\Imports\ProductImport;
-use App\Models\Plan;
-use App\Models\Product;
-use App\Models\ProductCategorie;
-use App\Models\ProductTax;
-use App\Models\ProductVariantOption;
 use App\Models\Product_images;
-use App\Models\Ratting;
 use App\Models\Expresscheckout;
-use App\Models\Store;
-use App\Models\User;
-use App\Models\Utility;
-use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Models\ProductCategorie;
+use App\Models\ProductVariantOption;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -79,15 +80,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        
+    
         if(\Auth::user()->can('Create Products')){
-            $user = \Auth::user();
+             $user = \Auth::user();
             $store_id = Store::where('id', $user->current_store)->first();
 
+ 
             $validator = \Validator::make(
                 $request->all(),
                 [
                     'name' => 'required|max:120',
-                    'SKU' => 'required|unique:products,SKU',
+                    'SKU' => ['required',Rule::unique('products')->where(function ($query) use ($store_id) {
+                     return $query->where('store_id', $store_id->id);
+                     }),
+                     ],
                 ]
             );
 
