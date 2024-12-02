@@ -483,6 +483,10 @@ class ProductController extends Controller
                 $request->all(),
                 [
                     'name' => 'required|max:120',
+                    'SKU' => ['required',Rule::unique('products')->where(function ($query) use ($store_id) {
+                     return $query->where('store_id', $store_id->id);
+                     }),
+                     ],
                 ]
             );
             if ($request->enable_product_variant == '') {
