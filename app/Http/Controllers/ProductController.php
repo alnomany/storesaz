@@ -483,10 +483,7 @@ class ProductController extends Controller
                 $request->all(),
                 [
                     'name' => 'required|max:120',
-                    'SKU' => ['required',Rule::unique('products')->where(function ($query) use ($store_id) {
-                     return $query->where('store_id', $store_id->id);
-                     }),
-                     ],
+                
                 ]
             );
             if ($request->enable_product_variant == '') {
@@ -1021,6 +1018,7 @@ class ProductController extends Controller
 
     public function getProductVariantsPossibilities(Request $request, $product_id = 0)
     {
+        
         $variant_edit = $request->variant_edit;
         if (!empty($variant_edit) && $variant_edit == 'edit') {
             $variant_option123 = json_decode($request->hiddenVariantOptions, true);
@@ -1035,8 +1033,14 @@ class ProductController extends Controller
         }
         $variant_name = $request->variant_name;
         $variant_options = $request->variant_options;
+        
         $hiddenVariantOptions = $request->hiddenVariantOptions;
         $hiddenVariantOptions = json_decode($hiddenVariantOptions, true);
+        if ($hiddenVariantOptions === null) {
+            
+        $hiddenVariantOptions = [];
+        }
+        
         $variants = [
             [
                 'variant_name' => $variant_name,
