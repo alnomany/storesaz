@@ -51,7 +51,7 @@
     <section class="cart-section">
         <div class="container">
             <div class="cart-title">
-                <h2>{{__('Cart')}}</h2>
+                <h2>{{__('Cart')}}</h2>   
             </div> 
             @if(!empty($products))
             @php
