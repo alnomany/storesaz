@@ -51,7 +51,7 @@
     <section class="cart-section">
         <div class="container">
             <div class="cart-title">
-                <h2>{{__('My Cart')}}</h2>
+                <h2>{{__('Cart')}}</h2>
             </div> 
             @if(!empty($products))
             @php
@@ -213,7 +213,7 @@
                                     <a href="#" class="d-block text-body p-1 px-2"
                                         data-bs-toggle="modal" data-bs-target="#removeItemModal"><i
                                             class="ri-delete-bin-fill text-muted align-bottom me-1"></i>
-                                        Remove</a>
+                                            {{ __('Remove') }}</a>
 
                                 </div>
                                 <div>

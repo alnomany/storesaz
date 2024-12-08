@@ -25,7 +25,7 @@
                     @if($store['enable_cod'] == 'on')
                         <div class="payment-method">
                             <div class="payment-title d-flex align-items-center justify-content-between">
-                                <h4>{{__('COD')}}</h4>
+                                <h4>{{__('COD1')}}</h4>
                                 <div class="payment-image d-flex align-items-center">
                                     <i class="fas fa-truck text-primary fa-3x"></i>
                                 </div>
